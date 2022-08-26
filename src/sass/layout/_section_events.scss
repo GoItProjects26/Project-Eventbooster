@@ -1,4 +1,15 @@
 .event {
+  padding-top: 56px;
+  padding-bottom: 60px;
+  @media screen and (min-width: 768px) {
+    padding-top: 80px;
+  }
+  @media screen and (min-width: 1280px) {
+    padding-top: 120px;
+  }
+}
+
+.event_block {
   margin-left: auto;
   margin-right: auto;
 }
@@ -11,13 +22,19 @@
 
   justify-content: space-between;
   list-style: none;
-  margin: 0;
+  // margin: 0;
   padding: 0;
+  @media screen and (max-width: 767.98px) {
+    max-width: 280px;
+    margin-left: auto;
+    margin-right: auto;
+  }
   @media screen and (min-width: 768px) {
-    justify-content: center;
     gap: 32px;
   }
-  @media screen and (min-width: 1200px) {
+  @media screen and (min-width: 1280px) {
+    row-gap: 40px;
+    column-gap: 32px;
   }
 }
 
@@ -26,6 +43,16 @@
   padding-top: 9px;
   padding-right: 10px;
   width: 130px;
+  @media screen and (min-width: 768px) {
+    padding-top: 10px;
+    padding-right: 11px;
+    width: 152px;
+  }
+  @media screen and (min-width: 1280px) {
+    padding-top: 19px;
+    padding-right: 21px;
+    width: 288px;
+  }
   background-image: url(../img/event_bg_mb_1x.png);
   background-position: top right;
   background-repeat: no-repeat;
@@ -36,6 +63,14 @@
   border-radius: 50px 0px;
   width: 120px;
   height: 151px;
+  @media screen and (min-width: 768px) {
+    width: 141px;
+    height: 178px;
+  }
+  @media screen and (min-width: 1280px) {
+    width: 267px;
+    height: 337px;
+  }
   overflow: hidden;
   object-fit: cover;
 }
@@ -47,10 +82,19 @@
 
   color: #dc56c5;
   margin-bottom: 4px;
+  @media screen and (min-width: 768px) {
+    margin-bottom: 8px;
+  }
+  @media screen and (min-width: 1280px) {
+    // padding-top: 120px;
+  }
 }
 
 .event_date {
   margin-bottom: 4px;
+  @media screen and (min-width: 768px) {
+    margin-bottom: 8px;
+  }
   font-size: 14px;
   line-height: 17px;
   text-align: center;
