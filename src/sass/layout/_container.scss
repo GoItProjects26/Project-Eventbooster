@@ -20,7 +20,7 @@
   padding-top: 9px;
   padding-right: 10px;
   width: 130px;
-  background-image: url(../img/icons.svg);
+  background-image: url(../img/event_bg_mb_1x.png);
   background-position: top right;
   background-repeat: no-repeat;
   // background-color: #b49f9f;
@@ -29,6 +29,8 @@
 .event_img {
   margin-bottom: 8px;
   border-radius: 50px 0px;
+  width: 120px;
+  height: 151px;
   overflow: hidden;
   object-fit: cover;
 }
