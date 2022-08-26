@@ -1,14 +1,12 @@
 import { refs } from './refs';
 
-
-
 const BASE_URL = 'https://app.ticketmaster.com/discovery/v2/';
 const source = 'events';
 const API_KEY = '5HiPtCjBuAY9gthoMA0oQuJCLkmuGiMG';
-// 16 per page
+
 
 const url = `${BASE_URL}${source}.json?apikey=${API_KEY}&keyword="spice"`;
-
+// you can use
 export async function fetchApiData() {
     const responce = await fetch(url);
     const data = await responce.json();
@@ -17,8 +15,10 @@ export async function fetchApiData() {
     // console.log(data._embedded.events);
     return data
 }
+// you can use
 
 
+// in progress DONT touch
 class EventApi {
 
     constructor() {
@@ -79,8 +79,7 @@ const config = {
     responseType: 'json', // default
 }
 
-
-
 // const res = localStorage.getItem('event');
 // console.log(JSON.parse(res)._embedded.events);
 
+// in progress DONT touch
