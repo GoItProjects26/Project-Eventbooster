@@ -60,7 +60,7 @@ export class EventApi {
     setPreferredCountry(countryCode) {
         this.config.params.preferredCountry = this.config.params.preferredCountry.push(`${countryCode}`);
     };
-    getMoreDataById(id) {
+    async getMoreDataById(id) {
         const url = `${BASE_URL}${source}/${id}.json?apikey=${API_KEY}`
         const responce = await fetch(url);
         const data = await responce.json();
