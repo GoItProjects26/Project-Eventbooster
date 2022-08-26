@@ -11,15 +11,15 @@
   padding-bottom: 40px;
   z-index: 999;
   width: 1034px;
-  //   background-color: var(--modal-bg-color);
-  background-color: tomato;
+  background-color: var(--modal-bg-color);
+  // background-color: tomato;
   border-top-left-radius: 300px;
   border-bottom-right-radius: 300px;
 }
-.modal__close {
-  position: relative;
-  top: 100px;
-  left: 100px;
+.modal__close-btn {
+  position: absolute;
+  top: 32px;
+  right: 32px;
 }
 .modal__big-logo {
   width: 450px;
@@ -27,6 +27,21 @@
   background-color: blue;
 }
 .modal__logo {
+  display: block;
+  width: 140px;
+  height: 140px;
   background-color: red;
   border-radius: 50%;
+}
+.modal__logo-box {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  margin-bottom: 40px;
+  height: 181px;
+  align-items: flex-end;
+}
+.modal__container {
+  display: flex;
+  gap: 32px;
 }
