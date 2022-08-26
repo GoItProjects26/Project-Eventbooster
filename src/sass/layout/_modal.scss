@@ -11,7 +11,7 @@
   padding-bottom: 40px;
   z-index: 999;
   width: 1034px;
-  background-color: tomato;
+  background-color: var(--modal-bg-color);
   border-top-left-radius: 300px;
   border-bottom-right-radius: 300px;
 }
@@ -19,4 +19,13 @@
   position: relative;
   top: 100px;
   left: 100px;
+}
+.modal__big-logo {
+  width: 450px;
+  height: 664px;
+  background-color: blue;
+}
+.modal__logo {
+  background-color: red;
+  border-radius: 50%;
 }
