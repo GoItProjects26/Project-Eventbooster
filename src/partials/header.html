@@ -1,10 +1,41 @@
+<header class="header">
+  <div class="header__container container">
+    <!-- Logo -->
+    <div class="logo">
+      <a class="logo__link" href="./">
+        <svg class="logo__svg" width="100" height="40">
+          <use href="./images/sprite.svg#icon-logo-mob"></use>
+        </svg>
+      </a>
+    </div>
+    <h1 class="header__title">Find best events around the world</h1>
+    <!-- Search and country forms -->
+    <div class="header__search">
+      <form class="search-form" id="search-form">
+        <input
+          class="search-form__input"
+          type="text"
+          name="searchQuery"
+          placeholder="Start searching"
+          id="search"
+        />
+        <button class="search-form__btn" type="submit"></button>
+      </form>
 
-<form class="search-form" id="search-form">
-  <input
-    class="search-form__input"
-    type="text"
-    name="searchQuery"
-    placeholder="Start searching"
-  />
-  <button class="search-form__btn" type="submit"></button>
-</form>
+      <form class="country-form" id="country-form">
+        <input
+          class="country-form__input"
+          type="text"
+          name="countryQuery"
+          placeholder="Choose country"
+          id="country-input"
+        />
+        <select
+          class="country-form__select"
+          name="country-select"
+          id="country-select"
+        ></select>
+      </form>
+    </div>
+  </div>
+</header>
