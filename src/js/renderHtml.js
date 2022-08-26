@@ -1,17 +1,19 @@
 import { refs } from './refs';
-import { fetchApiData } from './api'
+import { EventApi } from './api'
+
+const event = new EventApi;
 
 
-
-
-export function renderMarckup() {
-    fetchApiData()
-        .then(data => data._embedded.events)
-        .then(eventsArrayFull => shortDataFromServer(eventsArrayFull))
-        .then(eventsArray => marckup(eventsArray))
-        .then(data => console.log(data, '1111111'))
+export async function renderMarckup() {
+    try {
+        const responce = await event.fetchApiData();
+        const eventsArrayFull = responce._embedded.events;
+        const eventsArray = shortDataFromServer(eventsArrayFull);
+        marckup(eventsArray);
+    } catch (error) {
+        console.log(error);
+    }
 }
-
 
 
 function marckup(eventsArray) {
@@ -22,20 +24,10 @@ function marckup(eventsArray) {
     refs.eventList.innerHTML = marckupArray.join('')
 }
 
-function loadRequiredData(eventsArrayFull) {
-    // const res = localStorage.getItem('event');
-    // eventsArrayFull = JSON.parse(res)._embedded.events;
-
-    // console.log(eventsArray);
-
-}
-
-
-
 
 function templateItems(event) {
     return `
-   <li class="list_item">
+   <li class="list_item" data-id ="${event.id}">
         <div class="event_img">
           <img
             src="${event.mobImg}"
@@ -45,7 +37,7 @@ function templateItems(event) {
           />
         </div>
         <h3 class="event_title">${event.name}</h3>
-        <p class="event_date">e${event.localDate}</p>
+        <p class="event_date">${event.localDate}</p>
         <p class="event_location">${event.concertHall}</p>
       </li>
 `
@@ -64,36 +56,9 @@ function desiredObjectForPage(value) {
         localDate: value.dates.start.localDate,
         mobImg: value.images[3].url,
         concertHall: value._embedded.venues?.[0].name,
-
-
-        localTime: value.dates.start.localTime,
-        ticketType: value.priceRanges?.[0].type,
-        priceCurrency: value.priceRanges?.[0].currency,
-        priceMin: value.priceRanges?.[0].min,
-        priceMax: value.priceRanges?.[0].max,
-        locationAddress: value._embedded.venues?.[0].address.line1,
-        locationCity: value._embedded.venues?.[0].city.name,
-        locationCountry: value._embedded.venues?.[0].country.name,
     }
 }
 
+function loadRandomEvent() {
 
-
-/*
-
- return {
-                id: event.id,
-                name: event.name,
-                localDate: event.dates.start.localDate,
-                localTime: event.dates.start.localTime,
-                ticketType: event.priceRanges?.[0].type,
-
-                priceCurrency: event.priceRanges?.[0].currency,
-                priceMin: event.priceRanges?.[0].min,
-                priceMax: event.priceRanges?.[0].max,
-                locationAddress: event._embedded.venues?.[0].address.line1,
-                locationCity: event._embedded.venues?.[0].city.name,
-                locationCountry: event._embedded.venues?.[0].country.name,
-                concertHall: event._embedded.venues?.[0].name,
-            }
-*/
+}

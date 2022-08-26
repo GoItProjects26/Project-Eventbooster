@@ -13,6 +13,12 @@
   list-style: none;
   margin: 0;
   padding: 0;
+  @media screen and (min-width: 768px) {
+    justify-content: center;
+    gap: 32px;
+  }
+  @media screen and (min-width: 1200px) {
+  }
 }
 
 .list_item {
@@ -23,7 +29,6 @@
   background-image: url(../images/event_bg_mb_1x.png);
   background-position: top right;
   background-repeat: no-repeat;
-  // background-color: #b49f9f;
 }
 
 .event_img {
