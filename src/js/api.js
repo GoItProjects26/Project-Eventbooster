@@ -1,11 +1,9 @@
 import axios from 'axios';
-import { refs } from './refs';
+
 
 const BASE_URL = 'https://app.ticketmaster.com/discovery/v2/';
 const source = 'events';
 const API_KEY = '5HiPtCjBuAY9gthoMA0oQuJCLkmuGiMG';
-
-const url = `${BASE_URL}${source}.json?apikey=${API_KEY}&keyword="spice"`;
 
 export class EventApi {
     config = {
