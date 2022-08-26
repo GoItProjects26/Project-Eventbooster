@@ -1,23 +1,22 @@
 import { refs } from './refs';
 
 
+
 const BASE_URL = 'https://app.ticketmaster.com/discovery/v2/';
 const source = 'events';
 const API_KEY = '5HiPtCjBuAY9gthoMA0oQuJCLkmuGiMG';
 // 16 per page
 
-const url = `${BASE_URL}${source}.json?apikey=${API_KEY}&keyword="spice"&size="16"`;
+const url = `${BASE_URL}${source}.json?apikey=${API_KEY}&keyword="spice"`;
 
-async function fetchApiData() {
+export async function fetchApiData() {
     const responce = await fetch(url);
     const data = await responce.json();
-    const eventsArray = data._embedded.events;
-    localStorage.setItem('event', JSON.stringify(data))
-
-    return console.log(data._embedded.events);
+    // const eventsArray = data._embedded.events;
+    // localStorage.setItem('event', JSON.stringify(data))
+    // console.log(data._embedded.events);
+    return data
 }
-
-refs.fetchBtn.addEventListener('click', fet)
 
 
 class EventApi {
@@ -80,34 +79,8 @@ const config = {
     responseType: 'json', // default
 }
 
-function fet() {
-    const res = localStorage.getItem('event');
-    const eventsArray = JSON.parse(res)._embedded.events;
-    console.log(eventsArray);
-    const result = function name(eventsArray) {
-        return eventsArray.map(event => {
-            return {
-                id: event.id,
-                name: event.name,
-                localDate: event.dates.start.localDate,
-                localTime: event.dates.start.localTime,
-                ticketType: event.priceRanges?.[0].type,
 
-                priceCurrency: event.priceRanges?.[0].currency,
-                priceMin: event.priceRanges?.[0].min,
-                priceMax: event.priceRanges?.[0].max,
-                locationAddress: event._embedded.venues?.[0].address.line1,
-                locationCity: event._embedded.venues?.[0].city.name,
-                locationCountry: event._embedded.venues?.[0].country.name,
-                concertHall: event._embedded.venues?.[0].name,
-            }
-        })
 
-    }
-
-    return console.log(result(eventsArray));
-}
-
-const res = localStorage.getItem('event');
-console.log(JSON.parse(res)._embedded.events);
+// const res = localStorage.getItem('event');
+// console.log(JSON.parse(res)._embedded.events);
 
