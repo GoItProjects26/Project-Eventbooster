@@ -77,7 +77,9 @@ function desiredObjectForPage(value) {
     }
 }
 
+function loadRandomEvent() {
 
+}
 
 /*
 
