@@ -1,17 +1,16 @@
 import { refs } from './refs';
-import { fetchApiData } from './api'
+import { fetchApiData, EventApi } from './api'
 
-
+const event = new EventApi;
 
 
 export function renderMarckup() {
-    fetchApiData()
+    event.fetchApiData()
         .then(data => data._embedded.events)
         .then(eventsArrayFull => shortDataFromServer(eventsArrayFull))
         .then(eventsArray => marckup(eventsArray))
         .then(data => console.log(data, '1111111'))
 }
-
 
 
 function marckup(eventsArray) {
@@ -22,20 +21,10 @@ function marckup(eventsArray) {
     refs.eventList.innerHTML = marckupArray.join('')
 }
 
-function loadRequiredData(eventsArrayFull) {
-    // const res = localStorage.getItem('event');
-    // eventsArrayFull = JSON.parse(res)._embedded.events;
-
-    // console.log(eventsArray);
-
-}
-
-
-
 
 function templateItems(event) {
     return `
-   <li class="list_item">
+   <li class="list_item" data-id ="${event.id}">
         <div class="event_img">
           <img
             src="${event.mobImg}"
@@ -45,7 +34,7 @@ function templateItems(event) {
           />
         </div>
         <h3 class="event_title">${event.name}</h3>
-        <p class="event_date">e${event.localDate}</p>
+        <p class="event_date">${event.localDate}</p>
         <p class="event_location">${event.concertHall}</p>
       </li>
 `
