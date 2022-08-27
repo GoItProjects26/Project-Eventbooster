@@ -9,28 +9,34 @@ body.light {
 }
 
 .label {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 5px;
   margin-left: 20px;
   width: 28px;
   height: 14px;
-  background-color: var(--accent-text-color);
-  display: flex;
+
   border-radius: 50px;
-  align-items: center;
-  justify-content: space-between;
-  padding: 5px;
-  position: relative;
   transform: scale(1.5);
+
+  background-color: var(--accent-text-color);
 }
 
 .ball {
+  position: absolute;
+
   width: 13px;
   height: 13px;
-  background-color: var(--primary-text-color);
-  position: absolute;
+
   top: 1px;
   left: 0px;
   border-radius: 50%;
   transition: transform 0.2s linear;
+
+  background-color: var(--primary-text-color);
 }
 
 .checkbox:checked + .label .ball {
