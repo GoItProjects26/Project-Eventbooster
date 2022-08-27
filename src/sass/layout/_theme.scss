@@ -1,0 +1,47 @@
+body.light {
+  background-color: var(--modal-bg-color);
+  color: #111;
+}
+
+.checkbox {
+  opacity: 0;
+  position: absolute;
+}
+
+.label {
+  margin-left: 20px;
+  width: 28px;
+  height: 14px;
+  background-color: #111;
+  display: flex;
+  border-radius: 50px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px;
+  position: relative;
+  transform: scale(1.5);
+}
+
+.ball {
+  width: 14px;
+  height: 14px;
+  background-color: white;
+  position: absolute;
+  top: 0px;
+  left: 2px;
+  border-radius: 50%;
+  transition: transform 0.2s linear;
+}
+
+/*  target the elemenent after the label*/
+.checkbox:checked + .label .ball {
+  transform: translateX(13px);
+}
+
+// .fa-moon {
+//   color: pink;
+// }
+
+// .fa-sun {
+//   color: yellow;
+// }
