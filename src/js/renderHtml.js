@@ -38,8 +38,8 @@ function templateItems(event) {
         <h3 class="event_title">${event.name}</h3>
         <p class="event_date">${event.localDate}</p>
         <p class="event_location location">
-        <svg  class="location_icon" width = 10 height = 7>
-        <use href="./images/icons.svg"></use>
+        <svg  class="location_icon" width = 6 height = 9>
+        <use href="./images/icons.svg#icon-location"></use>
         </svg>
         <span class="location_name">${event.concertHall}</span></p>
       </li>
