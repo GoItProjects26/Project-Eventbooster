@@ -40,6 +40,8 @@ class Basket {
 const userBasket = new Basket;
 export default userBasket;
 // refs.basketQuantity.textContent = userBasket.totalQuantity
+// refs.basketNum.textContent = userBasket.totalQuantity
+if (userBasket.totalQuantity === 0 && !refs.basketNum.classList.contains("hidden")) refs.basketNum.classList.add("hidden")
 
 
 refs.basketContinueBookingBtn.addEventListener("click", onClickBasketContinueShoppingBtn);
@@ -55,7 +57,7 @@ function onClickBuyBtn (event) {
 refs.basketClearBtn.addEventListener("click", onClickClearBtn)
 function onClickClearBtn(event) {
     console.log("basketClearBtn")
-    this.clearList()
+    // this.clearList()
     refs.basketQuantity.textContent = userBasket.totalQuantity
     refs.basketMarkupContainer.innerHTML = "";
 }
