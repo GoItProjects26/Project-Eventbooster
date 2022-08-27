@@ -29,31 +29,26 @@ async function getById(id) {
 const eventList = document.querySelector('.event_list');
 eventList.addEventListener('click', onEventClick);
 async function onEventClick(event) {
-  //   console.log(444);
-  //   console.log(event.target);
   if (event.target.nodeName === 'LI') {
-    console.log(event.target.dataset.id);
     idForFetch = event.target.dataset.id;
   } else if (event.target.nodeName === 'H3' || event.target.nodeName === 'P') {
-    console.log(event.target.parentNode.dataset.id);
     idForFetch = event.target.parentNode.dataset.id;
   } else if (event.target.nodeName === 'IMG') {
-    console.log(event.target.parentNode.parentNode.dataset.id);
     idForFetch = event.target.parentNode.parentNode.dataset.id;
   }
   let response = await getById(idForFetch);
   console.log(response);
-  console.log(response._embedded.venues[0].name);
+  // console.log(date(response.dates.start.dateTime));
   await renderModal(response);
-  // await modalCloseBtn.addEventListener('click', closeModal);
+  await renderPrices(response.priceRanges);
+  // await renderPrices(arr);
 }
-// const modalCloseBtn = document.querySelector('.modal__close-btn');
 
 function renderModal(data) {
   openModal();
 
   jsModal.innerHTML = `
-          <div class="modal__logo-box">
+      <div class="modal__logo-box">
         <div class="modal__logo">small-logo-pic</div>
       </div>
       <div class="modal__data-container">
@@ -82,3 +77,32 @@ function renderModal(data) {
         </ul>
       </div>`;
 }
+
+function renderPrices(data) {
+  // console.log(data);
+  const pricesElem = document.querySelector('#modal__prices');
+  let pricesMarkup = data
+    .map(
+      elem => `
+      <div class="prices__box">
+       <img
+          class="prices__icon"
+          src="../src/images/ticket1.svg"
+          alt="Кот"
+          width="60"
+        />
+        <p class="prices__text">
+          ${elem.type} ${elem.min} - ${elem.max} ${elem.currency}
+        </p>
+      </div>
+  `
+    )
+    .join('');
+  pricesElem.innerHTML = pricesMarkup;
+}
+// test arr
+// const arr = [
+//   { currency: 'USD', max: 1250, min: 15, type: 'standard' },
+//   { currency: 'USD', max: 1555, min: 16, type: 'standard' },
+// ];
+//  <img src="./images/event_bg_mb_1x.png" width="50"/>

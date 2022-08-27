@@ -48,3 +48,13 @@
   display: flex;
   gap: 32px;
 }
+.prices__box {
+  display: flex;
+}
+.prices__text {
+  text-transform: capitalize;
+}
+.prices__icon {
+  fill: red;
+  width: 24px;
+}
