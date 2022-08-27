@@ -79,7 +79,6 @@ class Basket {
 
 }
 
-const userBasket = new Basket;
 export default userBasket;
 // refs.basketQuantity.textContent = userBasket.totalQuantity
 // refs.basketNum.textContent = userBasket.totalQuantity
