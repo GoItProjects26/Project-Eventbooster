@@ -38,7 +38,7 @@ async function onEventClick(event) {
     idForFetch = event.target.parentNode.parentNode.dataset.id;
   }
   let response = await getById(idForFetch);
-  console.log(response);
+  console.log(response.images);
   // console.log(date(response.dates.start.dateTime));
   await renderModal(response);
   await renderPrices(response.priceRanges);
@@ -53,7 +53,10 @@ function renderModal(data) {
         <div class="modal__logo">small-logo-pic</div>
       </div>
       <div class="modal__data-container">
-        <div class="modal__big-logo">BIG PIC</div>
+        <div class="modal__big-logo">   <img
+            src="${data.images[8].url}"
+            alt=""
+          /></div>
         <ul class="modal__list list">
           <li class="modal__item">
             <h3 class="modal__title">INFO</h3>

@@ -3,21 +3,56 @@
   <div class="modal js-modal">
     <button type="button" class="modal__close-btn">CLOSE</button>
     <div class="modal__container">
-      <div class="prices__box">
-        <!-- <svg class="prices__icon">
-          <use href="./images/icons.svg#icon-ticket"></use>
-        </svg> -->
-        <!-- <img src="./images/ticket1.svg" width="24px" /> -->
-        <!-- <img
-          class="prices__icon"
-          src="./images/ticket1.svg"
-          alt="Кот"
-          width="60"
-        /> -->
-        <p class="prices__text">
+      <div class="modal__logo-box">
+        <div class="modal__logo">small-logo-pic</div>
+      </div>
+      <div class="modal__data-container">
+        <div class="modal__big-logo">
+          <img
+            src="https://s1.ticketm.net/dam/a/c62/0636ff21-e369-4b8c-bee4-214ea0a81c62_1339761_RETINA_LANDSCAPE_16_9.jpg"
+            alt=""
+          />
+        </div>
+        <ul class="modal__list list">
+          <li class="modal__item">
+            <h3 class="modal__title">INFO</h3>
+            <p>${data.info}</p>
+          </li>
+          <li class="modal__item">
+            <h3 class="modal__title">WHEN</h3>
+            <p>${data.dates.start.datetime}</p>
+          </li>
+          <li class="modal__item">
+            <h3 class="modal__title">WHERE</h3>
+            <p>${data._embedded.venues[0].name}</p>
+          </li>
+          <li class="modal__item">
+            <h3 class="modal__title">WHO</h3>
+            <p>${data.name}</p>
+          </li>
+          <li class="modal__item">
+            <h3 class="modal__title">PRICES</h3>
+
+            <!-- <div id="modal__prices" data-id=${data.id}></div> -->
+          </li>
+        </ul>
+      </div>
+      <!-- <div class="prices__box">
+                <p class="prices__text">
           ${elem.type} ${elem.min} - ${elem.max} ${elem.currency}
         </p>
-      </div>
+      </div> -->
     </div>
   </div>
 </div>
+<!-- 0: {ratio: '4_3', url: 'https://s1.ticketm.net/dam/a/c62/0636ff21-e369-4b8c-bee4-214ea0a81c62_1339761_CUSTOM.jpg', width: 305, height: 225, fallback: false}
+1: {ratio: '16_9', url: 'https://s1.ticketm.net/dam/a/c62/0636ff21-e369-4b8…ee4-214ea0a81c62_1339761_RETINA_PORTRAIT_16_9.jpg', width: 640, height: 360, fallback: false}
+2: {ratio: '16_9', url: 'https://s1.ticketm.net/dam/a/c62/0636ff21-e369-4b8…ea0a81c62_1339761_TABLET_LANDSCAPE_LARGE_16_9.jpg', width: 2048, height: 1152, fallback: false}
+3: {ratio: '16_9', url: 'https://s1.ticketm.net/dam/a/c62/0636ff21-e369-4b8…4-214ea0a81c62_1339761_EVENT_DETAIL_PAGE_16_9.jpg', width: 205, height: 115, fallback: false}
+4: {ratio: '3_2', url: 'https://s1.ticketm.net/dam/a/c62/0636ff21-e369-4b8c-bee4-214ea0a81c62_1339761_ARTIST_PAGE_3_2.jpg', width: 305, height: 203, fallback: false}
+5: {ratio: '16_9', url: 'https://s1.ticketm.net/dam/a/c62/0636ff21-e369-4b8…e4-214ea0a81c62_1339761_TABLET_LANDSCAPE_16_9.jpg', width: 1024, height: 576, fallback: false}
+6: {ratio: '3_2', url: 'https://s1.ticketm.net/dam/a/c62/0636ff21-e369-4b8…bee4-214ea0a81c62_1339761_RETINA_PORTRAIT_3_2.jpg', width: 640, height: 427, fallback: false}
+7: {ratio: '3_2', url: 'https://s1.ticketm.net/dam/a/c62/0636ff21-e369-4b8…ee4-214ea0a81c62_1339761_TABLET_LANDSCAPE_3_2.jpg', width: 1024, height: 683, fallback: false}
+8: {ratio: '16_9', url: 'https://s1.ticketm.net/dam/a/c62/0636ff21-e369-4b8…e4-214ea0a81c62_1339761_RETINA_LANDSCAPE_16_9.jpg', width: 1136, height: 639, fallback: false}
+9: {ratio: '16_9', url: 'https://s1.ticketm.net/dam/a/c62/0636ff21-e369-4b8c-bee4-214ea0a81c62_1339761_RECOMENDATION_16_9.jpg', width: 100, height: 56, fallback: false}
+length: 10 -->
