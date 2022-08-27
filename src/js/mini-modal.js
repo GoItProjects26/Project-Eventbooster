@@ -14,7 +14,7 @@ function onClickMiniModalBtnOpenBasket (event) {
     //закрывает модалку//
     refs.basketModal.classList.toggle("hidden")
     refs.basketQuantity.textContent = userBasket.totalQuantity;
-    renderBasketMarkup(data)/// Данные с именем события
+    // renderBasketMarkup(data)/// Данные с именем события
 }
 
 function renderBasketMarkup (data) {
