@@ -1,6 +1,6 @@
 body.light {
   background-color: var(--modal-bg-color);
-  color: #111;
+  color: var(--modal-primary-text-color);
 }
 
 .checkbox {
@@ -12,7 +12,7 @@ body.light {
   margin-left: 20px;
   width: 28px;
   height: 14px;
-  background-color: #111;
+  background-color: var(--accent-text-color);
   display: flex;
   border-radius: 50px;
   align-items: center;
@@ -23,19 +23,19 @@ body.light {
 }
 
 .ball {
-  width: 14px;
-  height: 14px;
-  background-color: white;
+  width: 13px;
+  height: 13px;
+  background-color: var(--primary-text-color);
   position: absolute;
-  top: 0px;
-  left: 2px;
+  top: 1px;
+  left: 0px;
   border-radius: 50%;
   transition: transform 0.2s linear;
 }
 
-/*  target the elemenent after the label*/
 .checkbox:checked + .label .ball {
-  transform: translateX(13px);
+  transform: translateX(15px);
+  background-color: var(--modal-primary-text-color);
 }
 
 // .fa-moon {
