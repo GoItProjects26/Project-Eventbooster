@@ -1,11 +1,12 @@
+import { Geohash } from './geo/hash';
 import { refs } from './refs';
 import { EventApi } from './api'
 //master function
 const event = new EventApi;
-
 export async function renderMarckup() {
     try {
         const responce = await event.fetchApiData();
+        // console.log(responce);
         const eventsArrayFull = responce._embedded.events;
         const eventsArray = shortDataFromServer(eventsArrayFull);
         marckup(eventsArray);
@@ -14,7 +15,9 @@ export async function renderMarckup() {
     }
 }
 
-//slave function
+//slave functions
+
+// create marckup for home page
 function marckup(eventsArray) {
     const marckupArray = eventsArray.map(event => {
         return templateItems(event)
@@ -38,8 +41,8 @@ function templateItems(event) {
         <h3 class="event_title">${event.name}</h3>
         <p class="event_date">${event.localDate}</p>
         <p class="event_location location">
-        <svg  class="location_icon" width = 6 height = 9>
-        <use href="./images/icons.svg#icon-location"></use>
+        <svg  class="location_icon" width = "6" height = "9">
+        <use href="icons.adfc4680.svg#icon-location"></use>
         </svg>
         <span class="location_name">${event.concertHall}</span></p>
       </li>
@@ -51,7 +54,7 @@ function shortDataFromServer(eventsArrayFull) {
     return arrayOfDesiredObjcts;
 }
 
-//generate object with less key:value from incoming object  to make markup for home page
+//generate object with less key:value from incoming object 
 function desiredObjectForPage(value) {
     return {
         id: value.id,
@@ -65,3 +68,15 @@ function desiredObjectForPage(value) {
 function loadRandomEvent() {
 
 }
+
+// console.log(navigator.geolocation.getCurrentPosition((Position) => {
+//     // Geohash.encode()
+//     // const hash = Geohash.encode(Position.coords.latitude, Position.coords.longitude, undefined);
+//     // console.log(hash);
+
+//     // console.log(Position);
+//     // console.log(Position.coords.latitude, Position.coords.longitude)
+// }, null, {
+//     // высокая точность
+//     enableHighAccuracy: true
+// }));

@@ -23,4 +23,8 @@ export const refs = {
     miniModal: document.querySelector(".mini-modal-backdrop"),
     miniModalBtnCart: document.querySelector(".mini-modal__button"),
     miniModalBtnClose: document.querySelector(".mini-modal__close"),
+
+
+    select: document.querySelector('.country-form__select'),
 }
+
