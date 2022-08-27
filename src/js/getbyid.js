@@ -43,66 +43,42 @@ async function onEventClick(event) {
   }
   let response = await getById(idForFetch);
   console.log(response);
+  console.log(response._embedded.venues[0].name);
   await renderModal(response);
   // await modalCloseBtn.addEventListener('click', closeModal);
 }
-const modalCloseBtn = document.querySelector('.modal__close-btn');
+// const modalCloseBtn = document.querySelector('.modal__close-btn');
 
 function renderModal(data) {
   openModal();
 
-  // jsModal.insertAdjacentHTML(
-  //   'beforeend',
-  //   `
-  //   <div class="modal__logo-box">
-  //     <div class="modal__logo">small-logo-pic</div>
-  //   </div>
-  //   <div class="modal__container">
-  //     <div class="modal__big-logo">BIG PIC</div>
-  //     <ul class="modal__list list">
-  //       <li class="modal__item">
-  //         <p>INFO</p>
-  //       </li>
-  //       <li class="modal__item">
-  //         <p>WHEN</p>
-  //       </li>
-  //       <li class="modal__item">
-  //         <p>WHERE</p>
-  //       </li>
-  //       <li class="modal__item">
-  //         <p>WHO</p>
-  //       </li>
-  //       <li class="modal__item">
-  //         <p>PRICES</p>
-  //       </li>
-  //     </ul>
-  //   </div>`
-  // );
   jsModal.innerHTML = `
-    <div class="modal__logo-box">
-      <div class="modal__logo">small-logo-pic</div>
-    </div>
-    <div class="modal__data-container">
-      <div class="modal__big-logo">BIG PIC</div>
-      <ul class="modal__list list">
-        <li class="modal__item">
-          <p>INFO</p>
-        </li>
-        <li class="modal__item">
-          <p>WHEN</p>
-        </li>
-        <li class="modal__item">
-          <p>WHERE</p>
-        </li>
-        <li class="modal__item">
-          <p>WHO</p>
-        </li>
-        <li class="modal__item">
-          <p>PRICES</p>
-        </li>
-      </ul>
-    </div>`;
-  // const close = document.querySelector('modal__close-btn');
-  // close.addEventListener('click', closeModal);
-  // console.log(modalCloseBtn);
+          <div class="modal__logo-box">
+        <div class="modal__logo">small-logo-pic</div>
+      </div>
+      <div class="modal__data-container">
+        <div class="modal__big-logo">BIG PIC</div>
+        <ul class="modal__list list">
+          <li class="modal__item">
+            <h3 class="modal__title">123INFO</h3>
+            <p>${data.info}</p>
+          </li>
+          <li class="modal__item">
+            <h3 class="modal__title">WHEN</h3>
+            <p>${data.dates.start.datetime}</p>
+          </li>
+          <li class="modal__item">
+            <h3 class="modal__title">WHERE</h3>
+            <p>${data._embedded.venues[0].name}</p>
+          </li>
+          <li class="modal__item">
+            <h3 class="modal__title">WHO</h3>
+            <p>${data.name}</p>
+          </li>
+          <li class="modal__item">
+            <h3 class="modal__title">PRICES</h3>
+            <div id="modal__prices"></div>
+          </li>
+        </ul>
+      </div>`;
 }
