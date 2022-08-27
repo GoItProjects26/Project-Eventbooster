@@ -1,7 +1,10 @@
 import { refs } from './refs';
 import { fetchApiData } from './api';
+import { openModal } from './modal';
+import { closeModal } from './modal';
+
 const axios = require('axios').default;
-const jsModal = document.querySelector('.js-modal');
+const jsModal = document.querySelector('.modal__container');
 // TEST
 // async function fefe() {
 //   const reqRes = await fetchApiData();
@@ -41,12 +44,45 @@ async function onEventClick(event) {
   let response = await getById(idForFetch);
   console.log(response);
   await renderModal(response);
+  // await modalCloseBtn.addEventListener('click', closeModal);
 }
+const modalCloseBtn = document.querySelector('.modal__close-btn');
+
 function renderModal(data) {
-  jsModal.innerHTML += `<div class="modal__logo-box">
+  openModal();
+
+  // jsModal.insertAdjacentHTML(
+  //   'beforeend',
+  //   `
+  //   <div class="modal__logo-box">
+  //     <div class="modal__logo">small-logo-pic</div>
+  //   </div>
+  //   <div class="modal__container">
+  //     <div class="modal__big-logo">BIG PIC</div>
+  //     <ul class="modal__list list">
+  //       <li class="modal__item">
+  //         <p>INFO</p>
+  //       </li>
+  //       <li class="modal__item">
+  //         <p>WHEN</p>
+  //       </li>
+  //       <li class="modal__item">
+  //         <p>WHERE</p>
+  //       </li>
+  //       <li class="modal__item">
+  //         <p>WHO</p>
+  //       </li>
+  //       <li class="modal__item">
+  //         <p>PRICES</p>
+  //       </li>
+  //     </ul>
+  //   </div>`
+  // );
+  jsModal.innerHTML = `
+    <div class="modal__logo-box">
       <div class="modal__logo">small-logo-pic</div>
     </div>
-    <div class="modal__container">
+    <div class="modal__data-container">
       <div class="modal__big-logo">BIG PIC</div>
       <ul class="modal__list list">
         <li class="modal__item">
@@ -66,4 +102,7 @@ function renderModal(data) {
         </li>
       </ul>
     </div>`;
+  // const close = document.querySelector('modal__close-btn');
+  // close.addEventListener('click', closeModal);
+  // console.log(modalCloseBtn);
 }

@@ -9,6 +9,6 @@ export function openModal() {
   backdrop.classList.remove('is-hidden');
 }
 
-function closeModal() {
+export function closeModal() {
   backdrop.classList.add('is-hidden');
 }
