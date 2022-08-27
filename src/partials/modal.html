@@ -2,28 +2,22 @@
 <div class="backdrop is-hidden">
   <div class="modal js-modal">
     <button type="button" class="modal__close-btn">CLOSE</button>
-    <div class="modal__logo-box">
-      <div class="modal__logo">small-logo-pic</div>
-    </div>
     <div class="modal__container">
-      <div class="modal__big-logo">BIG PIC</div>
-      <ul class="modal__list list">
-        <li class="modal__item">
-          <p>INFO</p>
-        </li>
-        <li class="modal__item">
-          <p>WHEN</p>
-        </li>
-        <li class="modal__item">
-          <p>WHERE</p>
-        </li>
-        <li class="modal__item">
-          <p>WHO</p>
-        </li>
-        <li class="modal__item">
-          <p>PRICES</p>
-        </li>
-      </ul>
+      <div class="prices__box">
+        <!-- <svg class="prices__icon">
+          <use href="./images/icons.svg#icon-ticket"></use>
+        </svg> -->
+        <!-- <img src="./images/ticket1.svg" width="24px" /> -->
+        <!-- <img
+          class="prices__icon"
+          src="./images/ticket1.svg"
+          alt="Кот"
+          width="60"
+        /> -->
+        <p class="prices__text">
+          ${elem.type} ${elem.min} - ${elem.max} ${elem.currency}
+        </p>
+      </div>
     </div>
   </div>
 </div>
