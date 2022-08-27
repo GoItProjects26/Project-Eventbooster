@@ -43,6 +43,7 @@
   padding-top: 9px;
   padding-right: 10px;
   width: 130px;
+  background-image: url(../images/event_bg_mb_1x.png);
   @media screen and (min-width: 768px) {
     padding-top: 10px;
     padding-right: 11px;
@@ -53,7 +54,6 @@
     padding-right: 21px;
     width: 288px;
   }
-  background-image: url(../img/event_bg_mb_1x.png);
   background-position: top right;
   background-repeat: no-repeat;
 }
