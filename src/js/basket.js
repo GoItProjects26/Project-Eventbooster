@@ -72,6 +72,7 @@ class Basket {
         this.vipQuantity = 0;
         this.standardQuantity = 0;
         this.totalQuantity = 0;
+        this.contentShoppingCart = [];
         
         
     }
@@ -88,10 +89,10 @@ if (userBasket.totalQuantity === 0 && !refs.basketNum.classList.contains("hidden
 refs.basketContinueBookingBtn.addEventListener("click", onClickBasketContinueShoppingBtn);
 function onClickBasketContinueShoppingBtn (event) {
     refs.basketModal.classList.toggle("hidden")
-    if (userBasket.totalQuantity !== 0 && refs.basketContainerHead.classList.contains("hidden")) refs.basketContainerHead.classList.remove("hidden")
-    if (userBasket.totalQuantity === 0 && !refs.basketContainerHead.classList.contains("hidden")) refs.basketContainerHead.classList.add("hidden")
+    // if (userBasket.totalQuantity !== 0 && refs.basketContainerHead.classList.contains("hidden")) refs.basketContainerHead.classList.remove("hidden")
+    // if (userBasket.totalQuantity === 0 && !refs.basketContainerHead.classList.contains("hidden")) refs.basketContainerHead.classList.add("hidden")
     
-    refs.basketNumHead.textContent = userBasket.totalQuantity;
+    // refs.basketNumHead.textContent = userBasket.totalQuantity;
 }
 
 refs.basketBuyBtn.addEventListener("click", onClickBuyBtn)
@@ -105,11 +106,12 @@ function onClickBuyBtn (event) {
 refs.basketClearBtn.addEventListener("click", onClickClearBtn)
 function onClickClearBtn(event) {
     if(!refs.basketContainer.classList.contains("hidden")) refs.basketContainer.classList.add("hidden")
-    if(!refs.basketContainerHead.classList.contains("hidden")) refs.basketContainerHead.classList.add("hidden")
+    // if(!refs.basketContainerHead.classList.contains("hidden")) refs.basketContainerHead.classList.add("hidden")
     userBasket.clearList()
     refs.basketQuantity.innerHTML = userBasket.totalQuantity
-    refs.basketNumHead.innerHTML = userBasket.totalQuantity
+    // refs.basketNumHead.innerHTML = userBasket.totalQuantity
     refs.basketMarkupContainer.innerHTML = "";
+    
 
 }
 
