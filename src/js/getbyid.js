@@ -1,7 +1,7 @@
 import { refs } from './refs';
 import { fetchApiData } from './api';
 const axios = require('axios').default;
-
+const jsModal = document.querySelector('.js-modal');
 // TEST
 // async function fefe() {
 //   const reqRes = await fetchApiData();
@@ -18,13 +18,14 @@ let axiosConfig = {
 let idForFetch = '';
 async function getById(id) {
   const resp = await axios.get(`/${id}.json`, axiosConfig);
-  console.log(resp.data);
+  // console.log(resp.data);
+  return resp.data;
 }
 // getById(idForFetch);
 
 const eventList = document.querySelector('.event_list');
 eventList.addEventListener('click', onEventClick);
-function onEventClick(event) {
+async function onEventClick(event) {
   //   console.log(444);
   //   console.log(event.target);
   if (event.target.nodeName === 'LI') {
@@ -37,5 +38,32 @@ function onEventClick(event) {
     console.log(event.target.parentNode.parentNode.dataset.id);
     idForFetch = event.target.parentNode.parentNode.dataset.id;
   }
-  getById(idForFetch);
+  let response = await getById(idForFetch);
+  console.log(response);
+  await renderModal(response);
+}
+function renderModal(data) {
+  jsModal.innerHTML += `<div class="modal__logo-box">
+      <div class="modal__logo">small-logo-pic</div>
+    </div>
+    <div class="modal__container">
+      <div class="modal__big-logo">BIG PIC</div>
+      <ul class="modal__list list">
+        <li class="modal__item">
+          <p>INFO</p>
+        </li>
+        <li class="modal__item">
+          <p>WHEN</p>
+        </li>
+        <li class="modal__item">
+          <p>WHERE</p>
+        </li>
+        <li class="modal__item">
+          <p>WHO</p>
+        </li>
+        <li class="modal__item">
+          <p>PRICES</p>
+        </li>
+      </ul>
+    </div>`;
 }
