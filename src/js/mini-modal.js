@@ -1,9 +1,9 @@
 
 import {refs} from "./refs";
-import {Basket} from "./basket";
+import {userBasket} from "./basket";
 import userEventApi from "./api"
 import {closeModal} from "./modal"
-const userBasket = new Basket; //должно создаваться при загрузке Фетча
+
 
 
 

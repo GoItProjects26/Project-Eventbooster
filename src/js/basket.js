@@ -1,5 +1,5 @@
 import {refs} from "./refs";
-export {Basket}
+export {userBasket}
 import userEventApi from "./api"
 
 
@@ -79,7 +79,7 @@ class Basket {
 
 
 }
-
+const userBasket = new Basket; //должно создаваться при загрузке Фетча  
 
 // refs.basketQuantity.textContent = userBasket.totalQuantity
 // refs.basketNum.textContent = userBasket.totalQuantity
