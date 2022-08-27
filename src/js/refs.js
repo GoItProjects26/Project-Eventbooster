@@ -28,4 +28,3 @@ export const refs = {
     select: document.querySelector('.country-form__select'),
 }
 
-console.log(refs.select);

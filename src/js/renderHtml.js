@@ -6,7 +6,7 @@ const event = new EventApi;
 export async function renderMarckup() {
     try {
         const responce = await event.fetchApiData();
-        console.log(responce);
+        // console.log(responce);
         const eventsArrayFull = responce._embedded.events;
         const eventsArray = shortDataFromServer(eventsArrayFull);
         marckup(eventsArray);
@@ -69,14 +69,14 @@ function loadRandomEvent() {
 
 }
 
-console.log(navigator.geolocation.getCurrentPosition((Position) => {
-    // Geohash.encode()
-    // const hash = Geohash.encode(Position.coords.latitude, Position.coords.longitude, undefined);
-    // console.log(hash);
+// console.log(navigator.geolocation.getCurrentPosition((Position) => {
+//     // Geohash.encode()
+//     // const hash = Geohash.encode(Position.coords.latitude, Position.coords.longitude, undefined);
+//     // console.log(hash);
 
-    console.log(Position);
-    console.log(Position.coords.latitude, Position.coords.longitude)
-}, null, {
-    // высокая точность
-    enableHighAccuracy: true
-}));
+//     // console.log(Position);
+//     // console.log(Position.coords.latitude, Position.coords.longitude)
+// }, null, {
+//     // высокая точность
+//     enableHighAccuracy: true
+// }));
