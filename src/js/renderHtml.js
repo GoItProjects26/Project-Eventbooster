@@ -1,12 +1,12 @@
+import { Geohash } from './geo/hash';
 import { refs } from './refs';
 import { EventApi } from './api'
-
+//master function
 const event = new EventApi;
-
-
 export async function renderMarckup() {
     try {
         const responce = await event.fetchApiData();
+        // console.log(responce);
         const eventsArrayFull = responce._embedded.events;
         const eventsArray = shortDataFromServer(eventsArrayFull);
         marckup(eventsArray);
@@ -15,7 +15,9 @@ export async function renderMarckup() {
     }
 }
 
+//slave functions
 
+// create marckup for home page
 function marckup(eventsArray) {
     const marckupArray = eventsArray.map(event => {
         return templateItems(event)
@@ -24,7 +26,7 @@ function marckup(eventsArray) {
     refs.eventList.innerHTML = marckupArray.join('')
 }
 
-
+// template for cards
 function templateItems(event) {
     return `
    <li class="list_item" data-id ="${event.id}">
@@ -38,17 +40,21 @@ function templateItems(event) {
         </div>
         <h3 class="event_title">${event.name}</h3>
         <p class="event_date">${event.localDate}</p>
-        <p class="event_location">${event.concertHall}</p>
+        <p class="event_location location">
+        <svg  class="location_icon" width = "6" height = "9">
+        <use href="icons.adfc4680.svg#icon-location"></use>
+        </svg>
+        <span class="location_name">${event.concertHall}</span></p>
       </li>
 `
 }
-
+//sort out array of objects from server [{1,2,3},{1,2,3}.....] => [{1}]
 function shortDataFromServer(eventsArrayFull) {
     const arrayOfDesiredObjcts = eventsArrayFull.map(value => desiredObjectForPage(value))
     return arrayOfDesiredObjcts;
 }
 
-
+//generate object with less key:value from incoming object 
 function desiredObjectForPage(value) {
     return {
         id: value.id,
@@ -58,7 +64,19 @@ function desiredObjectForPage(value) {
         concertHall: value._embedded.venues?.[0].name,
     }
 }
-
+//will be logic for 1st time visit our site
 function loadRandomEvent() {
 
 }
+
+// console.log(navigator.geolocation.getCurrentPosition((Position) => {
+//     // Geohash.encode()
+//     // const hash = Geohash.encode(Position.coords.latitude, Position.coords.longitude, undefined);
+//     // console.log(hash);
+
+//     // console.log(Position);
+//     // console.log(Position.coords.latitude, Position.coords.longitude)
+// }, null, {
+//     // высокая точность
+//     enableHighAccuracy: true
+// }));

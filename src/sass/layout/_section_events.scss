@@ -54,6 +54,7 @@
     padding-right: 21px;
     width: 288px;
   }
+  background-image: url(../images/event_bg_mb_1x.png);
   background-position: top right;
   background-repeat: no-repeat;
 }
@@ -76,35 +77,54 @@
 }
 
 .event_title {
+  margin-bottom: 4px;
   font-size: 14px;
   line-height: 17px;
   text-align: center;
-
   color: #dc56c5;
-  margin-bottom: 4px;
+
   @media screen and (min-width: 768px) {
     margin-bottom: 8px;
-  }
-  @media screen and (min-width: 1280px) {
-    // padding-top: 120px;
+    font-size: 16px;
+    line-height: 20px;
   }
 }
 
 .event_date {
   margin-bottom: 4px;
-  @media screen and (min-width: 768px) {
-    margin-bottom: 8px;
-  }
   font-size: 14px;
   line-height: 17px;
   text-align: center;
   color: #ffffff;
+  @media screen and (min-width: 768px) {
+    margin-bottom: 8px;
+    font-size: 16px;
+    line-height: 20px;
+  }
 }
 
 .event_location {
+  text-align: center;
+}
+
+.location_name {
+  display: inline-block;
   font-weight: 600;
   font-size: 12px;
   line-height: 15px;
   text-align: center;
   color: #ffffff;
+  @media screen and (min-width: 768px) {
+    font-size: 14px;
+    line-height: 17px;
+  }
+}
+
+.location_icon {
+  color: #ffffff;
+  margin-right: 3px;
+  @media screen and (min-width: 768px) {
+    width: 8px;
+    height: 10px;
+  }
 }

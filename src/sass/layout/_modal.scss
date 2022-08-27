@@ -41,7 +41,20 @@
   height: 181px;
   align-items: flex-end;
 }
-.modal__container {
+// .modal__container {
+//   width: 100%;
+// }
+.modal__data-container {
   display: flex;
   gap: 32px;
+}
+.prices__box {
+  display: flex;
+}
+.prices__text {
+  text-transform: capitalize;
+}
+.prices__icon {
+  fill: red;
+  width: 24px;
 }
