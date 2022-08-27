@@ -2,6 +2,7 @@ import { refs } from './refs';
 import { fetchApiData } from './api';
 import { openModal } from './modal';
 import { closeModal } from './modal';
+import ticketIcon from '../images/ticket1.svg';
 
 const axios = require('axios').default;
 const jsModal = document.querySelector('.modal__container');
@@ -72,7 +73,7 @@ function renderModal(data) {
           </li>
           <li class="modal__item">
             <h3 class="modal__title">PRICES</h3>
-            <div id="modal__prices"></div>
+            <div id="modal__prices" data-id=${data.id}></div>
           </li>
         </ul>
       </div>`;
@@ -87,7 +88,7 @@ function renderPrices(data) {
       <div class="prices__box">
        <img
           class="prices__icon"
-          src="../src/images/ticket1.svg"
+          src="${ticketIcon}"
           alt="Кот"
           width="60"
         />
@@ -100,6 +101,7 @@ function renderPrices(data) {
     .join('');
   pricesElem.innerHTML = pricesMarkup;
 }
+
 // test arr
 // const arr = [
 //   { currency: 'USD', max: 1250, min: 15, type: 'standard' },
