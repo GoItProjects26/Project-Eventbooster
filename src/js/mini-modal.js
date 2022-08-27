@@ -4,17 +4,15 @@ import {Basket} from "./basket";
 import userEventApi from "./api"
 import {closeModal} from "./modal"
 const userBasket = new Basket; //должно создаваться при загрузке Фетча
-refs.modalBuyBtn.addEventListener("click", onClickModalBuyBtn);
-function onClickModalBuyBtn (event) {
-    refs.miniModal.classList.toggle("hidden");
+
+// refs.modalBuyBtn.addEventListener("click", onClickModalBuyBtn);
+// function onClickModalBuyBtn (event) {
+//     refs.miniModal.classList.toggle("hidden");
  
-    const basketId = event.target.closest("[data-id]").dataset.id
-    userBasket.addEvent(basketId)
-    userBasket.increaseStandardQuantity ()
-
-
-
-}
+//     const basketId = event.target.closest("[data-id]").dataset.id
+//     userBasket.addEvent(basketId)
+//     userBasket.increaseStandardQuantity ()
+// }
 
 
 refs.miniModalBtnClose.addEventListener("click", onClickMiniModalBtnClose);
