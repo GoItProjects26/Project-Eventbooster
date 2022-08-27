@@ -53,7 +53,7 @@
     padding-right: 21px;
     width: 288px;
   }
-  background-image: url(../img/event_bg_mb_1x.png);
+  background-image: url(../images/event_bg_mb_1x.png);
   background-position: top right;
   background-repeat: no-repeat;
 }
@@ -103,6 +103,11 @@
 }
 
 .event_location {
+  text-align: center;
+}
+
+.location_name {
+  display: inline-block;
   font-weight: 600;
   font-size: 12px;
   line-height: 15px;
@@ -112,4 +117,8 @@
     font-size: 14px;
     line-height: 17px;
   }
+}
+
+.location_icon {
+  margin-right: 3px;
 }
