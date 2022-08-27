@@ -1,0 +1,110 @@
+.event {
+  padding-top: 56px;
+  padding-bottom: 60px;
+  @media screen and (min-width: 768px) {
+    padding-top: 80px;
+  }
+  @media screen and (min-width: 1280px) {
+    padding-top: 120px;
+  }
+}
+
+.event_block {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.event_list {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 32px;
+  column-gap: 20px;
+
+  justify-content: space-between;
+  list-style: none;
+  // margin: 0;
+  padding: 0;
+  @media screen and (max-width: 767.98px) {
+    max-width: 280px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  @media screen and (min-width: 768px) {
+    gap: 32px;
+  }
+  @media screen and (min-width: 1280px) {
+    row-gap: 40px;
+    column-gap: 32px;
+  }
+}
+
+.list_item {
+  display: block;
+  padding-top: 9px;
+  padding-right: 10px;
+  width: 130px;
+  @media screen and (min-width: 768px) {
+    padding-top: 10px;
+    padding-right: 11px;
+    width: 152px;
+  }
+  @media screen and (min-width: 1280px) {
+    padding-top: 19px;
+    padding-right: 21px;
+    width: 288px;
+  }
+  background-image: url(../img/event_bg_mb_1x.png);
+  background-position: top right;
+  background-repeat: no-repeat;
+}
+
+.event_img {
+  margin-bottom: 8px;
+  border-radius: 50px 0px;
+  width: 120px;
+  height: 151px;
+  @media screen and (min-width: 768px) {
+    width: 141px;
+    height: 178px;
+  }
+  @media screen and (min-width: 1280px) {
+    width: 267px;
+    height: 337px;
+  }
+  overflow: hidden;
+  object-fit: cover;
+}
+
+.event_title {
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+
+  color: #dc56c5;
+  margin-bottom: 4px;
+  @media screen and (min-width: 768px) {
+    margin-bottom: 8px;
+  }
+  @media screen and (min-width: 1280px) {
+    // padding-top: 120px;
+  }
+}
+
+.event_date {
+  margin-bottom: 4px;
+  @media screen and (min-width: 768px) {
+    margin-bottom: 8px;
+  }
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.event_location {
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 15px;
+  text-align: center;
+  color: #ffffff;
+}
