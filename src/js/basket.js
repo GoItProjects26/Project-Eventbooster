@@ -1,4 +1,6 @@
-import {refs} from "./refs"
+import {refs} from "./refs";
+export {Basket}
+import userEventApi from "./api"
 
 
 
@@ -10,22 +12,57 @@ function onClickVipBtn (event) {
 
 }
 
+refs.basketHead.addEventListener("click", onClickBasketHead);
+function onClickBasketHead (event) {
+    refs.basketModal.classList.toggle("hidden")
+   
+}
+
 
 class Basket {
     constructor () {
         this.contentShoppingCart = [];
         this.vipQuantity = 0;
         this.standardQuantity = 0;
-        this.totalQuantity = this.vipQuantity + this.standardQuantity
+        this.totalQuantity = 0;
+        this.duration = 900000;
+        this.step = 1000;
     }
 
+
     increaseVipQuantity () {
-        this.quantity += 1
+        this.vipQuantity += 1
+        this.totalQuantity += 1
     }
 
     increaseStandardQuantity () {
-        this.quantity += 1
+        this.standardQuantity += 1
+        this.totalQuantity += 1
     }
+
+    addEvent(dataId) {
+        this.contentShoppingCart.push(dataId)
+        // this.setTimeout(dataId);
+
+  
+    }
+
+    setTimeout () {
+        const event = setTimeout(() => {
+            this.contentShoppingCart.shift()
+        }, this.duration)
+
+        let end = this.duration;
+        
+        const timer = setInterval(() => {
+            end -= this.step;
+            if (end <= 900) clearInterval(timer);
+            console.log(end)
+        }, this.step)
+
+    }
+
+
 
     // continueShopping () {
 
@@ -34,7 +71,12 @@ class Basket {
     clearList () {
         this.vipQuantity = 0;
         this.standardQuantity = 0;
+        this.totalQuantity = 0;
+        
+        
     }
+
+
 }
 
 const userBasket = new Basket;
@@ -47,30 +89,40 @@ if (userBasket.totalQuantity === 0 && !refs.basketNum.classList.contains("hidden
 refs.basketContinueBookingBtn.addEventListener("click", onClickBasketContinueShoppingBtn);
 function onClickBasketContinueShoppingBtn (event) {
     refs.basketModal.classList.toggle("hidden")
+    if (userBasket.totalQuantity !== 0 && refs.basketContainerHead.classList.contains("hidden")) refs.basketContainerHead.classList.remove("hidden")
+    if (userBasket.totalQuantity === 0 && !refs.basketContainerHead.classList.contains("hidden")) refs.basketContainerHead.classList.add("hidden")
+    
+    refs.basketNumHead.textContent = userBasket.totalQuantity;
 }
 
 refs.basketBuyBtn.addEventListener("click", onClickBuyBtn)
 function onClickBuyBtn (event) {
-    console.log("вы купили милион билетов")
+    userBasket.contentShoppingCart.forEach(id => {
+        clearTimeout(id)
+    } )
+    alert("вы купили милион билетов")
 }
 
 refs.basketClearBtn.addEventListener("click", onClickClearBtn)
 function onClickClearBtn(event) {
-    console.log("basketClearBtn")
-    // this.clearList()
-    refs.basketQuantity.textContent = userBasket.totalQuantity
+    if(!refs.basketContainer.classList.contains("hidden")) refs.basketContainer.classList.add("hidden")
+    if(!refs.basketContainerHead.classList.contains("hidden")) refs.basketContainerHead.classList.add("hidden")
+    userBasket.clearList()
+    refs.basketQuantity.innerHTML = userBasket.totalQuantity
+    refs.basketNumHead.innerHTML = userBasket.totalQuantity
     refs.basketMarkupContainer.innerHTML = "";
+
 }
 
 function onClickStandardBuyBtn (event) {
-    this.contentShoppingCart.push({})
+    this.addEvent()
     this.increaseStandardQuantity()
     refs.miniModal.classList.toggle("hidden")
     //добавить закрытие модалки//
 }
 
 function onClickVipBuyBtn (event) {
-    this.contentShoppingCart.push({})
+    this.addEvent()
     this.increaseVipQuantity()
     refs.miniModal.classList.toggle("hidden")
      //добавить закрытие модалки//
