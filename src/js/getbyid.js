@@ -60,7 +60,7 @@ function renderModal(data) {
         <div class="modal__big-logo">BIG PIC</div>
         <ul class="modal__list list">
           <li class="modal__item">
-            <h3 class="modal__title">123INFO</h3>
+            <h3 class="modal__title">INFO</h3>
             <p>${data.info}</p>
           </li>
           <li class="modal__item">
