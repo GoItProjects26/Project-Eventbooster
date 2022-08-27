@@ -1,6 +1,10 @@
 import { refs } from './refs';
-import { renderMarckup } from './renderHtml'
+import { renderMarckup, renderMarckupFromLocalStorage } from './renderHtml'
 import { country } from "./country/dropDown"
+import { saveCollectionToLocalStorage } from "./load/load"
 
-refs.fetchBtn.addEventListener('click', renderMarckup);
+//MAKS
 window.addEventListener("load", country);
+window.addEventListener("load", saveCollectionToLocalStorage);
+window.addEventListener("load", renderMarckupFromLocalStorage);
+//================================================================================

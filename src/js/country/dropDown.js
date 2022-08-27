@@ -21,8 +21,3 @@ export function country() {
 function countryTemplate(data) {
     return `<option value="${data.code}">${data.name}</option>`
 }
-
-/*
-<select id="country-list" name="country-list">
-</select>
-*/
