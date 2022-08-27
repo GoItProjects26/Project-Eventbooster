@@ -22,11 +22,13 @@ export class EventApi {
             apikey: API_KEY, //key for request
             size: "16", //Page size of the response => String
             page: "0", //number of current page -> string
-            countryCode: ' ', //Filter by country code
+            countryCode: 'pl', //Filter by country code
             keyword: ' ', //Keyword to search on
             includeTBD: ' ', //yes, to include with a date to be defined (TBD)
             includeTBA: ' ', //
             preferredCountry: "[ua, ca]", //Popularity boost by country, default is us ["us", "ca"]
+            geoPoint: "u8jz2",
+            // latlong: "46.3077376,30.6151424",
         },
         // `timeout` specifies the number of milliseconds before the request times out.
         // If the request takes longer than `timeout`, the request will be aborted.

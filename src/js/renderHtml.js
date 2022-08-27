@@ -1,11 +1,12 @@
+import { Geohash } from './geo/hash';
 import { refs } from './refs';
 import { EventApi } from './api'
 //master function
 const event = new EventApi;
-
 export async function renderMarckup() {
     try {
         const responce = await event.fetchApiData();
+        console.log(responce);
         const eventsArrayFull = responce._embedded.events;
         const eventsArray = shortDataFromServer(eventsArrayFull);
         marckup(eventsArray);
@@ -67,3 +68,15 @@ function desiredObjectForPage(value) {
 function loadRandomEvent() {
 
 }
+
+console.log(navigator.geolocation.getCurrentPosition((Position) => {
+    // Geohash.encode()
+    // const hash = Geohash.encode(Position.coords.latitude, Position.coords.longitude, undefined);
+    // console.log(hash);
+
+    console.log(Position);
+    console.log(Position.coords.latitude, Position.coords.longitude)
+}, null, {
+    // высокая точность
+    enableHighAccuracy: true
+}));
