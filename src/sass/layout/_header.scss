@@ -1,0 +1,77 @@
+.header__container {
+  height: 308px;
+
+  @media screen and (min-width: 768px) {
+    height: 274px;
+  }
+
+  @media screen and (min-width: 1200px) {
+    height: 370px;
+  }
+}
+
+.logo {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  width: 60px;
+  height: 23px;
+
+  @media screen and (min-width: 768px) {
+    width: 100px;
+    height: 27px;
+    top: 23px;
+    left: 32px;
+  }
+
+  @media screen and (min-width: 1200px) {
+    width: 136px;
+    height: 65px;
+    top: 40px;
+    left: 16px;
+  }
+}
+
+.basket--header {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+
+  @media screen and (min-width: 768px) {
+    top: 23px;
+    right: 32px;
+  }
+
+  @media screen and (min-width: 1200px) {
+    top: 40px;
+    right: 16px;
+  }
+}
+
+.header__title {
+  margin: 80px 40px 10px;
+  text-transform: uppercase;
+  font-weight: 900;
+  font-size: 18px;
+  line-height: 1.22;
+  text-align: center;
+  color: #dc56c5;
+
+  @media screen and (min-width: 768px) {
+    margin: 40px auto;
+    font-size: 30px;
+  }
+
+  @media screen and (min-width: 1200px) {
+    margin-top: 40px;
+    margin-bottom: 28px;
+    font-size: 50px;
+    width: 608px;
+  }
+}
+
+.header__search {
+  @media screen and (min-width: 768px) {
+    display: flex;
+  }
+}
