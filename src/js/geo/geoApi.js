@@ -24,10 +24,10 @@ const END_POINT = "http://api.positionstack.com/v1/";
 function name(params) {
     return fetch('http://api.positionstack.com/v1/reverse?access_key=ee726807a49066d3b79a480bc3cd828d&query=46.3077376,30.6151424')
         .then(data => data.json())
-        .then(data => console.log(data))
+        .then(data => data)
 }
 name();
-console.log('dcd');
+
 
 
 // GeoApi.fetchGeoApi().then(data => console.log(data))
