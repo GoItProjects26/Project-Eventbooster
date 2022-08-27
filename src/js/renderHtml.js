@@ -14,7 +14,9 @@ export async function renderMarckup() {
     }
 }
 
-//slave function
+//slave functions
+
+// create marckup for home page
 function marckup(eventsArray) {
     const marckupArray = eventsArray.map(event => {
         return templateItems(event)
@@ -38,8 +40,8 @@ function templateItems(event) {
         <h3 class="event_title">${event.name}</h3>
         <p class="event_date">${event.localDate}</p>
         <p class="event_location location">
-        <svg  class="location_icon" width = 6 height = 9>
-        <use href="./images/icons.svg#icon-location"></use>
+        <svg  class="location_icon" width = "6" height = "9">
+        <use href="icons.adfc4680.svg#icon-location"></use>
         </svg>
         <span class="location_name">${event.concertHall}</span></p>
       </li>
@@ -51,7 +53,7 @@ function shortDataFromServer(eventsArrayFull) {
     return arrayOfDesiredObjcts;
 }
 
-//generate object with less key:value from incoming object  to make markup for home page
+//generate object with less key:value from incoming object 
 function desiredObjectForPage(value) {
     return {
         id: value.id,
