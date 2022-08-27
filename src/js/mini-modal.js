@@ -1,5 +1,4 @@
 import {refs} from "./refs";
-import userBasket from "./basket";
 import {Basket} from "./basket";
 import userEventApi from "./api"
 import {closeModal} from "./modal"

@@ -79,8 +79,7 @@ class Basket {
 
 }
 
-const userBasket = new Basket;
-export default userBasket;
+
 // refs.basketQuantity.textContent = userBasket.totalQuantity
 // refs.basketNum.textContent = userBasket.totalQuantity
 if (userBasket.totalQuantity === 0 && !refs.basketNum.classList.contains("hidden")) refs.basketNum.classList.add("hidden")
