@@ -8,7 +8,11 @@
     padding-top: 120px;
   }
 }
-
+.section_title {
+  width: fit-content;
+  margin-right: auto;
+  margin-left: auto;
+}
 .event_block {
   margin-left: auto;
   margin-right: auto;
@@ -43,7 +47,6 @@
   padding-top: 9px;
   padding-right: 10px;
   width: 130px;
-  background-image: url(../images/event_bg_mb_1x.png);
   @media screen and (min-width: 768px) {
     padding-top: 10px;
     padding-right: 11px;
@@ -95,7 +98,7 @@
   font-size: 14px;
   line-height: 17px;
   text-align: center;
-  color: #ffffff;
+  color: inherit;
   @media screen and (min-width: 768px) {
     margin-bottom: 8px;
     font-size: 16px;
@@ -113,7 +116,7 @@
   font-size: 12px;
   line-height: 15px;
   text-align: center;
-  color: #ffffff;
+  color: inherit;
   @media screen and (min-width: 768px) {
     font-size: 14px;
     line-height: 17px;
@@ -121,7 +124,7 @@
 }
 
 .location_icon {
-  color: #ffffff;
+  fill: currentColor;
   margin-right: 3px;
   @media screen and (min-width: 768px) {
     width: 8px;
