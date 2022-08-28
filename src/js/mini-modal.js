@@ -2,10 +2,11 @@
 
 
 import {refs} from "./refs";
-import {userBasket, onClickBasketBackdrop, onEscKeyPressBasket, ESC_KEY_CODE} from "./basket";
+import {userBasket, onClickBasketBackdrop, onEscKeyPressBasket, ESC_KEY_CODE, onBasketShow} from "./basket";
 import userEventApi from "./api"
 import {closeModal} from "./modal"
 export {onClickModalBuyBtn}
+
 
 
 
@@ -18,7 +19,9 @@ function onClickModalBuyBtn (event) {
     localStorage.setItem("userBasket", JSON.stringify(userBasket));
     refs.miniModalBackdrop.addEventListener("click", onClickMiniModalBackdrop);
     window.addEventListener("keydown", onEscKeyPressMiniModal);
+    
 }
+
 function onEscKeyPressMiniModal (event) {
     if(event.code === ESC_KEY_CODE) {
         window.removeEventListener("keydown", onEscKeyPressMiniModal);
@@ -48,24 +51,11 @@ refs.miniModalBtnCart.addEventListener("click", onClickMiniModalBtnOpenBasket);
 function onClickMiniModalBtnOpenBasket (event) {
     refs.miniModal.classList.toggle("hidden")
     closeModal();
-    refs.basketModal.classList.toggle("hidden")
-    refs.basketQuantity.textContent = userBasket.totalQuantity;
-    refs.basketNum.textContent = userBasket.totalQuantity;
-    if (userBasket.totalQuantity !== 0 && refs.basketContainer.classList.contains("hidden")) refs.basketContainer.classList.remove("hidden")
     localStorage.setItem("userBasket", JSON.stringify(userBasket));
-    renderBasketMarkup(userBasket.contentShoppingCart)/// Данные с именем события
     refs.miniModalBackdrop.removeEventListener("click", onClickMiniModalBackdrop)
     window.removeEventListener("keydown", onEscKeyPressMiniModal);
-    refs.basketBackdrop.addEventListener("click", onClickBasketBackdrop)
-    window.addEventListener("keydown", onEscKeyPressBasket);
-
+    onBasketShow()
 }
 
-function renderBasketMarkup(data) {
-  refs.basketMarkupContainer.innerHTML = '';
-  let markup = '';
-  data.forEach(name => {
-    markup += `<li><div><div class="modal-basket__name">${name}</div></div></li>`;
-  });
-  refs.basketMarkupContainer.insertAdjacentHTML('beforeend', markup);
-}
+
+
