@@ -1,17 +1,24 @@
 
-<div class="modal-basket-backdrop">
-  <div class="modal-basket hidden" js-modal-basket>
-    <div class="basket">
-        <a class="basket__link" href="#" js-modal-basket>
+<div class="modal-basket-backdrop hidden">
+  <div class="modal-basket" js-modal-basket>
+    <div class="basket basket--modal">
+        <a class="basket__link " href="#" js-modal-basket>
           <svg class="basket__svg"aria-label="shopping cart" width="20" height = "20">
             <use href="./images/icons.svg#icon-cart"></use> 
           </svg>
+          <div class="basket__container basket__container--modal hidden" js-basket-modal>
+            <span class="basket__num basket__num--modal" js-basket-num>
+              0
+            </span>
+          </div>
         </a>
       </div>
-    <div>TIMER</div>     
-    <p class="modal-basket__text">You have booked <span class="modal-basket__quantity">0</span><span>tickets</span>for the following events:</p>
-    <ul class="modal-basket__name">
-        <li>
+    <div class="modal-basket__container">
+      <div class="modal-basket__text-container">
+    <div class="basket__timer">TIMER</div>
+    <p class="modal-basket__text">You have booked <span class="modal-basket__quantity">0</span><span class="modal-basket__ticket">tickets</span>   for the following events:</p>
+    <ul class="modal-basket__name list">
+        <li >
         <div>
             <div class="modal-basket__name">Name event</div>
             <!-- <div>
@@ -29,8 +36,14 @@
         </div>
         </li>
     </ul>
-    <button class="modal-basket__continue" type="button">Continue booking</button>
-    <button class="modal-basket__buy" type="button">Buy</button>
-    <button class="modal-basket__clear" type="button">Clear the list</button>
+  </div>
+  <div>
+    <ul class="modal-basket__list list">
+    <li class="modal-basket__item"><button class="modal-basket__continue" type="button">CONTINUE  BOOKING</button></li>
+    <li class="modal-basket__item"><button class="modal-basket__buy" type="button">BUY</button></li>
+    <li class="modal-basket__item"><button class="modal-basket__clear" type="button">CLEAR THE LIST</button></li>
+  </ul>
+  </div>
+</div> 
 </div>
 </div>

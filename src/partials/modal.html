@@ -1,29 +1,40 @@
-<button type="button" class="modal__open">TEST MODAL BUTTON</button>
+<!-- <button type="button" class="modal__open">TEST MODAL BUTTON</button> -->
 <div class="backdrop is-hidden">
   <div class="modal js-modal">
     <button type="button" class="modal__close-btn">CLOSE</button>
-    <div class="modal__logo-box">
-      <div class="modal__logo">small-logo-pic</div>
-    </div>
     <div class="modal__container">
-      <div class="modal__big-logo">BIG PIC</div>
-      <ul class="modal__list list">
-        <li class="modal__item">
-          <p>INFO</p>
-        </li>
-        <li class="modal__item">
-          <p>WHEN</p>
-        </li>
-        <li class="modal__item">
-          <p>WHERE</p>
-        </li>
-        <li class="modal__item">
-          <p>WHO</p>
-        </li>
-        <li class="modal__item">
-          <p>PRICES</p>
-        </li>
-      </ul>
+      <div class="modal__logo-box">
+        <div class="modal__logo">small-logo-pic</div>
+      </div>
+      <div class="modal__data-container">
+        <div class="modal__big-logo">
+          <img
+            src="https://s1.ticketm.net/dam/a/aaa/bb617cef-64aa-4f7a-9640-c261f4a3eaaa_1759311_TABLET_LANDSCAPE_3_2.jpg"
+            alt="test"
+          />
+        </div>
+        <ul class="modal__list list">
+          <li class="modal__item">
+            <h3 class="modal__title">INFO</h3>
+            <p>${data.info}</p>
+          </li>
+          <li class="modal__item">
+            <h3 class="modal__title">WHEN</h3>
+            <p>${data.dates.start.datetime}</p>
+          </li>
+          <li class="modal__item">
+            <h3 class="modal__title">WHERE</h3>
+            <p>${data._embedded.venues[0].name}</p>
+          </li>
+          <li class="modal__item">
+            <h3 class="modal__title">WHO</h3>
+            <p>${data.name}</p>
+          </li>
+          <li class="modal__item">
+            <h3 class="modal__title">PRICES</h3>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </div>

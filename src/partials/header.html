@@ -16,11 +16,19 @@
           width="20"
           height="20"
         >
-          <!-- <use href="./images/icons.svg#icon-cart"></use> -->
+          <use href="./images/icons.svg#icon-cart"></use>
         </svg>
+        <div
+          class="basket__container basket__container--modal hidden"
+          js-basket-head
+        >
+          <span class="basket__num basket__num--modal" js-basket-num-head>
+            0
+          </span>
+        </div>
       </a>
     </div>
-    <h1 class="header__title">Find best events around the world</h1>
+    <h1 class="header__title">Find best events<br />around the world</h1>
     <!-- Search and country forms -->
     <div class="header__search">
       <form class="search-form" id="search-form">
@@ -31,7 +39,16 @@
           placeholder="Start searching"
           id="search"
         />
-        <button class="search-form__btn" type="submit"></button>
+        <button class="search-form__btn" type="submit">
+          <svg
+            class="search-form__svg"
+            aria-label="search-form"
+            width="12"
+            height="10"
+          >
+            <use href="./images/icons.svg#icon-search"></use>
+          </svg>
+        </button>
       </form>
 
       <form class="country-form" id="country-form">
@@ -46,7 +63,16 @@
           class="country-form__select"
           name="country-select"
           id="country-select"
-        ></select>
+        >
+          <svg
+            class="country-form__svg"
+            aria-label="country-form"
+            width="15"
+            height="10"
+          >
+            <use href="./images/icons.svg#icon-select"></use>
+          </svg>
+        </select>
       </form>
     </div>
   </div>
