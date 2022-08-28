@@ -1,12 +1,14 @@
 import { Geohash } from './geo/hash';
 import { refs } from './refs';
 import { EventApi } from './api'
+
 //master function
 const event = new EventApi;
+//render markup from server responce 
 export async function renderMarckup() {
     try {
         const responce = await event.fetchApiData();
-        console.log(responce);
+        // console.log(responce);
         const eventsArrayFull = responce._embedded.events;
         const eventsArray = shortDataFromServer(eventsArrayFull);
         marckup(eventsArray);
@@ -14,9 +16,18 @@ export async function renderMarckup() {
         console.log(error);
     }
 }
-
+//render markup from local storage
+export async function renderMarckupFromLocalStorage() {
+    const localStorageData = localStorage.getItem("event");
+    try {
+        const eventsArrayFull = JSON.parse(localStorageData)._embedded.events;
+        const eventsArray = shortDataFromServer(eventsArrayFull);
+        marckup(eventsArray);
+    } catch (error) {
+        console.log(error);
+    }
+}
 //slave functions
-
 // create marckup for home page
 function marckup(eventsArray) {
     const marckupArray = eventsArray.map(event => {
@@ -69,14 +80,7 @@ function loadRandomEvent() {
 
 }
 
-console.log(navigator.geolocation.getCurrentPosition((Position) => {
-    // Geohash.encode()
-    // const hash = Geohash.encode(Position.coords.latitude, Position.coords.longitude, undefined);
-    // console.log(hash);
+// navigator.geolocation.getCurrentPosition((Position) => {
 
-    console.log(Position);
-    console.log(Position.coords.latitude, Position.coords.longitude)
-}, null, {
-    // высокая точность
-    enableHighAccuracy: true
-}));
+//     console.log(Position.coords.latitude, Position.coords.longitude)
+// });

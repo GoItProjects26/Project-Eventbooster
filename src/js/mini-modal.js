@@ -1,9 +1,11 @@
+
 import {refs} from "./refs";
-import userBasket from "./basket";
-import {Basket} from "./basket";
+import {userBasket} from "./basket";
 import userEventApi from "./api"
 import {closeModal} from "./modal"
-const userBasket = new Basket; //должно создаваться при загрузке Фетча
+
+
+
 
 // refs.modalBuyBtn.addEventListener("click", onClickModalBuyBtn);
 // function onClickModalBuyBtn (event) {
@@ -16,13 +18,11 @@ const userBasket = new Basket; //должно создаваться при за
 
 
 refs.miniModalBtnClose.addEventListener("click", onClickMiniModalBtnClose);
-
 function onClickMiniModalBtnClose (event) {
     refs.miniModal.classList.toggle("hidden")
 }
 
 refs.miniModalBtnCart.addEventListener("click", onClickMiniModalBtnOpenBasket);
-
 function onClickMiniModalBtnOpenBasket (event) {
     refs.miniModal.classList.toggle("hidden")
     closeModal();
@@ -34,6 +34,7 @@ function onClickMiniModalBtnOpenBasket (event) {
     renderBasketMarkup(userBasket.contentShoppingCart)/// Данные с именем события
 }
 
+
 function renderBasketMarkup (data) {
     let markup = "";
     data.forEach(name => {
@@ -41,3 +42,6 @@ markup += `<li><div><div class="modal-basket__name">${name}</div></div></li>`
     })
     refs.basketMarkupContainer.insertAdjacentHTML("beforeend", markup);
 }
+
+
+

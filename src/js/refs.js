@@ -1,7 +1,7 @@
 export const refs = {
-    fetchBtn: document.querySelector(".btn"),
+    //MAKS
     eventList: document.querySelector('.event_list '),
-
+    //================================================================================
     modalBuyBtn: document.querySelector(".modal__buy-btn"),
 
     basketModal: document.querySelector(".modal-basket-backdrop"),
@@ -28,4 +28,3 @@ export const refs = {
     select: document.querySelector('.country-form__select'),
 }
 
-console.log(refs.select);
