@@ -25,7 +25,6 @@ async function getById(id) {
   const resp = await axios.get(`/${id}.json`, axiosConfig);
   return resp.data;
 }
-// export let modalDataObj = {};
 
 const eventList = document.querySelector('.event_list');
 eventList.addEventListener('click', onEventClick);
@@ -51,15 +50,6 @@ async function onEventClick(event) {
   // });
   dataToCart(response);
 }
-
-// function someshit() {
-//   refs.modalBuyBtn = document.querySelectorAll('.js-buy-btn');
-//   // console.log(refs.modalBuyBtn);
-//   refs.modalBuyBtn.forEach(elem => {
-//     elem.addEventListener('click', onClickModalBuyBtn);
-//   });
-//   console.log(456);
-// }
 
 function renderModal(data) {
   const dateString = `${

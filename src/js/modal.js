@@ -2,9 +2,7 @@ import { refs } from './refs';
 
 let backdrop = document.querySelector('.backdrop');
 let modalCloseBtn = document.querySelector('.modal__close-btn');
-// let modalTest = document.querySelector('.modal__open');
 
-// modalTest.addEventListener('click', openModal);
 modalCloseBtn.addEventListener('click', closeModal);
 
 export function openModal() {
