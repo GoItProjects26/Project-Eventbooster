@@ -35,7 +35,10 @@
 
       
     }
-
+    
+    box-shadow: 0 0 5px var(--accent-text-color), 0 0 10px var(--accent-text-color), 0 0 15px var(--accent-text-color), 0 0 20px var(--accent-text-color),
+    0 0 15px var(--primary-text-color), 0 0 30px var(--primary-text-color), 0 0 20px var(--primary-text-color),
+    0 0 5px var(--primary-text-color);
 }
 
 .mini-modal__button {
