@@ -11,6 +11,7 @@ export const refs = {
   basketNumHead: document.querySelector('[js-basket-num-head]'),
 
 
+
     // basketVipBtn: document.querySelector("[js-vip]"),
     // basketStandardBtn: document.querySelector("[js-standard]"),
     basketContainer: document.querySelector("[js-basket-modal]"),
@@ -20,6 +21,7 @@ export const refs = {
     basketBuyBtn: document.querySelector(".modal-basket__buy"),
     basketClearBtn: document.querySelector(".modal-basket__clear"),
     basketBackdrop: document.querySelector(".modal-basket-backdrop"),
+    
 
 
 

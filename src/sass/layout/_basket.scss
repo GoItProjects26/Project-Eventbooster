@@ -18,12 +18,7 @@
         border-radius: 50%;
         transition-property: color, background-color, box-shadow;
         transition-duration: 300ms;
-        transition-timing-function: cubic-bezier();
-
-
-        // color: var(--accent-text-color);
-
-
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     
@@ -52,18 +47,18 @@
     }
 
 
-    @keyframes pulsate {
-        0% {
-          box-shadow: 0 0 1px var(--accent-text-color), 0 0 2px var(--accent-text-color), 0 0 3px var(--accent-text-color),
-            0 0 4px var(--primary-text-color), 0 0 3px var(--primary-text-color), 0 0 6px var(--primary-text-color),
-            0 0 4px var(--primary-text-color), 0 0 1px var(--primary-text-color);
-        }
-        100% {
-          box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff,
-            0 0 20px var(--primary-text-color), 0 0 15px var(--primary-text-color), 0 0 30px var(--primary-text-color),
-            0 0 20px var(--primary-text-color), 0 0 5px var(--primary-text-color);
-        }
-      }
+    // @keyframes pulsate {
+    //     0% {
+    //       box-shadow: 0 0 1px var(--accent-text-color), 0 0 2px var(--accent-text-color), 0 0 3px var(--accent-text-color),
+    //         0 0 4px var(--primary-text-color), 0 0 3px var(--primary-text-color), 0 0 6px var(--primary-text-color),
+    //         0 0 4px var(--primary-text-color), 0 0 1px var(--primary-text-color);
+    //     }
+    //     100% {
+    //       box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff,
+    //         0 0 20px var(--primary-text-color), 0 0 15px var(--primary-text-color), 0 0 30px var(--primary-text-color),
+    //         0 0 20px var(--primary-text-color), 0 0 5px var(--primary-text-color);
+    //     }
+    //   }
 
     .basket__container {
         position: absolute;
