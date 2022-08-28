@@ -48,11 +48,15 @@
   right: 32px;
 }
 .modal__big-logo {
-  min-width: 249px;
-  width: 249px;
-  height: 445px;
-  overflow: hidden;
-  background-color: blue;
+  display: none;
+  @media screen and (min-width: 767.98px) {
+    display: block;
+    min-width: 249px;
+    width: 249px;
+    height: 445px;
+    overflow: hidden;
+    // background-color: blue;
+  }
   @media screen and (min-width: 1280px) {
     min-width: 450px;
     width: 450px;
@@ -128,8 +132,22 @@
     line-height: 1.22;
   }
 }
+.modal__prices {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  @media screen and (min-width: 1280px) {
+    gap: 20px;
+  }
+}
 .prices__box {
   display: flex;
+  gap: 13px;
+  // margin-bottom: 16px;
+  @media screen and (min-width: 1280px) {
+    // margin-bottom: 20px;
+    gap: 16px;
+  }
 }
 .prices__text {
   text-transform: capitalize;
@@ -137,4 +155,13 @@
 .prices__icon {
   fill: red;
   width: 24px;
+}
+.prices__btn {
+  display: inline-block;
+  font-family: Montserrat;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0em;
+  padding: 19px 10px;
 }
