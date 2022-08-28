@@ -8,19 +8,19 @@ import {closeModal} from "./modal"
 
 
 
-refs.modalBuyBtn.addEventListener("click", onClickModalBuyBtn);
-function onClickModalBuyBtn (event) {
-    refs.miniModal.classList.toggle("hidden");
+// refs.modalBuyBtn.addEventListener("click", onClickModalBuyBtn);
+// function onClickModalBuyBtn (event) {
+//     refs.miniModal.classList.toggle("hidden");
  
-    const basketId = event.target.closest("[data-id]").dataset.id
-    console.log(userBasket.contentShoppingCart)
-    userBasket.addEvent(basketId)
-    console.log(userBasket.contentShoppingCart)
-    userBasket.increaseStandardQuantity ()
-    localStorage.setItem("userBasket", JSON.stringify(userBasket));
+//     const basketId = event.target.closest("[data-id]").dataset.id
+//     console.log(userBasket.contentShoppingCart)
+//     userBasket.addEvent(basketId)
+//     console.log(userBasket.contentShoppingCart)
+//     userBasket.increaseStandardQuantity ()
+//     localStorage.setItem("userBasket", JSON.stringify(userBasket));
 
 
-}
+// }
 
 
 refs.miniModalBtnClose.addEventListener("click", onClickMiniModalBtnClose);
