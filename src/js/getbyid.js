@@ -145,7 +145,7 @@ function renderPrices(data) {
           ${elem.type} ${elem.min} - ${elem.max} ${elem.currency}
         </p>
       </div>
-      <button type="button" class="prices__btn js-buy-btn" data-id="${index}">ADD TO CART</button>
+      <button type="button" class="prices__btn js-buy-btn" data-index="${index}">ADD TO CART</button>
   `
     )
     .join('');
