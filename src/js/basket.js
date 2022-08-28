@@ -26,11 +26,13 @@ function onBasketShow() {
     refs.basketBackdrop.addEventListener("click", onClickBasketBackdrop)
     window.addEventListener("keydown", onEscKeyPressBasket);
 }
+
 function renderBasketMarkup(data) {
-    
+    const value = JSON.parse(localStorage.getItem("event"))
+   
     refs.basketMarkupContainer.innerHTML = '';
     let markup = '';
-    data.forEach(name => {
+    data.forEach(({name}) => {
       markup += `<li><div><div class="modal-basket__name">${name}</div></div></li>`;
     });
     refs.basketMarkupContainer.insertAdjacentHTML('beforeend', markup);
@@ -117,7 +119,7 @@ let userBasket = {};
 function firstLoadPage () {
     if (!localStorage.getItem("userBasket")) return userBasket = new Basket; //должно создаваться при загрузке Фетча
     const oldUserBasket = (JSON.parse(localStorage.getItem("userBasket")))
-    userBasket = new Basket
+    userBasket = new Basket;
     return Object.assign(userBasket, oldUserBasket)
 }
 

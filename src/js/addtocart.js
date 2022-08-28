@@ -6,6 +6,7 @@ export function dataToCart(data) {
   refs.modalBuyBtn = document.querySelectorAll('.js-buy-btn');
   refs.modalBuyBtn.forEach(elem => {
     elem.addEventListener("click", onClickModalBuyBtn);
+    
   });
 }
 

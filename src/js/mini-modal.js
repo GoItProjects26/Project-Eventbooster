@@ -14,7 +14,9 @@ export {onClickModalBuyBtn}
 function onClickModalBuyBtn (event) {
     refs.miniModal.classList.toggle("hidden");
     const basketId = event.target.closest("[data-id]").dataset.id
-    userBasket.addEvent(basketId)
+    const {_embedded: {events}} = (JSON.parse(localStorage.getItem("event")))
+    const userEvent = events.find(({id}) => id === basketId)
+    userBasket.addEvent(userEvent)
     userBasket.increaseStandardQuantity ()
     localStorage.setItem("userBasket", JSON.stringify(userBasket));
     refs.miniModalBackdrop.addEventListener("click", onClickMiniModalBackdrop);
