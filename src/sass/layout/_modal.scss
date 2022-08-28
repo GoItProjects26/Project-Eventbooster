@@ -48,11 +48,19 @@
   right: 32px;
 }
 .modal__big-logo {
-  min-width: 249px;
-  width: 249px;
-  height: 445px;
-  overflow: hidden;
-  background-color: blue;
+
+  display: none;
+
+  @media screen and (min-width: 768px) {
+    display: block;
+    min-width: 249px;
+    width: 249px;
+    height: 445px;
+    overflow: hidden;
+    background-color: blue;
+  }
+
+
   @media screen and (min-width: 1280px) {
     min-width: 450px;
     width: 450px;
