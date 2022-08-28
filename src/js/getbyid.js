@@ -63,13 +63,16 @@ function renderModal(data) {
   }
   // console.log(dateString);
   // openModal();
+  // <div class="modal__logo-box">
+  //   <div class="modal__logo">
+  //     <img src="${data.images[1].url}" alt="" />
+  //   </div>
+  // </div>;
   jsModal.innerHTML = `
-      <div class="modal__logo-box">
         <div class="modal__logo"><img
             src="${data.images[1].url}"
             alt=""
           /></div>
-      </div>
       <div class="modal__data-container">
         <div class="modal__big-logo">   <img
             src="${data.images[1].url}"
@@ -94,14 +97,14 @@ function renderModal(data) {
           </li>
           <li class="modal__item">
             <h3 class="modal__title">PRICES</h3>
-            <div id="modal__prices" data-id="${data.id}"></div>
+            <div class="modal__prices" data-id="${data.id}"></div>
           </li>
         </ul>
       </div>`;
 }
 function renderPrices(data) {
   // console.log(data);
-  const pricesElem = document.querySelector('#modal__prices');
+  const pricesElem = document.querySelector('.modal__prices');
   let pricesMarkup = data
     .map(
       (elem, index) => `
@@ -115,7 +118,7 @@ function renderPrices(data) {
           ${elem.type} ${elem.min} - ${elem.max} ${elem.currency}
         </p>
       </div>
-      <button type="button" class="prices__btn js-buy-btn" data-index="${index}">ADD TO CART</button>
+      <button type="button" class="prices__btn js-buy-btn center" data-index="${index}"><p class="prices__btn-txt">ADD TO CART</p></button>
   `
     )
     .join('');

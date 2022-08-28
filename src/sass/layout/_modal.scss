@@ -46,6 +46,21 @@
   position: absolute;
   top: 32px;
   right: 32px;
+  display: flex;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background-color: transparent;
+}
+.modal__icon {
+  display: block;
+  fill: var(--modal-color);
+  width: 17px;
+  height: 17px;
+  @media screen and (min-width: 1280px) {
+    width: 25px;
+    height: 25px;
+  }
 }
 .modal__big-logo {
   display: none;
@@ -74,21 +89,28 @@
 }
 .modal__logo {
   display: block;
+  margin-left: auto;
+  margin-right: auto;
   width: 140px;
   height: 140px;
   background-color: red;
   border-radius: 50%;
   overflow: hidden;
+  // margin-top: 80px;
+  margin-bottom: 20px;
+  @media screen and (min-width: 768px) {
+  }
 }
 .modal__logo-box {
   display: flex;
   width: 100%;
   justify-content: center;
-  margin-bottom: 40px;
   height: 181px;
   align-items: flex-end;
 }
+
 .modal__data-container {
+  width: 100%;
   display: flex;
   gap: 32px;
 }
@@ -114,6 +136,8 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
+  padding: 0px;
+  width: 100%;
   @media screen and (min-width: 1280px) {
     gap: 20px;
   }
@@ -134,8 +158,46 @@
     line-height: 1.22;
   }
 }
+.modal__prices {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  @media screen and (min-width: 768px) {
+    align-items: flex-start;
+  }
+  @media screen and (min-width: 1280px) {
+    gap: 20px;
+  }
+}
+.modal__more-btn {
+  display: flex;
+  margin-top: 24px;
+  font-family: Montserrat;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0em;
+  text-align: left;
+  margin-left: auto;
+  margin-right: auto;
+  width: 230px;
+  height: 40px;
+  color: var(--modal-accent-text-color);
+  border: 1px solid var(--modal-accent-text-color);
+  border-radius: 5px;
+  background-color: transparent;
+  @media screen and (min-width: 768px) {
+    width: 255px;
+    margin-top: 40px;
+  }
+}
 .prices__box {
   display: flex;
+  gap: 13px;
+  @media screen and (min-width: 1280px) {
+    gap: 16px;
+  }
 }
 .prices__text {
   text-transform: capitalize;
@@ -143,4 +205,21 @@
 .prices__icon {
   fill: red;
   width: 24px;
+}
+.prices__btn {
+  display: flex;
+  width: 145px;
+  height: 40px;
+  background-color: var(--modal-color);
+  border: none;
+  border-radius: 5px;
+}
+.prices__btn-txt {
+  font-family: Montserrat;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.22;
+  letter-spacing: 0em;
+  text-align: left;
+  color: var(--primary-text-color);
 }
