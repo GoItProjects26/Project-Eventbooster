@@ -7,6 +7,7 @@ import './js/getbyid';
 
 import './js/basket';
 import './js/mini-modal';
+import './js/sticky';
 
 import './js/inputs/search-forms';
 
