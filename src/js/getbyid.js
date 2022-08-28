@@ -24,7 +24,7 @@ async function getById(id) {
   const resp = await axios.get(`/${id}.json`, axiosConfig);
   return resp.data;
 }
-export let modalResponce = {};
+
 const eventList = document.querySelector('.event_list');
 eventList.addEventListener('click', onEventClick);
 async function onEventClick(event) {
@@ -37,15 +37,11 @@ async function onEventClick(event) {
   }
   let response = await getById(idForFetch);
   console.log(response);
-  modalResponce = response;
-  // console.log(response.images);
-  renderModal(response);
-  renderPrices(response.priceRanges);
-  refs.modalBuyBtn = document.querySelectorAll('.js-buy-btn');
-  // console.log(refs.modalBuyBtn);
-  refs.modalBuyBtn.forEach(elem => {
-    elem.addEventListener('click', onClickModalBuyBtn);
-  });
+  console.log(response.images);
+  // console.log(date(response.dates.start.dateTime));
+  await renderModal(response);
+  await renderPrices(response.priceRanges);
+  // await renderPrices(arr);
 }
 
 function renderModal(data) {
@@ -58,8 +54,10 @@ function renderModal(data) {
   } else {
     infoString = data.name;
   }
+  // console.log(dateString);
   openModal();
-  jsModal.innerHTML = `
+  if (window.matchMedia('(min-width: 768px)').matches) {
+    jsModal.innerHTML = `
       <div class="modal__logo-box">
         <div class="modal__logo"><img
             src="${data.images[1].url}"
@@ -94,6 +92,41 @@ function renderModal(data) {
           </li>
         </ul>
       </div>`;
+  } else {
+    console.log('MEDIA < 768px');
+    jsModal.innerHTML = `
+      <div class="modal__logo-box">
+        <div class="modal__logo">
+          <img
+            src="${data.images[1].url}"
+            alt="" />
+        </div>
+      </div>
+      <div class="modal__data-container">
+      <ul class="modal__list list">
+          <li class="modal__item">
+            <h3 class="modal__title">INFO</h3>
+            <p class="modal__text">${data.info}</p>
+          </li>
+          <li class="modal__item">
+            <h3 class="modal__title">WHEN</h3>
+            <p class="modal__text">${data.dates.start.datetime}</p>
+          </li>
+          <li class="modal__item">
+            <h3 class="modal__title">WHERE</h3>
+            <p class="modal__text">${data._embedded.venues[0].name}</p>
+          </li>
+          <li class="modal__item">
+            <h3 class="modal__title">WHO</h3>
+            <p class="modal__text">${data.name}</p>
+          </li>
+          <li class="modal__item">
+            <h3 class="modal__title">PRICES</h3>
+            <div id="modal__prices" data-id="${data.id}"></div>
+          </li>
+        </ul>
+      </div>`;
+  }
 }
 
 function renderPrices(data) {
