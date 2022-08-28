@@ -51,7 +51,7 @@ function onClickMiniModalBtnOpenBasket (event) {
     refs.basketModal.classList.toggle("hidden")
     refs.basketQuantity.textContent = userBasket.totalQuantity;
     refs.basketNum.textContent = userBasket.totalQuantity;
-    if (userBasket.totalQuantity !== 0 && refs.basketNum.classList.contains("hidden")) refs.basketContainer.classList.remove("hidden")
+    if (userBasket.totalQuantity !== 0 && refs.basketContainer.classList.contains("hidden")) refs.basketContainer.classList.remove("hidden")
     localStorage.setItem("userBasket", JSON.stringify(userBasket));
     renderBasketMarkup(userBasket.contentShoppingCart)/// Данные с именем события
     refs.miniModalBackdrop.removeEventListener("click", onClickMiniModalBackdrop)

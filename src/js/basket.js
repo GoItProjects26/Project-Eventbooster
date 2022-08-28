@@ -20,7 +20,6 @@ function onClickBasketHead (event) {
     window.addEventListener("keydown", onEscKeyPressBasket);
 }
 function onClickBasketBackdrop(event) {
-    console.log(event)
     if(event.currentTarget === event.target) {
         refs.basketModal.classList.toggle("hidden")
         refs.basketBackdrop.removeEventListener("click", onClickBasketBackdrop)
