@@ -64,50 +64,6 @@
 //   handleActivePageNumber();
 //   handlePageButtonsStatus();
   
-//   const prevRange = (pageNum - 1) * paginationLimit;
-//   const currRange = pageNum * paginationLimit;
-
-//   listItems.forEach((item, index) => {
-//     item.classList.add("hidden");
-//     if (index >= prevRange && index < currRange) {
-//       item.classList.remove("hidden");
-//     }
-//   });
-// };
-
-// window.addEventListener("load", () => {
-//   getPaginationNumbers();
-//   setCurrentPage(1);
-
-//   prevButton.addEventListener("click", () => {
-//     setCurrentPage(currentPage - 1);
-//   });
-
-//   nextButton.addEventListener("click", () => {
-//     setCurrentPage(currentPage + 1);
-//   });
-
-//   document.querySelectorAll(".pagination-number").forEach((button) => {
-//     const pageIndex = Number(button.getAttribute("page-index"));
-
-//     if (pageIndex) {
-//       button.addEventListener("click", () => {
-//         setCurrentPage(pageIndex);
-//       });
-//     }
-//   });
-// });
-
-
-
-
-
-
-
-
-
-
-
 // const piganationList = document.querySelector('.js-pagination');
 
 // piganationList.addEventListener('click', selectPage);

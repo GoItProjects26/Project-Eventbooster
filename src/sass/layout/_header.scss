@@ -127,6 +127,12 @@
   outline: none;
 }
 
+.country-form__input {
+  position: relative;
+  display: flex;
+  overflow: hidden;
+}
+
 .search-form__btn,
 .country-form__select {
   width: 30px;
@@ -135,4 +141,15 @@
   border: none;
   outline: none;
   cursor: pointer;
+}
+
+.country-form__select {
+  opacity: 0;
+}
+
+.country-form__svg {
+  position: absolute;
+  top: 15px;
+  right: 30px;
+  pointer-events: none;
 }
