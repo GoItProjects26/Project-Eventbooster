@@ -1,5 +1,5 @@
 import {refs} from "./refs";
-export {userBasket}
+export {userBasket, onClickBasketBackdrop}
 import userEventApi from "./api"
 
 
@@ -14,7 +14,9 @@ function onClickVipBtn (event) {
 
 refs.basketHead.addEventListener("click", onClickBasketHead);
 function onClickBasketHead (event) {
-    refs.basketModal.classList.toggle("hidden")
+refs.basketModal.classList.toggle("hidden")
+refs.basketBackdrop.addEventListener("click", onClickBasketBackdrop)
+
    
 }
 
@@ -79,9 +81,8 @@ class Basket {
         
         
     }
-
-
 }
+
 let userBasket = {};
 function firstLoadPage () {
     
@@ -92,6 +93,7 @@ function firstLoadPage () {
   
 }
 firstLoadPage()
+
 if (userBasket.totalQuantity !== 0 && refs.basketContainerHead.classList.contains("hidden")) {
     refs.basketContainerHead.classList.remove("hidden")
     refs.basketNumHead.textContent = userBasket.totalQuantity;
@@ -113,6 +115,14 @@ function onClickBasketContinueShoppingBtn (event) {
     if (userBasket.totalQuantity === 0 && !refs.basketContainerHead.classList.contains("hidden")) refs.basketContainerHead.classList.add("hidden")
     localStorage.setItem("userBasket", JSON.stringify(userBasket));
     refs.basketNumHead.textContent = userBasket.totalQuantity;
+    refs.basketBackdrop.removeEventListener("click", onClickBasketBackdrop)
+}
+function onClickBasketBackdrop(event) {
+    console.log(event)
+    if(event.currentTarget === event.target) {
+        refs.basketModal.classList.toggle("hidden")
+        refs.basketBackdrop.removeEventListener("click", onClickBasketBackdrop)
+    }
 }
 
 refs.basketBuyBtn.addEventListener("click", onClickBuyBtn)
@@ -132,8 +142,6 @@ function onClickClearBtn(event) {
     refs.basketNumHead.innerHTML = userBasket.totalQuantity
     refs.basketMarkupContainer.innerHTML = "";
     localStorage.removeItem("userBasket");
-    
-
 }
 
 function onClickStandardBuyBtn (event) {

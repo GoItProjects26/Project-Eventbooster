@@ -10,18 +10,27 @@ export const refs = {
   basketContainerHead: document.querySelector('[js-basket-head]'),
   basketNumHead: document.querySelector('[js-basket-num-head]'),
 
-  // basketVipBtn: document.querySelector("[js-vip]"),
-  // basketStandardBtn: document.querySelector("[js-standard]"),
-  basketContainer: document.querySelector('[js-basket-modal]'),
-  basketNum: document.querySelector('[js-basket-num]'),
-  basketMarkupContainer: document.querySelector('.modal-basket__name'),
-  basketContinueBookingBtn: document.querySelector('.modal-basket__continue'),
-  basketBuyBtn: document.querySelector('.modal-basket__buy'),
-  basketClearBtn: document.querySelector('.modal-basket__clear'),
 
-  miniModal: document.querySelector('.mini-modal-backdrop'),
-  miniModalBtnCart: document.querySelector('.mini-modal__button'),
-  miniModalBtnClose: document.querySelector('.mini-modal__close'),
+    // basketVipBtn: document.querySelector("[js-vip]"),
+    // basketStandardBtn: document.querySelector("[js-standard]"),
+    basketContainer: document.querySelector("[js-basket-modal]"),
+    basketNum: document.querySelector("[js-basket-num]"),
+    basketMarkupContainer: document.querySelector(".modal-basket__name"),
+    basketContinueBookingBtn: document.querySelector(".modal-basket__continue"),
+    basketBuyBtn: document.querySelector(".modal-basket__buy"),
+    basketClearBtn: document.querySelector(".modal-basket__clear"),
+    basketBackdrop: document.querySelector(".modal-basket-backdrop"),
 
-  select: document.querySelector('.country-form__select'),
-};
+
+
+
+  
+    miniModal: document.querySelector(".mini-modal-backdrop"),
+    miniModalBtnCart: document.querySelector(".mini-modal__button"),
+    miniModalBtnClose: document.querySelector(".mini-modal__close"),
+    miniModalBackdrop: document.querySelector(".mini-modal-backdrop"),
+
+    select: document.querySelector('.country-form__select'),
+}
+
+
