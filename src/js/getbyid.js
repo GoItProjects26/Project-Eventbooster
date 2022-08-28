@@ -62,23 +62,23 @@ function renderModal(data) {
         <ul class="modal__list list">
           <li class="modal__item">
             <h3 class="modal__title">INFO</h3>
-            <p>${data.info}</p>
+            <p class="modal__text">${data.info}</p>
           </li>
           <li class="modal__item">
             <h3 class="modal__title">WHEN</h3>
-            <p>${data.dates.start.datetime}</p>
+            <p class="modal__text">${data.dates.start.datetime}</p>
           </li>
           <li class="modal__item">
             <h3 class="modal__title">WHERE</h3>
-            <p>${data._embedded.venues[0].name}</p>
+            <p class="modal__text">${data._embedded.venues[0].name}</p>
           </li>
           <li class="modal__item">
             <h3 class="modal__title">WHO</h3>
-            <p>${data.name}</p>
+            <p class="modal__text">${data.name}</p>
           </li>
           <li class="modal__item">
             <h3 class="modal__title">PRICES</h3>
-            <div id="modal__prices" data-id=${data.id}></div>
+            <div id="modal__prices" data-id="${data.id}"></div>
           </li>
         </ul>
       </div>`;
@@ -86,30 +86,33 @@ function renderModal(data) {
     console.log('MEDIA < 768px');
     jsModal.innerHTML = `
       <div class="modal__logo-box">
-        <div class="modal__logo">small-logo-pic</div>
+        <div class="modal__logo">
+          <img
+            src="${data.images[1].url}"
+            alt="" />
+        </div>
       </div>
       <div class="modal__data-container">
-        
-        <ul class="modal__list list">
+      <ul class="modal__list list">
           <li class="modal__item">
             <h3 class="modal__title">INFO</h3>
-            <p>${data.info}</p>
+            <p class="modal__text">${data.info}</p>
           </li>
           <li class="modal__item">
             <h3 class="modal__title">WHEN</h3>
-            <p>${data.dates.start.datetime}</p>
+            <p class="modal__text">${data.dates.start.datetime}</p>
           </li>
           <li class="modal__item">
             <h3 class="modal__title">WHERE</h3>
-            <p>${data._embedded.venues[0].name}</p>
+            <p class="modal__text">${data._embedded.venues[0].name}</p>
           </li>
           <li class="modal__item">
             <h3 class="modal__title">WHO</h3>
-            <p>${data.name}</p>
+            <p class="modal__text">${data.name}</p>
           </li>
           <li class="modal__item">
             <h3 class="modal__title">PRICES</h3>
-            <div id="modal__prices" data-id=${data.id}></div>
+            <div id="modal__prices" data-id="${data.id}"></div>
           </li>
         </ul>
       </div>`;
@@ -128,11 +131,11 @@ function renderPrices(data) {
           src="${ticketIcon}"
           alt="Ticket icon"
         />
-        <p class="prices__text">
+        <p class="modal__text prices__text">
           ${elem.type} ${elem.min} - ${elem.max} ${elem.currency}
         </p>
-        <button type="button" class="modal__buy-btn">BYU TICKET</button>
       </div>
+      <button type="button" class="modal__buy-btn-fix">ADD TO CART</button>
   `
     )
     .join('');
