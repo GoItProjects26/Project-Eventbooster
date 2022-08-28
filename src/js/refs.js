@@ -1,14 +1,14 @@
 export const refs = {
-  //MAKS
-  eventList: document.querySelector('.event_list '),
-  //================================================================================
-  modalBuyBtn: document.querySelector('.js-buy-btn'),
+    //MAKS
+    eventList: document.querySelector('.event_list '),
+    //================================================================================
+    modalBuyBtn: document.querySelector(".modal__buy-btn"),
 
-  basketModal: document.querySelector('.modal-basket-backdrop'),
-  basketQuantity: document.querySelector('.modal-basket__quantity'),
-  basketHead: document.querySelector('[js-basket]'),
-  basketContainerHead: document.querySelector('[js-basket-head]'),
-  basketNumHead: document.querySelector('[js-basket-num-head]'),
+    basketModal: document.querySelector(".modal-basket-backdrop"),
+    basketQuantity: document.querySelector(".modal-basket__quantity"),
+    basketHead: document.querySelector("[js-basket]"),
+    basketContainerHead: document.querySelector("[js-basket-head]"),
+    basketNumHead: document.querySelector("[js-basket-num-head]"),
 
 
 
@@ -32,7 +32,7 @@ export const refs = {
     miniModalBtnClose: document.querySelector(".mini-modal__close"),
     miniModalBackdrop: document.querySelector(".mini-modal-backdrop"),
 
+
+
     select: document.querySelector('.country-form__select'),
 }
-
-
