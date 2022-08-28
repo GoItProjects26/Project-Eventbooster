@@ -1,11 +1,8 @@
 
 import {refs} from "./refs";
-import {userBasket, onClickBasketBackdrop} from "./basket";
+import {userBasket, onClickBasketBackdrop, onEscKeyPressBasket, ESC_KEY_CODE} from "./basket";
 import userEventApi from "./api"
 import {closeModal} from "./modal"
-
-
-
 
 
 // refs.modalBuyBtn.addEventListener("click", onClickModalBuyBtn);
@@ -18,13 +15,23 @@ import {closeModal} from "./modal"
 //     console.log(userBasket.contentShoppingCart)
 //     userBasket.increaseStandardQuantity ()
 //     localStorage.setItem("userBasket", JSON.stringify(userBasket));
- //   miniModalBackdrop.addEventListener("click", onClickMiniModalBackdrop);
+ //     miniModalBackdrop.addEventListener("click", onClickMiniModalBackdrop);
+//      window.addEventListener("keydown", onEscKeyPress);
 // }
+
+function onEscKeyPressMiniModal (event) {
+    if(event.code === ESC_KEY_CODE) {
+        window.removeEventListener("keydown", onEscKeyPressMiniModal);
+        refs.miniModalBackdrop.removeEventListener("click", onClickMiniModalBackdrop)
+        refs.miniModal.classList.toggle("hidden")
+    }
+}
 
 function onClickMiniModalBackdrop (event) {
     if(event.currentTarget === event.target) {
-        refs.miniModal.classList.toggle("hidden")
+        window.removeEventListener("keydown", onEscKeyPressMiniModal);
         refs.miniModalBackdrop.removeEventListener("click", onClickMiniModalBackdrop)
+        refs.miniModal.classList.toggle("hidden")
     }
 }
 
@@ -32,6 +39,7 @@ refs.miniModalBtnClose.addEventListener("click", onClickMiniModalBtnClose);
 function onClickMiniModalBtnClose (event) {
     refs.miniModal.classList.toggle("hidden")
     localStorage.setItem("userBasket", JSON.stringify(userBasket));
+    window.removeEventListener("keydown", onEscKeyPressMiniModal);
     refs.miniModalBackdrop.removeEventListener("click", onClickMiniModalBackdrop)
 }
 
@@ -48,7 +56,9 @@ function onClickMiniModalBtnOpenBasket (event) {
     localStorage.setItem("userBasket", JSON.stringify(userBasket));
     renderBasketMarkup(userBasket.contentShoppingCart)/// Данные с именем события
     refs.miniModalBackdrop.removeEventListener("click", onClickMiniModalBackdrop)
+    window.removeEventListener("keydown", onEscKeyPressMiniModal);
     refs.basketBackdrop.addEventListener("click", onClickBasketBackdrop)
+    window.addEventListener("keydown", onEscKeyPressBasket);
 }
 
 

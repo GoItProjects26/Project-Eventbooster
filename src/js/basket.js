@@ -1,7 +1,8 @@
 import {refs} from "./refs";
-export {userBasket, onClickBasketBackdrop}
+export {userBasket, onClickBasketBackdrop, onEscKeyPressBasket, ESC_KEY_CODE}
 import userEventApi from "./api"
 
+const ESC_KEY_CODE = "Escape";
 
 
 // refs.basketVipBtn.addEventListener("click", onClickVipBtn);
@@ -14,11 +15,25 @@ function onClickVipBtn (event) {
 
 refs.basketHead.addEventListener("click", onClickBasketHead);
 function onClickBasketHead (event) {
-refs.basketModal.classList.toggle("hidden")
-refs.basketBackdrop.addEventListener("click", onClickBasketBackdrop)
-
-   
+    refs.basketModal.classList.toggle("hidden")
+    refs.basketBackdrop.addEventListener("click", onClickBasketBackdrop)
+    window.addEventListener("keydown", onEscKeyPressBasket);
 }
+function onClickBasketBackdrop(event) {
+    console.log(event)
+    if(event.currentTarget === event.target) {
+        refs.basketModal.classList.toggle("hidden")
+        refs.basketBackdrop.removeEventListener("click", onClickBasketBackdrop)
+        refs.basketBackdrop.removeEventListener("click", onClickBasketBackdrop)
+    }
+}
+function onEscKeyPressBasket (event) {
+        if(event.code === ESC_KEY_CODE) {
+            window.removeEventListener("keydown", onEscKeyPressBasket);
+            refs.basketBackdrop.removeEventListener("click", onClickBasketBackdrop)
+            refs.basketModal.classList.toggle("hidden");
+        }
+    }
 
 
 class Basket {
@@ -116,14 +131,9 @@ function onClickBasketContinueShoppingBtn (event) {
     localStorage.setItem("userBasket", JSON.stringify(userBasket));
     refs.basketNumHead.textContent = userBasket.totalQuantity;
     refs.basketBackdrop.removeEventListener("click", onClickBasketBackdrop)
+    window.removeEventListener("keydown", onEscKeyPressBasket);
 }
-function onClickBasketBackdrop(event) {
-    console.log(event)
-    if(event.currentTarget === event.target) {
-        refs.basketModal.classList.toggle("hidden")
-        refs.basketBackdrop.removeEventListener("click", onClickBasketBackdrop)
-    }
-}
+
 
 refs.basketBuyBtn.addEventListener("click", onClickBuyBtn)
 function onClickBuyBtn (event) {
