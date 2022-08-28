@@ -44,23 +44,26 @@ class Basket {
         this.contentShoppingCart.push(dataId)
         // this.setTimeout(dataId);
 
+
+
+        // return function setTimeout () {
+        //     const event = setTimeout(() => {
+        //         this.contentShoppingCart.shift()
+        //     }, this.duration)
+    
+        //     let end = this.duration;
+            
+        //     const timer = setInterval(() => {
+        //         end -= this.step;
+        //         if (end <= 900) clearInterval(timer);
+        //         console.log(end)
+        //     }, this.step)
+    
+        // }
   
     }
 
-    setTimeout () {
-        const event = setTimeout(() => {
-            this.contentShoppingCart.shift()
-        }, this.duration)
-
-        let end = this.duration;
-        
-        const timer = setInterval(() => {
-            end -= this.step;
-            if (end <= 900) clearInterval(timer);
-            console.log(end)
-        }, this.step)
-
-    }
+    
 
 
 
@@ -79,20 +82,37 @@ class Basket {
 
 
 }
-const userBasket = new Basket; //должно создаваться при загрузке Фетча  
+let userBasket = {};
+function firstLoadPage () {
+    
+    if (!localStorage.getItem("userBasket")) return userBasket = new Basket; //должно создаваться при загрузке Фетча
+    const oldUserBasket = (JSON.parse(localStorage.getItem("userBasket")))
+    userBasket = new Basket
+    return Object.assign(userBasket, oldUserBasket)
+  
+}
+firstLoadPage()
+if (userBasket.totalQuantity !== 0 && refs.basketContainerHead.classList.contains("hidden")) {
+    refs.basketContainerHead.classList.remove("hidden")
+    refs.basketNumHead.textContent = userBasket.totalQuantity;
+}
 
-// refs.basketQuantity.textContent = userBasket.totalQuantity
-// refs.basketNum.textContent = userBasket.totalQuantity
+
+
+ 
+
+refs.basketQuantity.textContent = userBasket.totalQuantity
+refs.basketNum.textContent = userBasket.totalQuantity
 if (userBasket.totalQuantity === 0 && !refs.basketNum.classList.contains("hidden")) refs.basketNum.classList.add("hidden")
 
 
 refs.basketContinueBookingBtn.addEventListener("click", onClickBasketContinueShoppingBtn);
 function onClickBasketContinueShoppingBtn (event) {
     refs.basketModal.classList.toggle("hidden")
-    // if (userBasket.totalQuantity !== 0 && refs.basketContainerHead.classList.contains("hidden")) refs.basketContainerHead.classList.remove("hidden")
-    // if (userBasket.totalQuantity === 0 && !refs.basketContainerHead.classList.contains("hidden")) refs.basketContainerHead.classList.add("hidden")
-    
-    // refs.basketNumHead.textContent = userBasket.totalQuantity;
+    if (userBasket.totalQuantity !== 0 && refs.basketContainerHead.classList.contains("hidden")) refs.basketContainerHead.classList.remove("hidden")
+    if (userBasket.totalQuantity === 0 && !refs.basketContainerHead.classList.contains("hidden")) refs.basketContainerHead.classList.add("hidden")
+    localStorage.setItem("userBasket", JSON.stringify(userBasket));
+    refs.basketNumHead.textContent = userBasket.totalQuantity;
 }
 
 refs.basketBuyBtn.addEventListener("click", onClickBuyBtn)
@@ -106,11 +126,12 @@ function onClickBuyBtn (event) {
 refs.basketClearBtn.addEventListener("click", onClickClearBtn)
 function onClickClearBtn(event) {
     if(!refs.basketContainer.classList.contains("hidden")) refs.basketContainer.classList.add("hidden")
-    // if(!refs.basketContainerHead.classList.contains("hidden")) refs.basketContainerHead.classList.add("hidden")
+    if(!refs.basketContainerHead.classList.contains("hidden")) refs.basketContainerHead.classList.add("hidden")
     userBasket.clearList()
     refs.basketQuantity.innerHTML = userBasket.totalQuantity
-    // refs.basketNumHead.innerHTML = userBasket.totalQuantity
+    refs.basketNumHead.innerHTML = userBasket.totalQuantity
     refs.basketMarkupContainer.innerHTML = "";
+    localStorage.removeItem("userBasket");
     
 
 }
