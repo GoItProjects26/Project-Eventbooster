@@ -9,10 +9,9 @@ import './js/basket';
 import './js/mini-modal';
 import './js/sticky';
 
-
-
+import './js/inputs/search-form';
+import './js/inputs/country-form';
 
 import './js/geo/geoApi';
 
-import './js/country/dropDown'
-
+import './js/country/dropDown';
