@@ -22,10 +22,8 @@ let axiosConfig = {
 let idForFetch = '';
 async function getById(id) {
   const resp = await axios.get(`/${id}.json`, axiosConfig);
-  // console.log(resp.data);
   return resp.data;
 }
-// getById(idForFetch);
 
 const eventList = document.querySelector('.event_list');
 eventList.addEventListener('click', onEventClick);
@@ -140,10 +138,3 @@ function renderPrices(data) {
     .join('');
   pricesElem.innerHTML = pricesMarkup;
 }
-
-// test arr
-// const arr = [
-//   { currency: 'USD', max: 1250, min: 15, type: 'standard' },
-//   { currency: 'USD', max: 1555, min: 16, type: 'standard' },
-// ];
-//  <img src="./images/event_bg_mb_1x.png" width="50"/>

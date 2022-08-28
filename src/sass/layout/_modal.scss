@@ -2,20 +2,22 @@
   position: absolute;
   left: 50%;
   top: 50%;
-  transform: translate(-50%, -50%) scale(0.9);
+  transform: translate(-50%, -50%) scale(1);
   max-width: 100%;
   min-height: 810px;
   padding-left: 74px;
   padding-right: 74px;
   padding-top: 5px;
   padding-bottom: 40px;
-  z-index: 999;
   width: 1034px;
-  background-color: var(--modal-bg-color);
   border-top-left-radius: 300px;
   border-bottom-right-radius: 300px;
-  @media screen {
-  }
+  z-index: 999;
+
+  background-color: var(--modal-bg-color);
+
+  // @media screen and (min-width: 1280px){
+  // }
 }
 .modal__close-btn {
   position: absolute;
