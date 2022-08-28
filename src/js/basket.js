@@ -126,16 +126,16 @@ firstLoadPage()
 if (userBasket.totalQuantity !== 0 && refs.basketContainerHead.classList.contains("hidden")) {
     refs.basketContainerHead.classList.remove("hidden")
     refs.basketNumHead.textContent = userBasket.totalQuantity;
+    
 }
+//     updateSecondLoad()
+// function updateSecondLoad () {
 
-
-
-
- 
-
+// }
 refs.basketQuantity.textContent = userBasket.totalQuantity
 refs.basketNum.textContent = userBasket.totalQuantity
 if (userBasket.totalQuantity === 0 && !refs.basketNum.classList.contains("hidden")) refs.basketNum.classList.add("hidden")
+
 
 
 refs.basketContinueBookingBtn.addEventListener("click", onClickBasketContinueShoppingBtn);
