@@ -1,7 +1,8 @@
 import {refs} from "./refs";
-export {userBasket}
+export {userBasket, onClickBasketBackdrop, onEscKeyPressBasket, ESC_KEY_CODE}
 import userEventApi from "./api"
 
+const ESC_KEY_CODE = "Escape";
 
 
 // refs.basketVipBtn.addEventListener("click", onClickVipBtn);
@@ -15,8 +16,24 @@ function onClickVipBtn (event) {
 refs.basketHead.addEventListener("click", onClickBasketHead);
 function onClickBasketHead (event) {
     refs.basketModal.classList.toggle("hidden")
-   
+    refs.basketBackdrop.addEventListener("click", onClickBasketBackdrop)
+    window.addEventListener("keydown", onEscKeyPressBasket);
 }
+function onClickBasketBackdrop(event) {
+    console.log(event)
+    if(event.currentTarget === event.target) {
+        refs.basketModal.classList.toggle("hidden")
+        refs.basketBackdrop.removeEventListener("click", onClickBasketBackdrop)
+        refs.basketBackdrop.removeEventListener("click", onClickBasketBackdrop)
+    }
+}
+function onEscKeyPressBasket (event) {
+        if(event.code === ESC_KEY_CODE) {
+            window.removeEventListener("keydown", onEscKeyPressBasket);
+            refs.basketBackdrop.removeEventListener("click", onClickBasketBackdrop)
+            refs.basketModal.classList.toggle("hidden");
+        }
+    }
 
 
 class Basket {
@@ -79,9 +96,8 @@ class Basket {
         
         
     }
-
-
 }
+
 let userBasket = {};
 function firstLoadPage () {
     
@@ -92,6 +108,7 @@ function firstLoadPage () {
   
 }
 firstLoadPage()
+
 if (userBasket.totalQuantity !== 0 && refs.basketContainerHead.classList.contains("hidden")) {
     refs.basketContainerHead.classList.remove("hidden")
     refs.basketNumHead.textContent = userBasket.totalQuantity;
@@ -113,7 +130,10 @@ function onClickBasketContinueShoppingBtn (event) {
     if (userBasket.totalQuantity === 0 && !refs.basketContainerHead.classList.contains("hidden")) refs.basketContainerHead.classList.add("hidden")
     localStorage.setItem("userBasket", JSON.stringify(userBasket));
     refs.basketNumHead.textContent = userBasket.totalQuantity;
+    refs.basketBackdrop.removeEventListener("click", onClickBasketBackdrop)
+    window.removeEventListener("keydown", onEscKeyPressBasket);
 }
+
 
 refs.basketBuyBtn.addEventListener("click", onClickBuyBtn)
 function onClickBuyBtn (event) {
@@ -132,8 +152,6 @@ function onClickClearBtn(event) {
     refs.basketNumHead.innerHTML = userBasket.totalQuantity
     refs.basketMarkupContainer.innerHTML = "";
     localStorage.removeItem("userBasket");
-    
-
 }
 
 function onClickStandardBuyBtn (event) {
