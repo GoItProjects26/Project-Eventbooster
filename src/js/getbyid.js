@@ -43,9 +43,9 @@ async function onEventClick(event) {
   renderPrices(response.priceRanges);
   refs.modalBuyBtn = document.querySelectorAll('.js-buy-btn');
   // console.log(refs.modalBuyBtn);
-  refs.modalBuyBtn.forEach(elem =>
-    elem.addEventListener('click', onClickModalBuyBtn)
-  );
+  refs.modalBuyBtn.forEach(elem => {
+    elem.addEventListener('click', onClickModalBuyBtn);
+  });
 }
 
 function renderModal(data) {
