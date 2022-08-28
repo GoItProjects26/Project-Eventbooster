@@ -19,6 +19,16 @@ export const refs = {
   basketBuyBtn: document.querySelector('.modal-basket__buy'),
   basketClearBtn: document.querySelector('.modal-basket__clear'),
 
+  // basketVipBtn: document.querySelector("[js-vip]"),
+  // basketStandardBtn: document.querySelector("[js-standard]"),
+  basketContainer: document.querySelector('[js-basket-modal]'),
+  basketNum: document.querySelector('[js-basket-num]'),
+  basketMarkupContainer: document.querySelector('.modal-basket__name'),
+  basketContinueBookingBtn: document.querySelector('.modal-basket__continue'),
+  basketBuyBtn: document.querySelector('.modal-basket__buy'),
+  basketClearBtn: document.querySelector('.modal-basket__clear'),
+  basketBackdrop: document.querySelector('.modal-basket-backdrop'),
+
   miniModal: document.querySelector('.mini-modal-backdrop'),
   miniModalBtnCart: document.querySelector('.mini-modal__button'),
   miniModalBtnClose: document.querySelector('.mini-modal__close'),

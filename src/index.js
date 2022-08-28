@@ -1,7 +1,7 @@
 import './js/theme';
 
 import './js/onEvent';
-import './js/pagination';
+import './js/pagination/pagination1';
 import './js/modal.js';
 import './js/getbyid';
 
