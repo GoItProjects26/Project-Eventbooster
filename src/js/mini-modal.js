@@ -7,19 +7,26 @@ import {closeModal} from "./modal"
 
 
 
-// refs.modalBuyBtn.addEventListener("click", onClickModalBuyBtn);
-// function onClickModalBuyBtn (event) {
-//     refs.miniModal.classList.toggle("hidden");
+
+refs.modalBuyBtn.addEventListener("click", onClickModalBuyBtn);
+function onClickModalBuyBtn (event) {
+    refs.miniModal.classList.toggle("hidden");
  
-//     const basketId = event.target.closest("[data-id]").dataset.id
-//     userBasket.addEvent(basketId)
-//     userBasket.increaseStandardQuantity ()
-// }
+    const basketId = event.target.closest("[data-id]").dataset.id
+    console.log(userBasket.contentShoppingCart)
+    userBasket.addEvent(basketId)
+    console.log(userBasket.contentShoppingCart)
+    userBasket.increaseStandardQuantity ()
+    localStorage.setItem("userBasket", JSON.stringify(userBasket));
+
+
+}
 
 
 refs.miniModalBtnClose.addEventListener("click", onClickMiniModalBtnClose);
 function onClickMiniModalBtnClose (event) {
     refs.miniModal.classList.toggle("hidden")
+    localStorage.setItem("userBasket", JSON.stringify(userBasket));
 }
 
 refs.miniModalBtnCart.addEventListener("click", onClickMiniModalBtnOpenBasket);
@@ -36,12 +43,18 @@ function onClickMiniModalBtnOpenBasket (event) {
 
 
 function renderBasketMarkup (data) {
+    refs.basketMarkupContainer.innerHTML = "";
     let markup = "";
     data.forEach(name => {
-markup += `<li><div><div class="modal-basket__name">${name}</div></div></li>`
+    markup += `<li><div><div class="modal-basket__name">${name}</div></div></li>`
     })
     refs.basketMarkupContainer.insertAdjacentHTML("beforeend", markup);
+ 
 }
+
+
+
+
 
 
 
