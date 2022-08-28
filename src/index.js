@@ -8,9 +8,8 @@ import './js/getbyid';
 import './js/basket';
 import './js/mini-modal';
 
-
-
+import './js/inputs/search-forms';
 
 import './js/geo/geoApi';
 
-import './js/country/dropDown'
+import './js/country/dropDown';
