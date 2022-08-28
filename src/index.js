@@ -9,7 +9,8 @@ import './js/basket';
 import './js/mini-modal';
 import './js/sticky';
 
-import './js/inputs/search-forms';
+import './js/inputs/search-form';
+import './js/inputs/country-form';
 
 import './js/geo/geoApi';
 
