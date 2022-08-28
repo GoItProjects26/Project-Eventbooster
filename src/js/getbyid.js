@@ -45,6 +45,16 @@ async function onEventClick(event) {
 }
 
 function renderModal(data) {
+  const dateString = `${
+    data.dates.start.localDate
+  } ${data.dates.start.localTime.slice(0, 5)} (${data.dates.timezone})`;
+  let infoString;
+  if (data.info) {
+    infoString = data.info;
+  } else {
+    infoString = data.name;
+  }
+  // console.log(dateString);
   openModal();
   if (window.matchMedia('(min-width: 768px)').matches) {
     jsModal.innerHTML = `
@@ -62,11 +72,11 @@ function renderModal(data) {
         <ul class="modal__list list">
           <li class="modal__item">
             <h3 class="modal__title">INFO</h3>
-            <p class="modal__text">${data.info}</p>
+            <p class="modal__text">${infoString}</p>
           </li>
           <li class="modal__item">
             <h3 class="modal__title">WHEN</h3>
-            <p class="modal__text">${data.dates.start.datetime}</p>
+            <p class="modal__text">${dateString}</p>
           </li>
           <li class="modal__item">
             <h3 class="modal__title">WHERE</h3>
@@ -124,7 +134,7 @@ function renderPrices(data) {
   const pricesElem = document.querySelector('#modal__prices');
   let pricesMarkup = data
     .map(
-      elem => `
+      (elem, index) => `
       <div class="prices__box">
        <img
           class="prices__icon"
@@ -135,7 +145,7 @@ function renderPrices(data) {
           ${elem.type} ${elem.min} - ${elem.max} ${elem.currency}
         </p>
       </div>
-      <button type="button" class="modal__buy-btn-fix">ADD TO CART</button>
+      <button type="button" class="prices__btn js-buy-btn" data-id="${index}">ADD TO CART</button>
   `
     )
     .join('');
