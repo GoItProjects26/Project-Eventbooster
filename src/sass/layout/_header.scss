@@ -133,18 +133,6 @@
   overflow: hidden;
 }
 
-.country-form::after {
-  content: '\25BC';
-  position: absolute;
-  top: 10;
-  right: 15;
-  width: 15px;
-  height: 10px;
-  color: var(--secondaty-text-color);
-  background: transparent;
-  pointer-events: none;
-}
-
 .search-form__btn,
 .country-form__select {
   width: 30px;
@@ -156,5 +144,12 @@
 }
 
 .country-form__select {
-  appearance: none;
+  opacity: 0;
+}
+
+.country-form__svg {
+  position: absolute;
+  top: 15px;
+  right: 30px;
+  pointer-events: none;
 }
