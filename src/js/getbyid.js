@@ -38,6 +38,7 @@ async function onEventClick(event) {
     idForFetch = event.target.parentNode.parentNode.dataset.id;
   }
   let response = await getById(idForFetch);
+  console.log(response);
   console.log(response.images);
   // console.log(date(response.dates.start.dateTime));
   await renderModal(response);
@@ -47,14 +48,17 @@ async function onEventClick(event) {
 
 function renderModal(data) {
   openModal();
-
-  jsModal.innerHTML = `
+  if (window.matchMedia('(min-width: 768px)').matches) {
+    jsModal.innerHTML = `
       <div class="modal__logo-box">
-        <div class="modal__logo">small-logo-pic</div>
+        <div class="modal__logo"><img
+            src="${data.images[1].url}"
+            alt=""
+          /></div>
       </div>
       <div class="modal__data-container">
         <div class="modal__big-logo">   <img
-            src="${data.images[8].url}"
+            src="${data.images[1].url}"
             alt=""
           /></div>
         <ul class="modal__list list">
@@ -80,6 +84,38 @@ function renderModal(data) {
           </li>
         </ul>
       </div>`;
+  } else {
+    console.log('MEDIA < 768px');
+    jsModal.innerHTML = `
+      <div class="modal__logo-box">
+        <div class="modal__logo">small-logo-pic</div>
+      </div>
+      <div class="modal__data-container">
+        
+        <ul class="modal__list list">
+          <li class="modal__item">
+            <h3 class="modal__title">INFO</h3>
+            <p>${data.info}</p>
+          </li>
+          <li class="modal__item">
+            <h3 class="modal__title">WHEN</h3>
+            <p>${data.dates.start.datetime}</p>
+          </li>
+          <li class="modal__item">
+            <h3 class="modal__title">WHERE</h3>
+            <p>${data._embedded.venues[0].name}</p>
+          </li>
+          <li class="modal__item">
+            <h3 class="modal__title">WHO</h3>
+            <p>${data.name}</p>
+          </li>
+          <li class="modal__item">
+            <h3 class="modal__title">PRICES</h3>
+            <div id="modal__prices" data-id=${data.id}></div>
+          </li>
+        </ul>
+      </div>`;
+  }
 }
 
 function renderPrices(data) {
@@ -92,12 +128,12 @@ function renderPrices(data) {
        <img
           class="prices__icon"
           src="${ticketIcon}"
-          alt="Кот"
-          width="60"
+          alt="Ticket icon"
         />
         <p class="prices__text">
           ${elem.type} ${elem.min} - ${elem.max} ${elem.currency}
         </p>
+        <button type="button" class="modal__buy-btn">BYU TICKET</button>
       </div>
   `
     )
