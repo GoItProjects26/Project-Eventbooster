@@ -2,6 +2,7 @@ import { refs } from './refs';
 import { fetchApiData } from './api';
 import { openModal } from './modal';
 import { closeModal } from './modal';
+import { dataToCart } from './addtocart';
 import ticketIcon from '../images/ticket1.svg';
 
 const axios = require('axios').default;
@@ -24,6 +25,7 @@ async function getById(id) {
   const resp = await axios.get(`/${id}.json`, axiosConfig);
   return resp.data;
 }
+// export let modalDataObj = {};
 
 const eventList = document.querySelector('.event_list');
 eventList.addEventListener('click', onEventClick);
@@ -37,12 +39,27 @@ async function onEventClick(event) {
   }
   let response = await getById(idForFetch);
   console.log(response);
-  console.log(response.images);
-  // console.log(date(response.dates.start.dateTime));
-  await renderModal(response);
-  await renderPrices(response.priceRanges);
-  // await renderPrices(arr);
+  // modalDataObj = response;
+  // console.log(response.images);
+  renderModal(response);
+  renderPrices(response.priceRanges);
+  openModal();
+  // refs.modalBuyBtn = document.querySelectorAll('.js-buy-btn');
+  // // console.log(refs.modalBuyBtn);
+  // refs.modalBuyBtn.forEach(elem => {
+  //   elem.addEventListener('click', onClickModalBuyBtn);
+  // });
+  dataToCart(response);
 }
+
+// function someshit() {
+//   refs.modalBuyBtn = document.querySelectorAll('.js-buy-btn');
+//   // console.log(refs.modalBuyBtn);
+//   refs.modalBuyBtn.forEach(elem => {
+//     elem.addEventListener('click', onClickModalBuyBtn);
+//   });
+//   console.log(456);
+// }
 
 function renderModal(data) {
   const dateString = `${
@@ -55,9 +72,8 @@ function renderModal(data) {
     infoString = data.name;
   }
   // console.log(dateString);
-  openModal();
-  if (window.matchMedia('(min-width: 768px)').matches) {
-    jsModal.innerHTML = `
+  // openModal();
+  jsModal.innerHTML = `
       <div class="modal__logo-box">
         <div class="modal__logo"><img
             src="${data.images[1].url}"
@@ -92,43 +108,7 @@ function renderModal(data) {
           </li>
         </ul>
       </div>`;
-  } else {
-    console.log('MEDIA < 768px');
-    jsModal.innerHTML = `
-      <div class="modal__logo-box">
-        <div class="modal__logo">
-          <img
-            src="${data.images[1].url}"
-            alt="" />
-        </div>
-      </div>
-      <div class="modal__data-container">
-      <ul class="modal__list list">
-          <li class="modal__item">
-            <h3 class="modal__title">INFO</h3>
-            <p class="modal__text">${data.info}</p>
-          </li>
-          <li class="modal__item">
-            <h3 class="modal__title">WHEN</h3>
-            <p class="modal__text">${data.dates.start.datetime}</p>
-          </li>
-          <li class="modal__item">
-            <h3 class="modal__title">WHERE</h3>
-            <p class="modal__text">${data._embedded.venues[0].name}</p>
-          </li>
-          <li class="modal__item">
-            <h3 class="modal__title">WHO</h3>
-            <p class="modal__text">${data.name}</p>
-          </li>
-          <li class="modal__item">
-            <h3 class="modal__title">PRICES</h3>
-            <div id="modal__prices" data-id="${data.id}"></div>
-          </li>
-        </ul>
-      </div>`;
-  }
 }
-
 function renderPrices(data) {
   // console.log(data);
   const pricesElem = document.querySelector('#modal__prices');
