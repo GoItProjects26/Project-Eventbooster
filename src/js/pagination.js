@@ -68,9 +68,9 @@ const setCurrentPage = (pageNum) => {
   const currRange = pageNum * paginationLimit;
 
   listItems.forEach((item, index) => {
-    item.classList.add("hidden");
+    item.classList.add("pag-hidden");
     if (index >= prevRange && index < currRange) {
-      item.classList.remove("hidden");
+      item.classList.remove("pag-hidden");
     }
   });
 };
