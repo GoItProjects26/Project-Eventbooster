@@ -17,23 +17,26 @@ refs.basketHead.addEventListener("click", onClickBasketHead);
 function onClickBasketHead (event) {
     onBasketShow()
 }
+
 function onBasketShow() {
     refs.basketModal.classList.toggle("hidden");
     refs.basketQuantity.textContent = userBasket.totalQuantity;
     refs.basketNum.textContent = userBasket.totalQuantity;
+   
+    renderBasketMarkup(userBasket.contentShoppingCart)/// Данные с именем события
+    refs.basketBackdrop.addEventListener("click", onClickBasketBackdrop)
+    window.addEventListener("keydown", onEscKeyPressBasket);
+    
     if (userBasket.totalQuantity !== 0 && refs.basketContainer.classList.contains("hidden")) {
         refs.basketContainer.classList.remove("hidden");
         onBasketFull()
     }
+    userBasket.totalQuantity != 1 ? refs.basketTextTicket.textContent = "tickets" : refs.basketTextTicket.textContent = "ticket";
+}
+
 function onBasketFull () {
     refs.basketTextFull.classList.remove("hidden");
     refs.basketTextEmpty.classList.add("hidden");
-}
-
-
-    renderBasketMarkup(userBasket.contentShoppingCart)/// Данные с именем события
-    refs.basketBackdrop.addEventListener("click", onClickBasketBackdrop)
-    window.addEventListener("keydown", onEscKeyPressBasket);
 }
 
 function renderBasketMarkup(data) {
