@@ -2,7 +2,7 @@ import './js/theme';
 
 import './js/onEvent';
 // import './js/pagination/pagination1';
-import './js/logic';
+import './js/pagination';
 import './js/modal.js';
 import './js/getbyid';
 
