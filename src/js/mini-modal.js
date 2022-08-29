@@ -1,26 +1,28 @@
 
 
+
 import {refs} from "./refs";
-import {userBasket, onClickBasketBackdrop, onEscKeyPressBasket, ESC_KEY_CODE} from "./basket";
+import {userBasket, onClickBasketBackdrop, onEscKeyPressBasket, ESC_KEY_CODE, onBasketShow} from "./basket";
 import userEventApi from "./api"
 import {closeModal} from "./modal"
+export {onClickModalBuyBtn}
+
 
 
 
 // refs.modalBuyBtn.addEventListener("click", onClickModalBuyBtn);
-// function onClickModalBuyBtn (event) {
-//     refs.miniModal.classList.toggle("hidden");
-
-//     const basketId = event.target.closest("[data-id]").dataset.id
-//     console.log(userBasket.contentShoppingCart)
-//     userBasket.addEvent(basketId)
-//     console.log(userBasket.contentShoppingCart)
-//     userBasket.increaseStandardQuantity ()
-//     localStorage.setItem("userBasket", JSON.stringify(userBasket));
-
- //     miniModalBackdrop.addEventListener("click", onClickMiniModalBackdrop);
-//      window.addEventListener("keydown", onEscKeyPress);
-// }
+function onClickModalBuyBtn (event) {
+    refs.miniModal.classList.toggle("hidden");
+    const basketId = event.target.closest("[data-id]").dataset.id
+    const {_embedded: {events}} = (JSON.parse(localStorage.getItem("event")))
+    const userEvent = events.find(({id}) => id === basketId)
+    userBasket.addEvent(userEvent)
+    userBasket.increaseStandardQuantity ()
+    localStorage.setItem("userBasket", JSON.stringify(userBasket));
+    refs.miniModalBackdrop.addEventListener("click", onClickMiniModalBackdrop);
+    window.addEventListener("keydown", onEscKeyPressMiniModal);
+    
+}
 
 function onEscKeyPressMiniModal (event) {
     if(event.code === ESC_KEY_CODE) {
@@ -29,7 +31,6 @@ function onEscKeyPressMiniModal (event) {
         refs.miniModal.classList.toggle("hidden")
     }
 }
-
 function onClickMiniModalBackdrop (event) {
     if(event.currentTarget === event.target) {
         window.removeEventListener("keydown", onEscKeyPressMiniModal);
@@ -52,24 +53,11 @@ refs.miniModalBtnCart.addEventListener("click", onClickMiniModalBtnOpenBasket);
 function onClickMiniModalBtnOpenBasket (event) {
     refs.miniModal.classList.toggle("hidden")
     closeModal();
-    refs.basketModal.classList.toggle("hidden")
-    refs.basketQuantity.textContent = userBasket.totalQuantity;
-    refs.basketNum.textContent = userBasket.totalQuantity;
-    if (userBasket.totalQuantity !== 0 && refs.basketNum.classList.contains("hidden")) refs.basketContainer.classList.remove("hidden")
     localStorage.setItem("userBasket", JSON.stringify(userBasket));
-    renderBasketMarkup(userBasket.contentShoppingCart)/// Данные с именем события
     refs.miniModalBackdrop.removeEventListener("click", onClickMiniModalBackdrop)
     window.removeEventListener("keydown", onEscKeyPressMiniModal);
-    refs.basketBackdrop.addEventListener("click", onClickBasketBackdrop)
-    window.addEventListener("keydown", onEscKeyPressBasket);
-
+    onBasketShow()
 }
 
-function renderBasketMarkup(data) {
-  refs.basketMarkupContainer.innerHTML = '';
-  let markup = '';
-  data.forEach(name => {
-    markup += `<li><div><div class="modal-basket__name">${name}</div></div></li>`;
-  });
-  refs.basketMarkupContainer.insertAdjacentHTML('beforeend', markup);
-}
+
+
