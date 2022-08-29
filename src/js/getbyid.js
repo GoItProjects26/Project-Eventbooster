@@ -38,16 +38,9 @@ async function onEventClick(event) {
   }
   let response = await getById(idForFetch);
   console.log(response);
-  // modalDataObj = response;
-  // console.log(response.images);
   renderModal(response);
   renderPrices(response.priceRanges);
   openModal();
-  // refs.modalBuyBtn = document.querySelectorAll('.js-buy-btn');
-  // // console.log(refs.modalBuyBtn);
-  // refs.modalBuyBtn.forEach(elem => {
-  //   elem.addEventListener('click', onClickModalBuyBtn);
-  // });
   dataToCart(response);
 }
 
@@ -61,13 +54,6 @@ function renderModal(data) {
   } else {
     infoString = data.name;
   }
-  // console.log(dateString);
-  // openModal();
-  // <div class="modal__logo-box">
-  //   <div class="modal__logo">
-  //     <img src="${data.images[1].url}" alt="" />
-  //   </div>
-  // </div>;
   jsModal.innerHTML = `
         <div class="modal__logo"><img
             src="${data.images[1].url}"

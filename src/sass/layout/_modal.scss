@@ -7,35 +7,29 @@
   background-color: var(--modal-bg-color);
   max-width: 100%;
   width: calc(100% - 40px);
-  min-height: calc(100% - 40px);
-
   padding-left: 20px;
   padding-right: 20px;
-  padding-top: 42px;
+  padding-top: 80px;
   padding-bottom: 100px;
   min-width: 280px;
   border-top-left-radius: 150px;
   border-bottom-right-radius: 150px;
   margin-top: 50px;
   margin-bottom: 50px;
-  // color: black;
 
   @media screen and (min-width: 768px) {
-    // min-height: 810px;
     padding-left: 74px;
     padding-right: 74px;
-    padding-top: 5px;
+    padding-top: 32px;
     padding-bottom: 40px;
     width: 704px;
-    // max-height: calc(100% - 40px);
     border-top-left-radius: 300px;
     border-bottom-right-radius: 300px;
   }
   @media screen and (min-width: 1280px) {
-    // min-height: 810px;
     padding-left: 74px;
     padding-right: 74px;
-    padding-top: 5px;
+    padding-top: 54px;
     padding-bottom: 40px;
     width: 1034px;
     border-top-left-radius: 300px;
@@ -71,7 +65,7 @@
     width: 249px;
     height: 445px;
     overflow: hidden;
-    background-color: blue;
+    background-color: var(--modal-color);
   }
 
   @media screen and (min-width: 1280px) {
@@ -91,22 +85,21 @@
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 140px;
-  height: 140px;
-  background-color: red;
+  width: 102px;
+  height: 102px;
+  background-color: var(--modal-color);
   border-radius: 50%;
   overflow: hidden;
-  // margin-top: 80px;
   margin-bottom: 20px;
   @media screen and (min-width: 768px) {
+    width: 70px;
+    height: 70px;
+    margin-bottom: 40px;
   }
-}
-.modal__logo-box {
-  display: flex;
-  width: 100%;
-  justify-content: center;
-  height: 181px;
-  align-items: flex-end;
+  @media screen and (min-width: 1280px) {
+    width: 132px;
+    height: 132px;
+  }
 }
 
 .modal__data-container {
@@ -114,6 +107,7 @@
   display: flex;
   gap: 32px;
 }
+
 .modal__title {
   color: var(--accent-text-color);
   font-family: Montserrat;
@@ -132,6 +126,7 @@
     line-height: 1.2;
   }
 }
+
 .modal__list {
   display: flex;
   flex-direction: column;
@@ -142,6 +137,7 @@
     gap: 20px;
   }
 }
+
 .modal__text {
   color: var(--modal-primary-text-color);
   font-family: Montserrat;
@@ -158,6 +154,7 @@
     line-height: 1.22;
   }
 }
+
 .modal__prices {
   display: flex;
   flex-direction: column;
@@ -170,6 +167,7 @@
     gap: 20px;
   }
 }
+
 .modal__more-btn {
   display: flex;
   margin-top: 24px;
@@ -183,6 +181,7 @@
   margin-right: auto;
   width: 230px;
   height: 40px;
+  padding: 0px;
   color: var(--modal-accent-text-color);
   border: 1px solid var(--modal-accent-text-color);
   border-radius: 5px;
@@ -192,6 +191,7 @@
     margin-top: 40px;
   }
 }
+
 .prices__box {
   display: flex;
   gap: 13px;
@@ -203,8 +203,10 @@
   text-transform: capitalize;
 }
 .prices__icon {
-  fill: red;
   width: 24px;
+  @media screen and (min-width: 1280px) {
+    width: 29px;
+  }
 }
 .prices__btn {
   display: flex;
