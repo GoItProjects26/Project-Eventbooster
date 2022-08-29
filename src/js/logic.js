@@ -2,37 +2,50 @@ const ref = {
   paginatedList: document.querySelector('.paginated__list'),
   paginatedItem: [],
 };
+import { EventApi } from './api';
+import { renderMarckup } from './renderHtml';
+import { renderMarckupFromLocalStorage } from './renderHtml';
 
 export function pag1() {
   const serverResponce = JSON.parse(localStorage.getItem('event'));
-  const total = serverResponce.page.totalPages;
+  let total;
+  if (serverResponce.page.totalPages > 1000 / serverResponce.page.size) {
+    total = Math.floor(1000 / serverResponce.page.size);
+  } else {
+    total = serverResponce.page.totalPages;
+  }
+  // console.log(serverResponce.page);
+  // console.log(total);
 
-  let current = 500; // номер текущей страницы, нужно получать
+  console.log('current page', EventApi.config.params.page);
+  let current = +EventApi.config.params.page + 1; // номер текущей страницы, нужно получать
   let arr = [];
   let after;
   let before;
   if (total - current > 3) {
+    // console.log('total', total - current, 'current', current);
     before = current + 2;
   }
   if (current > 4) {
     after = current - 2;
   }
   if (after && before) {
-    console.log('after', after, 'before', before);
+    // console.log('after', after, 'before', before);
     arr.push(`<li class="paginated__item" data-page="0">1</li>`);
-    arr.push(`<li class="paginated__item" data-page="${after - 1}">...</li>`);
+    arr.push(`<li class="paginated__item" data-page="${after - 2}">...</li>`);
     for (let i = after + 1; i < before; i++) {
       arr.push(`<li class="paginated__item" data-page="${i - 1}">${i}</li>`);
     }
-    arr.push(`<li class="paginated__item" data-page="${before - 1}">...</li>`);
+    arr.push(`<li class="paginated__item" data-page="${before}">...</li>`);
     arr.push(
       `<li class="paginated__item" data-page="${total - 1}">${total}</li>`
     );
   } else if (after && !before) {
     console.log('after', after, 'before', before);
     arr.push(`<li class="paginated__item" data-page="0">1</li>`);
-    arr.push(`<li class="paginated__item" data-page="${after - 1}">...</li>`);
+    arr.push(`<li class="paginated__item" data-page="${after}">...</li>`);
     for (let i = after; i <= total; i++) {
+      console.log(i);
       arr.push(`<li class="paginated__item" data-page="${i - 1}">${i}</li>`);
     }
   } else if (!after && before) {
@@ -40,7 +53,7 @@ export function pag1() {
     for (let i = 1; i <= before; i++) {
       arr.push(`<li class="paginated__item" data-page="${i - 1}">${i}</li>`);
     }
-    arr.push(`<li class="paginated__item" data-page="${before - 1}">...</li>`);
+    arr.push(`<li class="paginated__item" data-page="${before}">...</li>`);
     arr.push(
       `<li class="paginated__item" data-page="${total - 1}">${total}</li>`
     );
@@ -51,7 +64,7 @@ export function pag1() {
   ref.paginatedList.innerHTML = string;
   ref.paginatedItem = document.querySelectorAll('.paginated__item');
   // console.log(ref.paginatedItem[current - 1]);
-  console.log(current);
+  // console.log(current);
   ref.paginatedItem.forEach(elem => {
     if (elem.textContent == current) elem.classList.add('item-active');
   });
@@ -64,7 +77,12 @@ export function pag1() {
 pag1();
 function onPageClick(event) {
   if (event.target.nodeName === 'LI') {
-    console.log(event.target.dataset.page);
+    // console.log(event.target.dataset.page);
+    EventApi.setPage(+event.target.dataset.page);
+    EventApi.setKeyword('NBA');
+    // renderMarckupFromLocalStorage();
+    renderMarckup();
+    pag1();
   }
 }
 
