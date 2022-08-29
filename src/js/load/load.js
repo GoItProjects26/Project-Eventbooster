@@ -1,7 +1,5 @@
 import { EventApi } from "../api";
 
-// const event = new EventApi;
-
 export async function saveCollectionToLocalStorage() {
     if (localStorage.getItem("event")) {
         return

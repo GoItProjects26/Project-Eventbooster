@@ -191,7 +191,7 @@ export const countryCodes = [
     { name: 'SOMALIA', code: 'SO' },
     { name: 'SURINAME', code: 'SR' },
     { name: 'SAO TOME AND PRINCIPE', code: 'ST' },
-    , { name: 'EL SALVADOR', code: 'SV' },
+    { name: 'EL SALVADOR', code: 'SV' },
     { name: 'SYRIAN ARAB REPUBLIC', code: 'SY' },
     { name: 'SWAZILAND', code: 'SZ' },
     { name: 'TURKS AND CAICOS ISLANDS', code: 'TC' },

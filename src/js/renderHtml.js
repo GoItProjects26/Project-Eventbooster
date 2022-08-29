@@ -27,7 +27,7 @@ export async function renderMarckup() {
     const totalPagesOnSite = totalPagesFromServer - 1;
     createPaginationOnLoad(totalPagesFromServer, totalPagesOnSite);
     if (!eventsArrayFull) {
-      alert('Sorry, there is no such event');
+      refs.eventList.innerHTML = `<h3 class="section_title">No any event found in your country</h3>`;
       return;
     }
     const eventsArray = shortDataFromServer(eventsArrayFull);
@@ -38,15 +38,23 @@ export async function renderMarckup() {
 }
 //render markup from local storage
 export async function renderMarckupFromLocalStorage() {
+
   const localStorageData = localStorage.getItem('event');
   try {
-    const eventsArrayFull = JSON.parse(localStorageData)._embedded.events;
+    const eventsArrayFull = JSON.parse(localStorageData)._embedded?.events;
+    if (!eventsArrayFull) {
+      refs.eventList.innerHTML = `<h3 class="section_title">No any event found in your country</h3>`;
+      return
+    }
+    console.log('after');
     const eventsArray = shortDataFromServer(eventsArrayFull);
     marckup(eventsArray);
   } catch (error) {
     console.log(error);
   }
 }
+
+
 //slave functions
 // create marckup for home page
 function marckup(eventsArray) {

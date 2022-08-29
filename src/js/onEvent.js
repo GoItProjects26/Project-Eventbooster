@@ -7,6 +7,6 @@ import { findCountryByIp } from './geo/geoApi'
 //MAKS
 window.addEventListener("load", country);
 window.addEventListener("load", saveCollectionToLocalStorage);
-window.addEventListener("load", renderMarckupFromLocalStorage);
+// window.addEventListener("load", renderMarckupFromLocalStorage);
 window.addEventListener("load", findCountryByIp);
 //================================================================================

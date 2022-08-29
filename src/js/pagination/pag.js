@@ -3,6 +3,7 @@ import { renderMarckup } from '../renderHtml';
 
 
 export const ref = {
+    eventList: document.querySelector('.event_list '),
     paginatedList: document.querySelector(".paginated__list"),
     paginationOrder: document.querySelector(".pagination__order"),
     forwardDots: document.querySelector(".js-forward-dots"),
@@ -12,7 +13,7 @@ export const ref = {
 }
 
 const serverResponce = JSON.parse(localStorage.getItem('event'));
-const totalPagesFromServer = serverResponce.page.totalPages;
+const totalPagesFromServer = serverResponce ? serverResponce.page.totalPages : 7;
 const totalPagesOnSite = totalPagesFromServer - 1;
 
 window.addEventListener("load", createPaginationOnLoad(totalPagesFromServer, totalPagesOnSite));
@@ -22,13 +23,22 @@ ref.paginatedList.children[3]?.addEventListener('click', onClickFwd);
 ref.paginatedList.children[1]?.addEventListener('click', onClicBack);
 
 function loadNewSet(event) {
+    if (event.target.nodeName !== "LI") {
+        return
+    }
     if (event.target.textContent === '....') {
         return
     }
     if (event.target.textContent === '...') {
         return
     }
-    EventApi.setPage(event.target.textContent);
+    [...ref.paginatedList.children].forEach(el => el.classList.remove('item-active'));
+    [...ref.paginationOrder.children].forEach(el => el.classList.remove('item-active'));
+    if (+event.target.textContent === 1) {
+        ref.backDots.classList.add('js-hidden');
+    }
+    event.target.classList.add('item-active')
+    EventApi.setPage(+event.target.textContent - 1);
     renderMarckup();
 }
 
@@ -40,7 +50,6 @@ function onClickFwd() {
     EventApi.setPage((+ref.paginationOrder.lastElementChild.textContent + 1) + '');
     renderMarckup();
     if (diff <= 4) {
-        console.log("diff>=4");
         ref.forwardDots.classList.add('js-hidden');
         let template = '';
         for (let i = pageB4Dots - 1; i < pageB4Dots; i++) {
@@ -91,16 +100,16 @@ export function createPaginationOnLoad(totalPagesFromServer, totalPagesOnSite) {
 }
 
 export function createLastPage(totalPagesOnSite) {
-    console.log(totalPagesOnSite, 'createLastPage');
     ref.lastPage.textContent = totalPagesOnSite;
-    // const lastPage = document.createElement('li');
-    // lastPage.textContent = `${totalPagesOnSite}`;
-    // lastPage.classList.add('paginated__item');
-    // ref.paginatedList.append(lastPage);
-    // return console.log('function createLastPage');
 }
 
 function pagesOnSite7(totalPagesOnSite) {
+    // if (+totalPagesOnSite === 0) {
+    //     ref.paginationOrder.innerHTML = '';
+    //     ref.lastPage.classList.add('js-hidden');
+    //     ref.forwardDots.classList.add('js-hidden')
+    //     return
+    // }
     ref.lastPage.classList.add('js-hidden');
     let template = `<li class="paginated__item item-active">1</li> `;
 
@@ -108,7 +117,7 @@ function pagesOnSite7(totalPagesOnSite) {
         template += `<li class="paginated__item">${i + 1}</li>`
     }
     ref.forwardDots.classList.add('js-hidden')
-    ref.paginationOrder.innerHTML = template;
+    totalPagesOnSite === 0 ? ref.paginationOrder.innerHTML = '' : ref.paginationOrder.innerHTML = template;
 }
 
 function createOnFwd(pageB4Dots) {

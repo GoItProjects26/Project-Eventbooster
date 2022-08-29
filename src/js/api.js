@@ -25,7 +25,7 @@ export class EventApi {
       keyword: ' ', //Keyword to search on
       includeTBD: ' ', //yes, to include with a date to be defined (TBD)
       includeTBA: ' ', //
-      preferredCountry: '[ua, ca]', //Popularity boost by country, default is us ["us", "ca"]
+      preferredCountry: '', //Popularity boost by country, default is us ["us", "ca"]
       geoPoint: '',
       // latlong: "46.3077376,30.6151424",
     },
