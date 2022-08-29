@@ -21,7 +21,16 @@ function onBasketShow() {
     refs.basketModal.classList.toggle("hidden");
     refs.basketQuantity.textContent = userBasket.totalQuantity;
     refs.basketNum.textContent = userBasket.totalQuantity;
-    if (userBasket.totalQuantity !== 0 && refs.basketContainer.classList.contains("hidden")) refs.basketContainer.classList.remove("hidden")
+    if (userBasket.totalQuantity !== 0 && refs.basketContainer.classList.contains("hidden")) {
+        refs.basketContainer.classList.remove("hidden");
+        onBasketFull()
+    }
+function onBasketFull () {
+    refs.basketTextFull.classList.remove("hidden");
+    refs.basketTextEmpty.classList.add("hidden");
+}
+
+
     renderBasketMarkup(userBasket.contentShoppingCart)/// Данные с именем события
     refs.basketBackdrop.addEventListener("click", onClickBasketBackdrop)
     window.addEventListener("keydown", onEscKeyPressBasket);
@@ -121,6 +130,7 @@ function firstLoadPage () {
     const oldUserBasket = (JSON.parse(localStorage.getItem("userBasket")))
     userBasket = new Basket;
     return Object.assign(userBasket, oldUserBasket)
+
 }
 
 firstLoadPage()
@@ -169,6 +179,11 @@ function onClickClearBtn(event) {
     refs.basketNumHead.innerHTML = userBasket.totalQuantity
     refs.basketMarkupContainer.innerHTML = "";
     localStorage.removeItem("userBasket");
+    onBasketEmpty();
+}
+function onBasketEmpty() {
+    refs.basketTextFull.classList.add("hidden");
+    refs.basketTextEmpty.classList.remove("hidden");
 }
 
 function onClickStandardBuyBtn (event) {
