@@ -1,27 +1,12 @@
 import {refs} from "./refs";
-export {userBasket, onClickBasketBackdrop, onEscKeyPressBasket, ESC_KEY_CODE, onBasketShow}
-import userEventApi from "./api"
+export {userBasket, onClickBasketBackdrop, onEscKeyPressBasket, ESC_KEY_CODE, onBasketShow, updateBasket}
+import Basket from "./class_basket";
+import {deleteTimer, setTimer} from './timer';
 
 const ESC_KEY_CODE = "Escape";
 
-function convertMs(ms) {
-    const second = 1000;
-    const minute = second * 60;
-    const hour = minute * 60;
-    const day = hour * 24;
-    const days = Math.floor(ms / day);
-    const hours = Math.floor((ms % day) / hour);
-    const minutes = Math.floor(((ms % day) % hour) / minute);
-    const seconds = Math.floor((((ms % day) % hour) % minute) / second);
-  
-    return { days, hours, minutes, seconds };
-}
 
-function addLeadingZero(Obj) {
-    for(let key in Obj) {
-        Obj[key] =`${(Obj[key])}`.padStart(2, 0)}
-    return Obj;
-}
+
 
 
 // refs.basketVipBtn.addEventListener("click", onClickVipBtn);
@@ -61,20 +46,9 @@ function onBasketShow() {
        
 }
 
-function calculateTime(obj) {
-    const begin = obj?.contentShoppingCart[0]?.timer;
 
-    const end = begin + userBasket.duration
-    let passedTime = end - Date.now();
-    if (passedTime <= 500) timeIsOver()
-    return addLeadingZero(convertMs(passedTime));
-}
 
-function timeIsOver () {
 
-    userBasket.clearByTimerEvent()
-    updateBasket ()
-}
 
 function updateBasket () {
     setTimeout (() =>{
@@ -102,23 +76,6 @@ function updateBasket () {
 
 }
 
-function setTimer (basketObj) {
-    let {minutes, seconds} = calculateTime(basketObj)
-    refs.basketTimer.textContent = `${minutes} : ${seconds}`;
-return timerId =  setInterval(()=>{
-    let {minutes, seconds} = calculateTime(basketObj)
-        refs.basketTimer.textContent = `${minutes} : ${seconds}`;
-
-
-    }, userBasket.step)
-
-}
-
-function deleteTimer (id) {
-    clearInterval(id)
-}
-
-
 function onBasketFull () {
     console.log("tut")
     refs.basketTextFull.classList.remove("hidden");
@@ -138,6 +95,7 @@ function renderBasketMarkup(data) {
     });
     refs.basketMarkupContainer.insertAdjacentHTML('beforeend', markup);
   }
+
 function onClickBasketBackdrop(event) {
     if(event.currentTarget === event.target) {
         refs.basketModal.classList.toggle("hidden")
@@ -145,6 +103,7 @@ function onClickBasketBackdrop(event) {
         refs.basketBackdrop.removeEventListener("click", onClickBasketBackdrop)
     }
 }
+
 function onEscKeyPressBasket (event) {
         if(event.code === ESC_KEY_CODE) {
             window.removeEventListener("keydown", onEscKeyPressBasket);
@@ -154,89 +113,7 @@ function onEscKeyPressBasket (event) {
     }
 
 
-class Basket {
-    constructor () {
-        this.contentShoppingCart = [];
-        this.vipQuantity = 0;
-        this.standardQuantity = 0;
-        this.totalQuantity = 0;
-        this.duration = 10000;
-        this.step = 1000;
-        this.isBasketEmpty = true;
-    }
 
-
-    increaseVipQuantity () {
-        this.vipQuantity += 1
-        this.totalQuantity += 1
-    }
-
-    increaseStandardQuantity () {
-        this.standardQuantity += 1
-        this.totalQuantity += 1
-    }
-
-    decreaseStandardQuantity () {
-        this.standardQuantity -= 1
-        this.totalQuantity -= 1
-    }
-    
-
-    addEvent(dataId) {
-        dataId.timer = Date.now();
-        this.contentShoppingCart.push(dataId);
-    }
-
-    clearByTimerEvent() {
-        this.contentShoppingCart.shift()
-        if ( this.standardQuantity > 0) this.decreaseStandardQuantity ()
-    }
-   
-        
-  
-        
-        
-            //     const event = setTimeout(() => {
-            //         this.contentShoppingCart.shift()
-            //     }, this.duration)
-        // this.setTimeout(dataId);
-
-
-
-        // return function setTimeout () {
-        //     const event = setTimeout(() => {
-        //         this.contentShoppingCart.shift()
-        //     }, this.duration)
-    
-        //     let end = this.duration;
-            
-        //     const timer = setInterval(() => {
-        //         end -= this.step;
-        //         if (end <= 900) clearInterval(timer);
-        //         console.log(end)
-        //     }, this.step)
-    
-        // }
-  
-    
-
-    
-
-
-
-    // continueShopping () {
-
-    // }
-
-    clearList () {
-        this.vipQuantity = 0;
-        this.standardQuantity = 0;
-        this.totalQuantity = 0;
-        this.contentShoppingCart = [];
-        
-        
-    }
-}
 
 let userBasket = {};
 function firstLoadPage () {
