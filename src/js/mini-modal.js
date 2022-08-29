@@ -21,6 +21,9 @@ function onClickModalBuyBtn (event) {
     localStorage.setItem("userBasket", JSON.stringify(userBasket));
     refs.miniModalBackdrop.addEventListener("click", onClickMiniModalBackdrop);
     window.addEventListener("keydown", onEscKeyPressMiniModal);
+    refs.basketNumHead.textContent = userBasket.totalQuantity;
+
+    userBasket.isBasketEmpty = false;
     
 }
 

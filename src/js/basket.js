@@ -4,6 +4,25 @@ import userEventApi from "./api"
 
 const ESC_KEY_CODE = "Escape";
 
+function convertMs(ms) {
+    const second = 1000;
+    const minute = second * 60;
+    const hour = minute * 60;
+    const day = hour * 24;
+    const days = Math.floor(ms / day);
+    const hours = Math.floor((ms % day) / hour);
+    const minutes = Math.floor(((ms % day) % hour) / minute);
+    const seconds = Math.floor((((ms % day) % hour) % minute) / second);
+  
+    return { days, hours, minutes, seconds };
+}
+
+function addLeadingZero(Obj) {
+    for(let key in Obj) {
+        Obj[key] =`${(Obj[key])}`.padStart(2, 0)}
+    return Obj;
+}
+
 
 // refs.basketVipBtn.addEventListener("click", onClickVipBtn);
 // refs.basketVipBtn.addEventListener("click", onClickStandardBtn);
@@ -19,24 +38,56 @@ function onClickBasketHead (event) {
 }
 
 function onBasketShow() {
+    // if (passedTime <= 500) userBasket.contentShoppingCart.shift()
+    
+    // let {minutes, seconds} = calculateTime(userBasket)
+
+    
     refs.basketModal.classList.toggle("hidden");
     refs.basketQuantity.textContent = userBasket.totalQuantity;
     refs.basketNum.textContent = userBasket.totalQuantity;
+   
    
     renderBasketMarkup(userBasket.contentShoppingCart)/// Данные с именем события
     refs.basketBackdrop.addEventListener("click", onClickBasketBackdrop)
     window.addEventListener("keydown", onEscKeyPressBasket);
     
-    if (userBasket.totalQuantity !== 0 && refs.basketContainer.classList.contains("hidden")) {
+    if (!userBasket.isBasketEmpty && refs.basketContainer.classList.contains("hidden")) {
         refs.basketContainer.classList.remove("hidden");
         onBasketFull()
     }
-    userBasket.totalQuantity != 1 ? refs.basketTextTicket.textContent = "tickets" : refs.basketTextTicket.textContent = "ticket";
+    
+    // if (!userBasket.isBasketEmpty) {
+    //     refs.basketTimer.innerHTML = ""} else{ refs.basketTimer.textContent = `${minutes} : ${seconds}`}
 }
+
+function calculateTime(obj) {
+    const begin = obj?.contentShoppingCart[0]?.timer;
+
+    const end = begin + userBasket.duration
+    let passedTime = end - Date.now();
+    return addLeadingZero(convertMs(passedTime));
+}
+
+function setTimer (basketObj) {
+
+return timerId =  setInterval(()=>{
+        let {minutes, seconds} = calculateTime(basketObj)
+        refs.basketTimer.textContent = `${minutes} : ${seconds}`;
+    }, this.step)
+
+}
+
+function deleteTimer (id) {
+    clearInterval(id)
+}
+
 
 function onBasketFull () {
     refs.basketTextFull.classList.remove("hidden");
     refs.basketTextEmpty.classList.add("hidden");
+    userBasket.totalQuantity != 1 ? refs.basketTextTicket.textContent = "tickets" : refs.basketTextTicket.textContent = "ticket";
+    setTimer(userBasket)
 }
 
 function renderBasketMarkup(data) {
@@ -73,6 +124,7 @@ class Basket {
         this.totalQuantity = 0;
         this.duration = 900000;
         this.step = 1000;
+        this.isBasketEmpty = true;
     }
 
 
@@ -87,7 +139,21 @@ class Basket {
     }
 
     addEvent(dataId) {
-        this.contentShoppingCart.push(dataId)
+        dataId.timer = Date.now();
+        this.contentShoppingCart.push(dataId);
+    }
+
+    clearEvent(dataId) {
+        this.contentShoppingCart.shift()
+    }
+   
+        
+  
+        
+        
+            //     const event = setTimeout(() => {
+            //         this.contentShoppingCart.shift()
+            //     }, this.duration)
         // this.setTimeout(dataId);
 
 
@@ -107,7 +173,7 @@ class Basket {
     
         // }
   
-    }
+    
 
     
 
@@ -138,7 +204,7 @@ function firstLoadPage () {
 
 firstLoadPage()
 
-if (userBasket.totalQuantity !== 0 && refs.basketContainerHead.classList.contains("hidden")) {
+if (!userBasket.isBasketEmpty && refs.basketContainerHead.classList.contains("hidden")) {
     refs.basketContainerHead.classList.remove("hidden")
     refs.basketNumHead.textContent = userBasket.totalQuantity;
     
@@ -156,8 +222,8 @@ if (userBasket.totalQuantity === 0 && !refs.basketNum.classList.contains("hidden
 refs.basketContinueBookingBtn.addEventListener("click", onClickBasketContinueShoppingBtn);
 function onClickBasketContinueShoppingBtn (event) {
     refs.basketModal.classList.toggle("hidden")
-    if (userBasket.totalQuantity !== 0 && refs.basketContainerHead.classList.contains("hidden")) refs.basketContainerHead.classList.remove("hidden")
-    if (userBasket.totalQuantity === 0 && !refs.basketContainerHead.classList.contains("hidden")) refs.basketContainerHead.classList.add("hidden")
+    if (!userBasket.isBasketEmpty && refs.basketContainerHead.classList.contains("hidden")) refs.basketContainerHead.classList.remove("hidden")
+    if (userBasket.isBasketEmpty && !refs.basketContainerHead.classList.contains("hidden")) refs.basketContainerHead.classList.add("hidden")
     localStorage.setItem("userBasket", JSON.stringify(userBasket));
     refs.basketNumHead.textContent = userBasket.totalQuantity;
     refs.basketBackdrop.removeEventListener("click", onClickBasketBackdrop)
@@ -183,10 +249,14 @@ function onClickClearBtn(event) {
     refs.basketMarkupContainer.innerHTML = "";
     localStorage.removeItem("userBasket");
     onBasketEmpty();
+    userBasket.isBasketEmpty = true;
+
 }
 function onBasketEmpty() {
     refs.basketTextFull.classList.add("hidden");
     refs.basketTextEmpty.classList.remove("hidden");
+    deleteTimer(timerId)
+    refs.basketTimer.innerHTML = ""
 }
 
 function onClickStandardBuyBtn (event) {
