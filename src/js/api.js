@@ -5,7 +5,7 @@ const source = 'events';
 const API_KEY = '5HiPtCjBuAY9gthoMA0oQuJCLkmuGiMG';
 
 export class EventApi {
-  config = {
+  static config = {
     // `url` is the server URL that will be used for the request
     url: 'events',
     // `method` is the request method to be used when making the request
@@ -21,12 +21,12 @@ export class EventApi {
       apikey: API_KEY, //key for request
       size: '16', //Page size of the response => String
       page: '0', //number of current page -> string
-      countryCode: 'pl', //Filter by country code
+      countryCode: '', //Filter by country code
       keyword: ' ', //Keyword to search on
       includeTBD: ' ', //yes, to include with a date to be defined (TBD)
       includeTBA: ' ', //
       preferredCountry: '[ua, ca]', //Popularity boost by country, default is us ["us", "ca"]
-      geoPoint: 'u8jz2',
+      geoPoint: '',
       // latlong: "46.3077376,30.6151424",
     },
     // `timeout` specifies the number of milliseconds before the request times out.
@@ -39,28 +39,28 @@ export class EventApi {
     responseType: 'json', // default
   };
   constructor() {}
-  async fetchApiData() {
+  static async fetchApiData() {
     const responce = await axios.request(this.config);
     const data = responce.data;
     return data;
   }
-  setCountry(country) {
+  static setCountry(country) {
     this.config.params.countryCode = country;
   }
-  setEndPoint(endPoint) {
+  static setEndPoint(endPoint) {
     this.config.url = endPoint;
   }
-  setKeyword(keyword) {
+  static setKeyword(keyword) {
     this.config.params.keyword = keyword;
   }
-  setPage(page) {
+  static setPage(page) {
     this.config.params.page = page;
   }
-  setPreferredCountry(countryCode) {
+  static setPreferredCountry(countryCode) {
     this.config.params.preferredCountry =
       this.config.params.preferredCountry.push(`${countryCode}`);
   }
-  async getMoreDataById(id) {
+  static async getMoreDataById(id) {
     const url = `${BASE_URL}${source}/${id}.json?apikey=${API_KEY}`;
     const responce = await fetch(url);
     const data = await responce.json();

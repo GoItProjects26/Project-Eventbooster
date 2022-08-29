@@ -15,13 +15,16 @@ const iconLocation = `
        </symbol>
              </defs>`;
 //master function
-const event = new EventApi();
+// const event = new EventApi();
 //render markup from server responce
 export async function renderMarckup() {
   try {
-    const responce = await event.fetchApiData();
-    // console.log(responce);
-    const eventsArrayFull = responce._embedded.events;
+    const responce = await EventApi.fetchApiData();
+    const eventsArrayFull = responce._embedded?.events;
+    if (!eventsArrayFull) {
+      alert('Sorry, there is no such event');
+      return;
+    }
     const eventsArray = shortDataFromServer(eventsArrayFull);
     marckup(eventsArray);
   } catch (error) {
