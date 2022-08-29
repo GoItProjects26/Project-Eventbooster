@@ -1,6 +1,11 @@
 body.light {
   background-color: var(--modal-bg-color);
   color: var(--modal-primary-text-color);
+
+  .search-form,
+  .country-form {
+    border: 1px solid var(--accent-text-color);
+  }
 }
 
 .checkbox {

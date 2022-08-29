@@ -100,7 +100,7 @@
 
   @media screen and (min-width: 1200px) {
     margin-top: 40px;
-    margin-bottom: 28px;
+    margin-bottom: 48px;
     font-size: 50px;
     width: 608px;
   }
@@ -119,10 +119,11 @@
 .country-form {
   height: 40px;
   display: flex;
-  justify-content: space-around;
   align-items: center;
+  justify-content: space-between;
+  padding: 10px 32px;
 
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: var(--input-bg-color);
   backdrop-filter: blur(20px);
   border-radius: 20px;
 
@@ -153,8 +154,7 @@
 
 .country-form__input {
   position: relative;
-  display: flex;
-  overflow: hidden;
+  width: 100%;
 }
 
 .search-form__btn,
@@ -173,7 +173,7 @@
 
 .country-form__svg {
   position: absolute;
-  top: 15px;
-  right: 30px;
+  top: 17px;
+  right: 38px;
   pointer-events: none;
 }
