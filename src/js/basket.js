@@ -57,8 +57,8 @@ function onBasketShow() {
         onBasketFull()
     }
     
-    // if (!userBasket.isBasketEmpty) {
-    //     refs.basketTimer.innerHTML = ""} else{ refs.basketTimer.textContent = `${minutes} : ${seconds}`}
+    // if (userBasket.isBasketEmpty) refs.basketTimer.innerHTML = `${minutes} : ${seconds}`
+       
 }
 
 function calculateTime(obj) {
@@ -66,15 +66,51 @@ function calculateTime(obj) {
 
     const end = begin + userBasket.duration
     let passedTime = end - Date.now();
+    if (passedTime <= 500) timeIsOver()
     return addLeadingZero(convertMs(passedTime));
 }
 
-function setTimer (basketObj) {
+function timeIsOver () {
 
+    userBasket.clearByTimerEvent()
+    updateBasket ()
+}
+
+function updateBasket () {
+    setTimeout (() =>{
+        if (userBasket.totalQuantity === 0) {
+            if (!refs.basketContainer.classList.contains("hidden")) {
+                refs.basketContainer.classList.add("hidden");
+            }
+            userBasket.isBasketEmpty = true;
+            deleteTimer(timerId);
+            onBasketEmpty();
+            refs.basketQuantity.innerHTML = userBasket.totalQuantity
+            refs.basketNumHead.innerHTML = userBasket.totalQuantity
+            refs.basketMarkupContainer.innerHTML = "";
+            localStorage.removeItem("userBasket");
+            if (!refs.basketContainerHead.classList.contains("hidden")) refs.basketContainerHead.classList.add("hidden")
+            
+        } else {
+            renderBasketMarkup(userBasket.contentShoppingCart)/// Данные с именем события
+            refs.basketQuantity.textContent = userBasket.totalQuantity;
+            refs.basketNum.textContent = userBasket.totalQuantity;
+            refs.basketNumHead.textContent = userBasket.totalQuantity
+            if (refs.basketContainerHead.classList.contains("hidden")) refs.basketContainerHead.classList.remove("hidden")
+        }
+    },6)
+
+}
+
+function setTimer (basketObj) {
+    let {minutes, seconds} = calculateTime(basketObj)
+    refs.basketTimer.textContent = `${minutes} : ${seconds}`;
 return timerId =  setInterval(()=>{
-        let {minutes, seconds} = calculateTime(basketObj)
+    let {minutes, seconds} = calculateTime(basketObj)
         refs.basketTimer.textContent = `${minutes} : ${seconds}`;
-    }, this.step)
+
+
+    }, userBasket.step)
 
 }
 
@@ -84,10 +120,12 @@ function deleteTimer (id) {
 
 
 function onBasketFull () {
+    console.log("tut")
     refs.basketTextFull.classList.remove("hidden");
     refs.basketTextEmpty.classList.add("hidden");
     userBasket.totalQuantity != 1 ? refs.basketTextTicket.textContent = "tickets" : refs.basketTextTicket.textContent = "ticket";
     setTimer(userBasket)
+    
 }
 
 function renderBasketMarkup(data) {
@@ -122,7 +160,7 @@ class Basket {
         this.vipQuantity = 0;
         this.standardQuantity = 0;
         this.totalQuantity = 0;
-        this.duration = 900000;
+        this.duration = 10000;
         this.step = 1000;
         this.isBasketEmpty = true;
     }
@@ -138,13 +176,20 @@ class Basket {
         this.totalQuantity += 1
     }
 
+    decreaseStandardQuantity () {
+        this.standardQuantity -= 1
+        this.totalQuantity -= 1
+    }
+    
+
     addEvent(dataId) {
         dataId.timer = Date.now();
         this.contentShoppingCart.push(dataId);
     }
 
-    clearEvent(dataId) {
+    clearByTimerEvent() {
         this.contentShoppingCart.shift()
+        if ( this.standardQuantity > 0) this.decreaseStandardQuantity ()
     }
    
         
@@ -248,15 +293,17 @@ function onClickClearBtn(event) {
     refs.basketNumHead.innerHTML = userBasket.totalQuantity
     refs.basketMarkupContainer.innerHTML = "";
     localStorage.removeItem("userBasket");
-    onBasketEmpty();
     userBasket.isBasketEmpty = true;
+    onBasketEmpty();
+    deleteTimer(timerId)
+    
 
 }
 function onBasketEmpty() {
     refs.basketTextFull.classList.add("hidden");
     refs.basketTextEmpty.classList.remove("hidden");
-    deleteTimer(timerId)
     refs.basketTimer.innerHTML = ""
+
 }
 
 function onClickStandardBuyBtn (event) {
