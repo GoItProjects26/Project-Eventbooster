@@ -19,6 +19,10 @@ export const refs = {
   basketBuyBtn: document.querySelector('.modal-basket__buy'),
   basketClearBtn: document.querySelector('.modal-basket__clear'),
   basketBackdrop: document.querySelector('.modal-basket-backdrop'),
+  basketTextEmpty: document.querySelector(".modal-basket__text--empty"),
+  basketTextFull: document.querySelector(".modal-basket__text--full"),
+  basketTextTicket: document.querySelector(".modal-basket__ticket"),
+  basketTimer: document.querySelector(".basket__timer"),
 
   miniModal: document.querySelector('.mini-modal-backdrop'),
   miniModalBtnCart: document.querySelector('.mini-modal__button'),
