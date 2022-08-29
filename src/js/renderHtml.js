@@ -2,6 +2,8 @@ import { Geohash } from './geo/hash';
 import { refs } from './refs';
 import { EventApi } from './api';
 
+import { createPaginationOnLoad } from './pagination/pag'
+
 const iconLocation = `
 <defs>
 <symbol 
@@ -21,6 +23,9 @@ export async function renderMarckup() {
   try {
     const responce = await EventApi.fetchApiData();
     const eventsArrayFull = responce._embedded?.events;
+    const totalPagesFromServer = responce.page.totalPages;
+    const totalPagesOnSite = totalPagesFromServer - 1;
+    createPaginationOnLoad(totalPagesFromServer, totalPagesOnSite);
     if (!eventsArrayFull) {
       alert('Sorry, there is no such event');
       return;
@@ -87,7 +92,7 @@ function desiredObjectForPage(value) {
     name: value.name,
     localDate: value.dates.start.localDate,
     mobImg: value.images[3].url,
-    concertHall: value._embedded.venues?.[0].name,
+    concertHall: value._embedded?.venues?.[0].name,
   };
 }
 //will be logic for 1st time visit our site
