@@ -1,117 +1,97 @@
-// const paginationNumbers = document.getElementById("pagination-numbers");
-// const paginatedList = document.getElementById("paginated-list");
-// const listItems = paginatedList.querySelectorAll("li");
-// const nextButton = document.getElementById("next-button");
-// const prevButton = document.getElementById("prev-button");
+const ref = {
+  paginatedList: document.querySelector('.paginated__list'),
+  paginatedItem: [],
+};
+import { EventApi } from './api';
+import { renderMarckup } from './renderHtml';
+import { renderMarckupFromLocalStorage } from './renderHtml';
 
-// const paginationLimit = 16;
-// const pageCount = Math.ceil(listItems.length / paginationLimit);
-// let currentPage = 1;
+export function pag1() {
+  const serverResponce = JSON.parse(localStorage.getItem('event'));
+  let total;
+  if (serverResponce.page.totalPages > 1000 / serverResponce.page.size) {
+    total = Math.floor(1000 / serverResponce.page.size);
+  } else {
+    total = serverResponce.page.totalPages;
+  }
+  // console.log(serverResponce.page);
+  // console.log(total);
 
-// const disableButton = (button) => {
-//   button.classList.add("disabled");
-//   button.setAttribute("disabled", true);
-// };
-
-// const enableButton = (button) => {
-//   button.classList.remove("disabled");
-//   button.removeAttribute("disabled");
-// };
-
-// const handlePageButtonsStatus = () => {
-//   if (currentPage === 1) {
-//     disableButton(prevButton);
-//   } else {
-//     enableButton(prevButton);
-//   }
-
-//   if (pageCount === currentPage) {
-//     disableButton(nextButton);
-//   } else {
-//     enableButton(nextButton);
-//   }
-// };
-
-// const handleActivePageNumber = () => {
-//   document.querySelectorAll(".pagination-number").forEach((button) => {
-//     button.classList.remove("active");
-//     const pageIndex = Number(button.getAttribute("page-index"));
-//     if (pageIndex == currentPage) {
-//       button.classList.add("active");
-//     }
-//   });
-// };
-
-// const appendPageNumber = (index) => {
-//   const pageNumber = document.createElement("button");
-//   pageNumber.className = "pagination-number";
-//   pageNumber.innerHTML = index;
-//   pageNumber.setAttribute("page-index", index);
-//   pageNumber.setAttribute("aria-label", "Page " + index);
-
-//   paginationNumbers.appendChild(pageNumber);
-// };
-
-// const getPaginationNumbers = () => {
-//   for (let i = 1; i <= pageCount; i++) {
-//     appendPageNumber(i);
-//   }
-// };
-
-// const setCurrentPage = (pageNum) => {
-//   currentPage = pageNum;
-
-//   handleActivePageNumber();
-//   handlePageButtonsStatus();
-  
-// const piganationList = document.querySelector('.js-pagination');
-
-// piganationList.addEventListener('click', selectPage);
-
-// function selectPage(event) {
-//     if (event.target.nodeName !== 'UL') {
-//         let numberPage = event.target.textContent
-
-//         piganationList.querySelector('.active').clasList.remove('.active');
-
-//         //вызов метода класса для изменения страницы
-//         filmApi.selectPage(numberPage);
-//         filmApi.getTopRated().then((value) => {
-//             renderMarkup(value.result);
-//         })
-
-
-
-//         let liObj = event.target;
-//         if (liObj.nodeName !== 'LI') liObj = event.target.perentNode.perentNode;
-//         liObj.classList.add("active");
-//     }
-// }
-
-// async function main() {
-//     //отсюда беруться данные, там массив с объектами
-//     const postData = await getData();
-//     let currentPage = 1;
-//     let rows = 10;
-
-//     //отрисовывает нужные данные
-// // arrData - массив с данными
-// // rowPerPage- сколько овывести данных на странице)
-//     function displayList(arrData, rowPerPage, page) {
-//         const postsEl = document.querySelector('.js-pagination')
-
-//         const start = rowPerPage * page;
-//         const end = start + rowPerPage;
-//         const paginatedData = arrData.slice(start, end);
-
-//         paginatedData.forEach((el) => {
-//             const postEl = document.createElement("div")
-//             postEl.classList.add("post")
-//         })
-
-//     }
-//     //отрисовываает кнопки в зависимости от количества
-//     function displayPagination() { };
-//     //отрисовывает кнопки внутри цикла displayPagination чтобы отрисоввывать кнопки
-//     function displayPagination() { };
-//     }
+  // console.log('current page', EventApi.config.params.page);
+  let current = +EventApi.config.params.page + 1; // номер текущей страницы, нужно получать
+  let arr = [];
+  let after;
+  let before;
+  if (total - current > 3) {
+    // console.log('total', total - current, 'current', current);
+    before = current + 2;
+  }
+  if (current > 4) {
+    after = current - 2;
+  }
+  if (after && before) {
+    // console.log('after', after, 'before', before);
+    arr.push(`<li class="paginated__item" data-page="0">1</li>`);
+    arr.push(
+      `<li class="paginated__item  forward__item" data-page="${
+        after - 2
+      }">...</li>`
+    );
+    for (let i = after + 1; i < before; i++) {
+      arr.push(`<li class="paginated__item" data-page="${i - 1}">${i}</li>`);
+    }
+    arr.push(
+      `<li class="paginated__item back__item" data-page="${before}">...</li>`
+    );
+    arr.push(
+      `<li class="paginated__item" data-page="${total - 1}">${total}</li>`
+    );
+  } else if (after && !before) {
+    console.log('after', after, 'before', before);
+    arr.push(`<li class="paginated__item" data-page="0">1</li>`);
+    arr.push(
+      `<li class="paginated__item forward__item" data-page="${after}">...</li>`
+    );
+    for (let i = after; i <= total; i++) {
+      // console.log(i);
+      arr.push(`<li class="paginated__item" data-page="${i - 1}">${i}</li>`);
+    }
+  } else if (!after && before) {
+    // console.log('after', after, 'before', before);
+    for (let i = 1; i <= before; i++) {
+      arr.push(`<li class="paginated__item" data-page="${i - 1}">${i}</li>`);
+    }
+    arr.push(
+      `<li class="paginated__item back__item" data-page="${before}">...</li>`
+    );
+    arr.push(
+      `<li class="paginated__item" data-page="${total - 1}">${total}</li>`
+    );
+  }
+  let string = arr.join('');
+  // console.log(string);
+  // return string;
+  ref.paginatedList.innerHTML = string;
+  ref.paginatedItem = document.querySelectorAll('.paginated__item');
+  // console.log(ref.paginatedItem[current - 1]);
+  // console.log(current);
+  ref.paginatedItem.forEach(elem => {
+    if (elem.textContent == current) elem.classList.add('item-active');
+  });
+  ref.paginatedList.addEventListener('click', onPageClick);
+  // ref.paginatedItem[current - 1].classList.add('item-active');
+  // document.querySelector
+}
+// результат в консоли
+// все, что нужно - пуши в массив цифр заменить разметкой
+pag1();
+function onPageClick(event) {
+  if (event.target.nodeName === 'LI') {
+    // console.log(event.target.dataset.page);
+    EventApi.setPage(+event.target.dataset.page);
+    EventApi.setKeyword('NBA');
+    // renderMarckupFromLocalStorage();
+    renderMarckup();
+    pag1();
+  }
+}
