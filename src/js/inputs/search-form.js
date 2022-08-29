@@ -3,6 +3,7 @@ import { EventApi } from '../api';
 import { renderMarckup } from '../renderHtml';
 
 refs.searchForm.addEventListener('submit', onEventSearch);
+refs.searchForm.addEventListener('dblclick', onSearchFormReset);
 
 function onEventSearch(event) {
   event.preventDefault();
@@ -15,4 +16,8 @@ function onEventSearch(event) {
 
   EventApi.setKeyword(keyword);
   renderMarckup();
+}
+
+function onSearchFormReset() {
+  refs.searchForm.elements.searchQuery.value = '';
 }
