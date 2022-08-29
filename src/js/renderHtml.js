@@ -103,10 +103,6 @@ function desiredObjectForPage(value) {
     concertHall: value._embedded?.venues?.[0].name,
   };
 }
-//will be logic for 1st time visit our site
-function loadRandomEvent() { }
 
-// navigator.geolocation.getCurrentPosition((Position) => {
 
-//     console.log(Position.coords.latitude, Position.coords.longitude)
-// });
+

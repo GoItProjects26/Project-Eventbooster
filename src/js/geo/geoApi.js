@@ -13,6 +13,10 @@ export async function findCountryByIp() {
     return
 }
 
+// navigator.geolocation.getCurrentPosition((Position) => {
+
+//     console.log(Position.coords.latitude, Position.coords.longitude)
+// });
 
 
 

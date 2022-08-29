@@ -16,7 +16,7 @@ const serverResponce = JSON.parse(localStorage.getItem('event'));
 const totalPagesFromServer = serverResponce ? serverResponce.page.totalPages : 7;
 const totalPagesOnSite = totalPagesFromServer - 1;
 
-window.addEventListener("load", createPaginationOnLoad(totalPagesFromServer, totalPagesOnSite));
+// window.addEventListener("load", createPaginationOnLoad(totalPagesFromServer, totalPagesOnSite));
 
 ref.paginatedList.addEventListener('click', loadNewSet);
 ref.paginatedList.children[3]?.addEventListener('click', onClickFwd);
@@ -32,11 +32,26 @@ function loadNewSet(event) {
     if (event.target.textContent === '...') {
         return
     }
-    [...ref.paginatedList.children].forEach(el => el.classList.remove('item-active'));
-    [...ref.paginationOrder.children].forEach(el => el.classList.remove('item-active'));
+
     if (+event.target.textContent === 1) {
         ref.backDots.classList.add('js-hidden');
+        ref.forwardDots.classList.remove('js-hidden');
+        ref.paginationOrder.innerHTML = ` <li class="paginated__item">2</li>
+                                           <li class="paginated__item">3</li>
+                                            <li class="paginated__item">4</li>
+                                             <li class="paginated__item">5</li>`
     }
+    if (event.target === ref.paginatedList.lastElementChild) {
+        const lastPage = ref.paginatedList.lastElementChild.textContent
+        ref.backDots.classList.remove('js-hidden');
+        ref.forwardDots.classList.add('js-hidden');
+        ref.paginationOrder.innerHTML = ` <li class="paginated__item">${lastPage - 4}</li>
+                                           <li class="paginated__item">${lastPage - 3}</li>
+                                            <li class="paginated__item">${lastPage - 2}</li>
+                                             <li class="paginated__item">${lastPage - 1}</li>`
+    }
+    [...ref.paginatedList.children].forEach(el => el.classList.remove('item-active'));
+    [...ref.paginationOrder.children].forEach(el => el.classList.remove('item-active'));
     event.target.classList.add('item-active')
     EventApi.setPage(+event.target.textContent - 1);
     renderMarckup();
@@ -91,33 +106,37 @@ function onClicBack(params) {
 }
 
 export function createPaginationOnLoad(totalPagesFromServer, totalPagesOnSite) {
+    // console.log('94 pag', totalPagesFromServer, totalPagesOnSite);
+    // console.log(totalPagesFromServer === 0);
+    ref.paginatedList.classList.remove('js-hidden')
     const isPage7 = totalPagesOnSite <= 7;
     if (totalPagesFromServer === 0) {
-        ref.paginatedList.innerHTML = '<li class="paginated__item item-active">No results</li>'
+        ref.paginatedList.classList.add('js-hidden')
+        // ref.paginatedList.innerHTML = '<li class="paginated__item item-active">No resultss</li>'
         return
     }
     isPage7 ? pagesOnSite7(totalPagesOnSite) : createLastPage(totalPagesOnSite);
 }
 
 export function createLastPage(totalPagesOnSite) {
+    if (totalPagesOnSite >= 62) {
+        ref.lastPage.textContent = 62;
+        return;
+    }
     ref.lastPage.textContent = totalPagesOnSite;
 }
 
 function pagesOnSite7(totalPagesOnSite) {
-    // if (+totalPagesOnSite === 0) {
-    //     ref.paginationOrder.innerHTML = '';
-    //     ref.lastPage.classList.add('js-hidden');
-    //     ref.forwardDots.classList.add('js-hidden')
-    //     return
-    // }
+    // console.log('108pag', totalPagesOnSite);
     ref.lastPage.classList.add('js-hidden');
-    let template = `<li class="paginated__item item-active">1</li> `;
-
-    for (let i = 1; i < totalPagesOnSite; i++) {
+    // let template = `<li class="paginated__item item-active">1</li> `;
+    let template = '';
+    for (let i = 1; i <= totalPagesOnSite; i++) {
+        console.log('114');
         template += `<li class="paginated__item">${i + 1}</li>`
     }
     ref.forwardDots.classList.add('js-hidden')
-    totalPagesOnSite === 0 ? ref.paginationOrder.innerHTML = '' : ref.paginationOrder.innerHTML = template;
+    totalPagesOnSite <= 1 ? ref.paginationOrder.innerHTML = '' : ref.paginationOrder.innerHTML = template;
 }
 
 function createOnFwd(pageB4Dots) {
