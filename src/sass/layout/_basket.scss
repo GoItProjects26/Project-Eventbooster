@@ -202,6 +202,36 @@
         text-align: center;
         color: var(--modal-primary-text-color);
     }
+    .event__item{
+        padding: 5px;
+        font-weight: 700;
+        background-color: white;
+    }
+
+    .event__item:not(:last-child) {
+        margin-bottom: 5px;
+    }
+
+    .event__container{
+  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    }
+
+    .event__img {
+        width: 30px;
+        height: 30px;
+    }
+.event__text {
+    margin-left: auto;
+    margin-right: auto;
+    
+    
+}
+   
+
 
     .modal-basket__item {
         
