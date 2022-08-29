@@ -30,7 +30,7 @@ export function pag1() {
     after = current - 2;
   }
   if (after && before) {
-    console.log('after', after, 'before', before);
+    // console.log('after', after, 'before', before);
     arr.push(`<li class="paginated__item" data-page="0">1</li>`);
     arr.push(`<li class="paginated__item" data-page="${after - 2}">...</li>`);
     for (let i = after + 1; i < before; i++) {
@@ -64,7 +64,7 @@ export function pag1() {
   ref.paginatedList.innerHTML = string;
   ref.paginatedItem = document.querySelectorAll('.paginated__item');
   // console.log(ref.paginatedItem[current - 1]);
-  console.log(current);
+  // console.log(current);
   ref.paginatedItem.forEach(elem => {
     if (elem.textContent == current) elem.classList.add('item-active');
   });
