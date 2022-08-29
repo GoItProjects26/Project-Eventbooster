@@ -64,7 +64,9 @@ function onBasketEmpty() {
     disabledElement(refs.basketClearBtn);
     refs.basketTextFull.classList.add("hidden");
     refs.basketTextEmpty.classList.remove("hidden");
-    refs.basketTimer.innerHTML = ""
+    refs.basketTimer.innerHTML = " "
+    
+
 
 
 }

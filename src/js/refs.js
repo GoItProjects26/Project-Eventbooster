@@ -26,6 +26,7 @@ export const refs = {
   basketTextTicket: document.querySelector(".modal-basket__ticket"),
   basketTimer: document.querySelector(".basket__timer"),
 
+
   miniModal: document.querySelector('.mini-modal-backdrop'),
   miniModalBtnCart: document.querySelector('.mini-modal__button'),
   miniModalBtnClose: document.querySelector('.mini-modal__close'),
