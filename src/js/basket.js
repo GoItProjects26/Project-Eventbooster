@@ -2,20 +2,9 @@ import {refs} from "./refs";
 export {userBasket, onClickBasketBackdrop, onEscKeyPressBasket, ESC_KEY_CODE, onBasketShow, updateBasket}
 import Basket from "./class_basket";
 import {deleteTimer, setTimer} from './timer';
+import {renderBasketMarkup} from "./basket_render";
 
 const ESC_KEY_CODE = "Escape";
-
-
-
-
-
-// refs.basketVipBtn.addEventListener("click", onClickVipBtn);
-// refs.basketVipBtn.addEventListener("click", onClickStandardBtn);
-
-
-function onClickVipBtn (event) {
-
-}
 
 refs.basketHead.addEventListener("click", onClickBasketHead);
 function onClickBasketHead (event) {
@@ -23,10 +12,6 @@ function onClickBasketHead (event) {
 }
 
 function onBasketShow() {
-    // if (passedTime <= 500) userBasket.contentShoppingCart.shift()
-    
-    // let {minutes, seconds} = calculateTime(userBasket)
-
     
     refs.basketModal.classList.toggle("hidden");
     refs.basketQuantity.textContent = userBasket.totalQuantity;
@@ -37,16 +22,11 @@ function onBasketShow() {
     refs.basketBackdrop.addEventListener("click", onClickBasketBackdrop)
     window.addEventListener("keydown", onEscKeyPressBasket);
     
-    if (!userBasket.isBasketEmpty && refs.basketContainer.classList.contains("hidden")) {
-        refs.basketContainer.classList.remove("hidden");
+    if (!userBasket.isBasketEmpty) {
+        refs.basketContainer.classList.toggle("hidden");
         onBasketFull()
-    }
-    
-    // if (userBasket.isBasketEmpty) refs.basketTimer.innerHTML = `${minutes} : ${seconds}`
-       
+    }   else {onBasketEmpty()}
 }
-
-
 
 
 
@@ -59,11 +39,14 @@ function updateBasket () {
             userBasket.isBasketEmpty = true;
             deleteTimer(timerId);
             onBasketEmpty();
+            
             refs.basketQuantity.innerHTML = userBasket.totalQuantity
             refs.basketNumHead.innerHTML = userBasket.totalQuantity
             refs.basketMarkupContainer.innerHTML = "";
             localStorage.removeItem("userBasket");
             if (!refs.basketContainerHead.classList.contains("hidden")) refs.basketContainerHead.classList.add("hidden")
+            disabledElement(refs.basketBuyBtn);
+            disabledElement(refs.basketClearBtn);
             
         } else {
             renderBasketMarkup(userBasket.contentShoppingCart)/// Данные с именем события
@@ -76,8 +59,21 @@ function updateBasket () {
 
 }
 
+function onBasketEmpty() {
+    disabledElement(refs.basketBuyBtn);
+    disabledElement(refs.basketClearBtn);
+    refs.basketTextFull.classList.add("hidden");
+    refs.basketTextEmpty.classList.remove("hidden");
+    refs.basketTimer.innerHTML = ""
+
+
+}
+
+
+
 function onBasketFull () {
-    console.log("tut")
+    anabledElement(refs.basketBuyBtn);
+    anabledElement(refs.basketClearBtn);
     refs.basketTextFull.classList.remove("hidden");
     refs.basketTextEmpty.classList.add("hidden");
     userBasket.totalQuantity != 1 ? refs.basketTextTicket.textContent = "tickets" : refs.basketTextTicket.textContent = "ticket";
@@ -85,32 +81,31 @@ function onBasketFull () {
     
 }
 
-function renderBasketMarkup(data) {
-    const value = JSON.parse(localStorage.getItem("event"))
-   
-    refs.basketMarkupContainer.innerHTML = '';
-    let markup = '';
-    data.forEach(({name}) => {
-      markup += `<li><div><div class="modal-basket__name">${name}</div></div></li>`;
-    });
-    refs.basketMarkupContainer.insertAdjacentHTML('beforeend', markup);
-  }
+function anabledElement(element) {
+    element.disabled = false;
+    element.style.color = "#4c00fe";
+    element.style.borderColor = "#4c00fe";
+}
+
+function disabledElement (element) {
+    element.disabled = true;
+    element.style.color = "grey";
+    element.style.borderColor = "grey";
+}
+
+
 
 function onClickBasketBackdrop(event) {
     if(event.currentTarget === event.target) {
-        refs.basketModal.classList.toggle("hidden")
-        refs.basketBackdrop.removeEventListener("click", onClickBasketBackdrop)
-        refs.basketBackdrop.removeEventListener("click", onClickBasketBackdrop)
+        onBasketClose()
     }
 }
 
 function onEscKeyPressBasket (event) {
         if(event.code === ESC_KEY_CODE) {
-            window.removeEventListener("keydown", onEscKeyPressBasket);
-            refs.basketBackdrop.removeEventListener("click", onClickBasketBackdrop)
-            refs.basketModal.classList.toggle("hidden");
-        }
+            onBasketClose()
     }
+}
 
 
 
@@ -131,10 +126,7 @@ if (!userBasket.isBasketEmpty && refs.basketContainerHead.classList.contains("hi
     refs.basketNumHead.textContent = userBasket.totalQuantity;
     
 }
-//     updateSecondLoad()
-// function updateSecondLoad () {
 
-// }
 refs.basketQuantity.textContent = userBasket.totalQuantity
 refs.basketNum.textContent = userBasket.totalQuantity
 if (userBasket.totalQuantity === 0 && !refs.basketNum.classList.contains("hidden")) refs.basketNum.classList.add("hidden")
@@ -143,13 +135,17 @@ if (userBasket.totalQuantity === 0 && !refs.basketNum.classList.contains("hidden
 
 refs.basketContinueBookingBtn.addEventListener("click", onClickBasketContinueShoppingBtn);
 function onClickBasketContinueShoppingBtn (event) {
-    refs.basketModal.classList.toggle("hidden")
     if (!userBasket.isBasketEmpty && refs.basketContainerHead.classList.contains("hidden")) refs.basketContainerHead.classList.remove("hidden")
     if (userBasket.isBasketEmpty && !refs.basketContainerHead.classList.contains("hidden")) refs.basketContainerHead.classList.add("hidden")
     localStorage.setItem("userBasket", JSON.stringify(userBasket));
     refs.basketNumHead.textContent = userBasket.totalQuantity;
+    onBasketClose()
+}
+
+function onBasketClose() {
     refs.basketBackdrop.removeEventListener("click", onClickBasketBackdrop)
     window.removeEventListener("keydown", onEscKeyPressBasket);
+    refs.basketModal.classList.toggle("hidden")
 }
 
 
@@ -158,7 +154,9 @@ function onClickBuyBtn (event) {
     userBasket.contentShoppingCart.forEach(id => {
         clearTimeout(id)
     } )
-    alert("вы купили милион билетов")
+    window.open("https://next.privat24.ua/", '_blank')
+    onBasketClose()
+
 }
 
 refs.basketClearBtn.addEventListener("click", onClickClearBtn)
@@ -176,12 +174,8 @@ function onClickClearBtn(event) {
     
 
 }
-function onBasketEmpty() {
-    refs.basketTextFull.classList.add("hidden");
-    refs.basketTextEmpty.classList.remove("hidden");
-    refs.basketTimer.innerHTML = ""
 
-}
+
 
 function onClickStandardBuyBtn (event) {
     this.addEvent()
