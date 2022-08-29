@@ -1,7 +1,8 @@
 import {refs} from "./refs";
-export {userBasket}
+export {userBasket, onClickBasketBackdrop, onEscKeyPressBasket, ESC_KEY_CODE, onBasketShow}
 import userEventApi from "./api"
 
+const ESC_KEY_CODE = "Escape";
 
 
 // refs.basketVipBtn.addEventListener("click", onClickVipBtn);
@@ -14,9 +15,42 @@ function onClickVipBtn (event) {
 
 refs.basketHead.addEventListener("click", onClickBasketHead);
 function onClickBasketHead (event) {
-    refs.basketModal.classList.toggle("hidden")
-   
+    onBasketShow()
 }
+function onBasketShow() {
+    refs.basketModal.classList.toggle("hidden");
+    refs.basketQuantity.textContent = userBasket.totalQuantity;
+    refs.basketNum.textContent = userBasket.totalQuantity;
+    if (userBasket.totalQuantity !== 0 && refs.basketContainer.classList.contains("hidden")) refs.basketContainer.classList.remove("hidden")
+    renderBasketMarkup(userBasket.contentShoppingCart)/// Данные с именем события
+    refs.basketBackdrop.addEventListener("click", onClickBasketBackdrop)
+    window.addEventListener("keydown", onEscKeyPressBasket);
+}
+
+function renderBasketMarkup(data) {
+    const value = JSON.parse(localStorage.getItem("event"))
+   
+    refs.basketMarkupContainer.innerHTML = '';
+    let markup = '';
+    data.forEach(({name}) => {
+      markup += `<li><div><div class="modal-basket__name">${name}</div></div></li>`;
+    });
+    refs.basketMarkupContainer.insertAdjacentHTML('beforeend', markup);
+  }
+function onClickBasketBackdrop(event) {
+    if(event.currentTarget === event.target) {
+        refs.basketModal.classList.toggle("hidden")
+        refs.basketBackdrop.removeEventListener("click", onClickBasketBackdrop)
+        refs.basketBackdrop.removeEventListener("click", onClickBasketBackdrop)
+    }
+}
+function onEscKeyPressBasket (event) {
+        if(event.code === ESC_KEY_CODE) {
+            window.removeEventListener("keydown", onEscKeyPressBasket);
+            refs.basketBackdrop.removeEventListener("click", onClickBasketBackdrop)
+            refs.basketModal.classList.toggle("hidden");
+        }
+    }
 
 
 class Basket {
@@ -79,31 +113,31 @@ class Basket {
         
         
     }
-
-
 }
+
 let userBasket = {};
 function firstLoadPage () {
-    
     if (!localStorage.getItem("userBasket")) return userBasket = new Basket; //должно создаваться при загрузке Фетча
     const oldUserBasket = (JSON.parse(localStorage.getItem("userBasket")))
-    userBasket = new Basket
+    userBasket = new Basket;
     return Object.assign(userBasket, oldUserBasket)
-  
 }
+
 firstLoadPage()
+
 if (userBasket.totalQuantity !== 0 && refs.basketContainerHead.classList.contains("hidden")) {
     refs.basketContainerHead.classList.remove("hidden")
     refs.basketNumHead.textContent = userBasket.totalQuantity;
+    
 }
+//     updateSecondLoad()
+// function updateSecondLoad () {
 
-
-
- 
-
+// }
 refs.basketQuantity.textContent = userBasket.totalQuantity
 refs.basketNum.textContent = userBasket.totalQuantity
 if (userBasket.totalQuantity === 0 && !refs.basketNum.classList.contains("hidden")) refs.basketNum.classList.add("hidden")
+
 
 
 refs.basketContinueBookingBtn.addEventListener("click", onClickBasketContinueShoppingBtn);
@@ -113,7 +147,10 @@ function onClickBasketContinueShoppingBtn (event) {
     if (userBasket.totalQuantity === 0 && !refs.basketContainerHead.classList.contains("hidden")) refs.basketContainerHead.classList.add("hidden")
     localStorage.setItem("userBasket", JSON.stringify(userBasket));
     refs.basketNumHead.textContent = userBasket.totalQuantity;
+    refs.basketBackdrop.removeEventListener("click", onClickBasketBackdrop)
+    window.removeEventListener("keydown", onEscKeyPressBasket);
 }
+
 
 refs.basketBuyBtn.addEventListener("click", onClickBuyBtn)
 function onClickBuyBtn (event) {
@@ -132,8 +169,6 @@ function onClickClearBtn(event) {
     refs.basketNumHead.innerHTML = userBasket.totalQuantity
     refs.basketMarkupContainer.innerHTML = "";
     localStorage.removeItem("userBasket");
-    
-
 }
 
 function onClickStandardBuyBtn (event) {

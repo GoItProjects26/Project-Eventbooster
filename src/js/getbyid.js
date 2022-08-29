@@ -2,6 +2,7 @@ import { refs } from './refs';
 import { fetchApiData } from './api';
 import { openModal } from './modal';
 import { closeModal } from './modal';
+import { dataToCart } from './addtocart';
 import ticketIcon from '../images/ticket1.svg';
 
 const axios = require('axios').default;
@@ -37,11 +38,10 @@ async function onEventClick(event) {
   }
   let response = await getById(idForFetch);
   console.log(response);
-  console.log(response.images);
-  // console.log(date(response.dates.start.dateTime));
-  await renderModal(response);
-  await renderPrices(response.priceRanges);
-  // await renderPrices(arr);
+  renderModal(response);
+  renderPrices(response.priceRanges);
+  openModal();
+  dataToCart(response);
 }
 
 function renderModal(data) {
@@ -54,16 +54,11 @@ function renderModal(data) {
   } else {
     infoString = data.name;
   }
-  // console.log(dateString);
-  openModal();
-  if (window.matchMedia('(min-width: 768px)').matches) {
-    jsModal.innerHTML = `
-      <div class="modal__logo-box">
+  jsModal.innerHTML = `
         <div class="modal__logo"><img
             src="${data.images[1].url}"
             alt=""
           /></div>
-      </div>
       <div class="modal__data-container">
         <div class="modal__big-logo">   <img
             src="${data.images[1].url}"
@@ -88,50 +83,14 @@ function renderModal(data) {
           </li>
           <li class="modal__item">
             <h3 class="modal__title">PRICES</h3>
-            <div id="modal__prices" data-id="${data.id}"></div>
+            <div class="modal__prices" data-id="${data.id}"></div>
           </li>
         </ul>
       </div>`;
-  } else {
-    console.log('MEDIA < 768px');
-    jsModal.innerHTML = `
-      <div class="modal__logo-box">
-        <div class="modal__logo">
-          <img
-            src="${data.images[1].url}"
-            alt="" />
-        </div>
-      </div>
-      <div class="modal__data-container">
-      <ul class="modal__list list">
-          <li class="modal__item">
-            <h3 class="modal__title">INFO</h3>
-            <p class="modal__text">${data.info}</p>
-          </li>
-          <li class="modal__item">
-            <h3 class="modal__title">WHEN</h3>
-            <p class="modal__text">${data.dates.start.datetime}</p>
-          </li>
-          <li class="modal__item">
-            <h3 class="modal__title">WHERE</h3>
-            <p class="modal__text">${data._embedded.venues[0].name}</p>
-          </li>
-          <li class="modal__item">
-            <h3 class="modal__title">WHO</h3>
-            <p class="modal__text">${data.name}</p>
-          </li>
-          <li class="modal__item">
-            <h3 class="modal__title">PRICES</h3>
-            <div id="modal__prices" data-id="${data.id}"></div>
-          </li>
-        </ul>
-      </div>`;
-  }
 }
-
 function renderPrices(data) {
   // console.log(data);
-  const pricesElem = document.querySelector('#modal__prices');
+  const pricesElem = document.querySelector('.modal__prices');
   let pricesMarkup = data
     .map(
       (elem, index) => `
@@ -145,7 +104,7 @@ function renderPrices(data) {
           ${elem.type} ${elem.min} - ${elem.max} ${elem.currency}
         </p>
       </div>
-      <button type="button" class="prices__btn js-buy-btn" data-index="${index}">ADD TO CART</button>
+      <button type="button" class="prices__btn js-buy-btn center" data-index="${index}"><p class="prices__btn-txt">ADD TO CART</p></button>
   `
     )
     .join('');
