@@ -6,12 +6,22 @@ function renderBasketMarkup(data) {
    
     refs.basketMarkupContainer.innerHTML = '';
     let markup = '';
-    let url = data.images
-    // .filter((item) => {
-    //   item.ratio === "3_2"    })
-      console.log(url)
-    data.forEach(({name, url}) => {
-      markup += `<li class="event__item"><div class="event__container"><img href="" class="event__img" width="30" height="30"><p class="event__text">${name}</p></div></li>`;
+
+    data.forEach(({name, images}) => {
+      
+      
+      markup += `<li class="event__item"><div class="event__container"><img src=${smallestPhoto(images)} class="event__img"><p class="event__text">${name}</p></div></li>`;
     });
     refs.basketMarkupContainer.insertAdjacentHTML('beforeend', markup);
   }
+
+  function smallestPhoto(array) {
+    let arr = array.filter((array) => {
+      if (array.ratio === "3_2") return true; 
+      return false
+      }).sort((a, b) => {
+        if (a.width > b.width) return 1;
+        return -1
+      })
+      return arr[0].url
+    }
