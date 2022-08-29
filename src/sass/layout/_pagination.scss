@@ -5,8 +5,11 @@
   padding-bottom: 65px;
   // margin-left: auto;
 }
-
-.paginated__item {
+.pagination__order {
+  display: flex;
+  justify-content: center;
+}
+.paginated__list .paginated__item {
   padding: 6px 12px;
   cursor: pointer;
 }
@@ -17,6 +20,9 @@
   border-radius: 10px 0px;
 }
 
+.js-hidden {
+  display: none;
+}
 // .pagination__list {
 //   margin-left: auto;
 //   margin-right: auto;

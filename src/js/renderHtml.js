@@ -15,7 +15,7 @@ const iconLocation = `
        </symbol>
              </defs>`;
 //master function
-// const event = new EventApi();
+
 //render markup from server responce
 export async function renderMarckup() {
   try {
@@ -91,7 +91,7 @@ function desiredObjectForPage(value) {
   };
 }
 //will be logic for 1st time visit our site
-function loadRandomEvent() {}
+function loadRandomEvent() { }
 
 // navigator.geolocation.getCurrentPosition((Position) => {
 
