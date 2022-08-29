@@ -209,8 +209,9 @@
     .event__item{
         padding: 5px;
         font-weight: 700;
-        background-color: white;
+        background-color: var(--primary-text-color);
         border-radius: 3px;
+
     }
 
     .event__item:not(:last-child) {
@@ -220,7 +221,7 @@
     .event__container{
   
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
 
     }
@@ -258,9 +259,28 @@
         border-width: 1px;
         border-radius: 5px;
         color: var(--accent-bg-color);
-        background-color: transparent;
+        background-color: var(--primary-text-color);
         cursor: pointer;
+        
     }
+
+    .modal-basket__continue:hover,
+    .modal-basket__continue:focus,
+    .modal-basket__buy:not(:disabled):hover,
+    .modal-basket__buy:not(:disabled):focus,
+    .modal-basket__clear:not(:disabled):hover,
+    .modal-basket__clear:not(:disabled):focus {
+        box-shadow:   0 0 20px var(--accent-text-color),
+        0 0 15px var(--primary-text-color), 0 0 30px var(--primary-text-color), 0 0 20px var(--primary-text-color),
+        0 0 5px var(--primary-text-color);
+    }
+
+
+
+
+
+
+
 
     
 

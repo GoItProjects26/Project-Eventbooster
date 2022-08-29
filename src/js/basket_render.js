@@ -7,10 +7,10 @@ function renderBasketMarkup(data) {
     refs.basketMarkupContainer.innerHTML = '';
     let markup = '';
 
-    data.forEach(({name, images}) => {
+    data.forEach(({name, images, accessibility: {ticketLimit}}) => {
       
       
-      markup += `<li class="event__item"><div class="event__container"><img src=${smallestPhoto(images)} class="event__img"><p class="event__text">${name}</p></div></li>`;
+      markup += `<li class="event__item"><div class="event__container"><img src=${smallestPhoto(images)} class="event__img"><div><p class="event__text">${name}</p></div></li>`;
     });
     refs.basketMarkupContainer.insertAdjacentHTML('beforeend', markup);
   }
