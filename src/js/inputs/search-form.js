@@ -2,8 +2,6 @@ import { refs } from '../refs';
 import { EventApi } from '../api';
 import { renderMarckup } from '../renderHtml';
 
-const eventApi = new EventApi();
-
 refs.searchForm.addEventListener('submit', onEventSearch);
 
 function onEventSearch(event) {
@@ -15,6 +13,6 @@ function onEventSearch(event) {
     return;
   }
 
-  eventApi.setKeyword(keyword);
+  EventApi.setKeyword(keyword);
   renderMarckup();
 }
