@@ -27,11 +27,10 @@ export class EventApi {
       includeTBA: ' ', //
       preferredCountry: '', //Popularity boost by country, default is us ["us", "ca"]
       geoPoint: '',
-      // latlong: "46.3077376,30.6151424",
     },
     // `timeout` specifies the number of milliseconds before the request times out.
     // If the request takes longer than `timeout`, the request will be aborted.
-    timeout: 3000, // default is `0` (no timeout)
+    // timeout: 3000, // default is `0` (no timeout)
 
     // `responseType` indicates the type of data that the server will respond with
     // options are: 'arraybuffer', 'document', 'json', 'text', 'stream'
@@ -56,6 +55,12 @@ export class EventApi {
   }
   static setPage(page) {
     this.config.params.page = page;
+  }
+  static getPage(page) {
+    return this.config.params.page
+  }
+  static setGeoPoint(hash) {
+    this.config.params.geoPoint = hash;
   }
   static setPreferredCountry(countryCode) {
     this.config.params.preferredCountry =

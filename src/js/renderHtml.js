@@ -24,7 +24,8 @@ export async function renderMarckup() {
     const responce = await EventApi.fetchApiData();
     const eventsArrayFull = responce._embedded?.events;
     const totalPagesFromServer = responce.page.totalPages;
-    const totalPagesOnSite = totalPagesFromServer - 1;
+    const totalPagesOnSite = totalPagesFromServer - 1 > 62 ? 62 : totalPagesFromServer - 1;
+
     createPaginationOnLoad(totalPagesFromServer, totalPagesOnSite);
     if (!eventsArrayFull) {
       refs.eventList.innerHTML = `<h3 class="section_title">No any event found in your country</h3>`;

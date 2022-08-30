@@ -1,6 +1,7 @@
 import { EventApi } from '../api';
 import { countryCodes } from '../country/countryList';
 import { renderMarckup } from '../renderHtml';
+import Geohash from "./hash";
 
 
 export async function findCountryByIp() {
@@ -13,10 +14,14 @@ export async function findCountryByIp() {
     return
 }
 
-// navigator.geolocation.getCurrentPosition((Position) => {
-
-//     console.log(Position.coords.latitude, Position.coords.longitude)
-// });
+export function getLatLong() {
+    navigator.geolocation.getCurrentPosition((Position) => {
+        console.log(Position.coords.latitude, Position.coords.longitude)
+        const hash = Geohash.encode(Position.coords.latitude, Position.coords.longitude, 5);
+        console.log(hash);
+        EventApi.setGeoPoint(hash)
+    });
+}
 
 
 

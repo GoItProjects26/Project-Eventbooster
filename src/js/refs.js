@@ -1,6 +1,8 @@
 export const refs = {
   //MAKS
   eventList: document.querySelector('.event_list '),
+  paginatedList: document.querySelector(".paginated__list"),
+  itemActive: document.querySelector(".item-active"),
   //================================================================================
   modalBuyBtn: document.querySelector('.modal__buy-btn'),
 

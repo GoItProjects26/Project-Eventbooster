@@ -14,7 +14,7 @@ export const ref = {
 
 const serverResponce = JSON.parse(localStorage.getItem('event'));
 const totalPagesFromServer = serverResponce ? serverResponce.page.totalPages : 7;
-const totalPagesOnSite = totalPagesFromServer - 1;
+const totalPagesOnSite = totalPagesFromServer - 1 > 62 ? 62 : totalPagesFromServer - 1;
 
 // window.addEventListener("load", createPaginationOnLoad(totalPagesFromServer, totalPagesOnSite));
 
@@ -62,12 +62,14 @@ function onClickFwd() {
     const diff = totalPagesOnSite - pageB4Dots;
     ref.backDots.classList.remove('js-hidden');
     ref.firstPage.classList.remove('item-active');
-    EventApi.setPage((+ref.paginationOrder.lastElementChild.textContent + 1) + '');
+    EventApi.setPage((+ref.paginationOrder.lastElementChild.textContent) + '');
     renderMarckup();
     if (diff <= 4) {
         ref.forwardDots.classList.add('js-hidden');
+        [...ref.paginatedList.children].forEach(el => el.classList.remove('item-active'));
+        [...ref.paginationOrder.children].forEach(el => el.classList.remove('item-active'));
         let template = '';
-        for (let i = pageB4Dots - 1; i < pageB4Dots; i++) {
+        for (let i = pageB4Dots - 1; i <= pageB4Dots; i++) {
             template += `<li class="paginated__item">${i}</li>`
         }
         template += `<li class="paginated__item item-active">${pageB4Dots + 1}</li> `;
@@ -89,7 +91,7 @@ function onClicBack(params) {
     const pageAferDots = Number(ref.paginationOrder.children[0].textContent);
     ref.forwardDots.classList.remove('js-hidden');
     ref.paginatedList.children[4].classList.remove('js-hidden')
-    EventApi.setPage((+ref.paginationOrder.firstElementChild.textContent - 1) + '');
+    EventApi.setPage((+ref.paginationOrder.firstElementChild.textContent) + '');
     renderMarckup();
     if (pageAferDots === 4) {
         ref.forwardDots.classList.remove('js-hidden')
@@ -106,13 +108,10 @@ function onClicBack(params) {
 }
 
 export function createPaginationOnLoad(totalPagesFromServer, totalPagesOnSite) {
-    // console.log('94 pag', totalPagesFromServer, totalPagesOnSite);
-    // console.log(totalPagesFromServer === 0);
     ref.paginatedList.classList.remove('js-hidden')
     const isPage7 = totalPagesOnSite <= 7;
     if (totalPagesFromServer === 0) {
         ref.paginatedList.classList.add('js-hidden')
-        // ref.paginatedList.innerHTML = '<li class="paginated__item item-active">No resultss</li>'
         return
     }
     isPage7 ? pagesOnSite7(totalPagesOnSite) : createLastPage(totalPagesOnSite);
