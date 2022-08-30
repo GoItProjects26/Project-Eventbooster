@@ -173,7 +173,7 @@
         min-width: 240px;
         min-height: 400px;
         max-height: 90vmin;
- 
+ background-image: url(../images/body/noise-sm.png);
         border-radius: 100px 0px;
         display: flex;
         padding: 5px 5px 20px 5px;
@@ -384,7 +384,7 @@
     font-weight: 400;
 }
 
-.location_icon {
+.location_icons {
     fill:inherit;
     margin-right: 5px;
 

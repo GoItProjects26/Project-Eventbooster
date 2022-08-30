@@ -25,7 +25,7 @@ function calculateTime(obj) {
     const begin = obj?.contentShoppingCart[0]?.timer;
     const end = begin + obj.duration
     let passedTime = end - Date.now();
-    if (passedTime <= 0) return;
+  
     if (passedTime <= 500) timeIsOver(obj)
     return addLeadingZero(convertMs(passedTime));
 }
@@ -37,6 +37,7 @@ function timeIsOver (obj) {
 }
 
 function setTimer (basketObj) {
+
     timerDisplay(basketObj)
  
 return timerId =  setInterval(()=>{
@@ -48,7 +49,6 @@ return timerId =  setInterval(()=>{
 
 function timerDisplay (timeObj) {
     let {minutes, seconds} = calculateTime(timeObj)
-    if(seconds <= 0) return;
     if(!isNaN(minutes) || !isNaN(seconds)) {
         refs.basketTimer.textContent = `${minutes} : ${seconds}`;
         refs.basketTimerHeader.textContent = `${minutes} : ${seconds}`;
