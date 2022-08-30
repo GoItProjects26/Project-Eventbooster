@@ -2,8 +2,8 @@
 
 
 import {refs} from "./refs";
-import {userBasket, onClickBasketBackdrop, onEscKeyPressBasket, ESC_KEY_CODE, onBasketShow} from "./basket";
-import userEventApi from "./api"
+import {userBasket, ESC_KEY_CODE, onBasketShow} from "./basket";
+
 import {closeModal} from "./modal"
 export {onClickModalBuyBtn}
 
