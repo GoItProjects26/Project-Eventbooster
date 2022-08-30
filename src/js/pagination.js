@@ -1,17 +1,24 @@
-const ref = {
-  paginatedList: document.querySelector('.paginated__list'),
-  paginatedItem: [],
-};
 import { EventApi } from './api';
 import { renderMarckup } from './renderHtml';
 import { renderMarckupFromLocalStorage } from './renderHtml';
 
-export function pag1(data) {
+const ref = {
+  paginatedList: document.querySelector('.paginated__list'),
+};
+
+export function pag1(totalPages) {
+  // console.log('pagination', totalPages);
   let total;
-  if (data.page.totalPages > 1000 / data.page.size) {
-    total = Math.floor(1000 / data.page.size);
+  // console.log(totalPages);
+  // if (data.page.totalPages > 1000 / data.page.size) {
+  //   total = Math.floor(1000 / data.page.size);
+  // } else {
+  //   total = data.page.totalPages;
+  // }
+  if (totalPages > 1000 / 16) {
+    total = Math.floor(1000 / 16);
   } else {
-    total = data.page.totalPages;
+    total = totalPages;
   }
   // console.log(data.page);
   // console.log(total);
@@ -21,8 +28,9 @@ export function pag1(data) {
   let arr = [];
   let after;
   let before;
+  // console.log('total', total, 'current', current);
+
   if (total - current > 3) {
-    // console.log('total', total - current, 'current', current);
     before = current + 2;
   }
   if (current > 4) {
@@ -66,29 +74,34 @@ export function pag1(data) {
     arr.push(
       `<li class="paginated__item" data-page="${total - 1}">${total}</li>`
     );
+  } else {
+    for (let i = 1; i <= total; i++) {
+      arr.push(`<li class="paginated__item" data-page="${i - 1}">${i}</li>`);
+    }
   }
   let string = arr.join('');
 
   ref.paginatedList.innerHTML = string;
-  ref.paginatedItem = document.querySelectorAll('.paginated__item');
+  const paginatedItems = document.querySelectorAll('.paginated__item');
 
-  ref.paginatedItem.forEach(elem => {
+  paginatedItems.forEach(elem => {
     if (elem.textContent == current) elem.classList.add('item-active');
   });
   ref.paginatedList.addEventListener('click', onPageClick);
 }
 
-// pag1();
 function onPageClick(event) {
   if (event.target.nodeName === 'LI') {
     // console.log(event.target.dataset.page);
     EventApi.setPage(+event.target.dataset.page);
     // EventApi.setKeyword('NBA');
     // renderMarckupFromLocalStorage();
+
     // setTimeout(() => {
     //   window.scrollTo(0, 0);
     // }, 1000);
+
     renderMarckup();
-    pag1();
+    // pag1();
   }
 }

@@ -9,19 +9,36 @@ body.light {
   }
 }
 
+.theme__container {
+  position: absolute;
+  top: 90px;
+  right: 28px;
+
+  @media screen and (min-width: 768px) {
+    top: 80px;
+    right: 45px;
+  }
+
+  @media screen and (min-width: 1200px) {
+    top: 100px;
+    right: 28px;
+  }
+  // z-index: 2;
+}
+
 .checkbox {
   opacity: 0;
   position: absolute;
 }
 
 .label {
-  position: relative;
+  // position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
 
   padding: 5px;
-  margin-left: 20px;
+  // margin: 0;
   width: 23px;
   height: 14px;
 

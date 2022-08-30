@@ -2,12 +2,12 @@ import { refs } from './refs';
 import { fetchApiData } from './api';
 import { openModal } from './modal';
 import { closeModal } from './modal';
-import { dataToCart } from './addtocart';
+// import { dataToCart } from './addtocart';
 import ticketIcon from '../images/ticket1.svg';
 import { EventApi } from './api';
 import { renderMarckup } from './renderHtml';
-
 const axios = require('axios').default;
+
 const jsModal = document.querySelector('.modal__container');
 // TEST
 // async function fefe() {
@@ -19,7 +19,8 @@ const jsModal = document.querySelector('.modal__container');
 let axiosConfig = {
   baseURL: 'https://app.ticketmaster.com/discovery/v2/events',
   params: {
-    apikey: '5HiPtCjBuAY9gthoMA0oQuJCLkmuGiMG',
+    // apikey: '5HiPtCjBuAY9gthoMA0oQuJCLkmuGiMG',
+    apikey: '6iAtgNGAR43W6F7x79CI9WmegarTMZK1',
   },
 };
 let idForFetch = '';
@@ -31,33 +32,52 @@ async function getById(id) {
 const eventList = document.querySelector('.event_list');
 eventList.addEventListener('click', onEventClick);
 async function onEventClick(event) {
-  if (event.target.nodeName === 'LI') {
-    idForFetch = event.target.dataset.id;
-  } else if (event.target.nodeName === 'H3' || event.target.nodeName === 'P') {
-    idForFetch = event.target.parentNode.dataset.id;
-  } else if (event.target.nodeName === 'IMG') {
-    idForFetch = event.target.parentNode.parentNode.dataset.id;
+  // console.log('target', event.target);
+  let target = event.target;
+  if (event.target.nodeName === 'UL') {
+    return;
   }
+  if (event.target.nodeName !== 'LI' && event.target.nodeName !== 'UL') {
+    // console.log(target.parentNode);
+    while (target.nodeName !== 'LI') {
+      target = target.parentNode;
+      // console.log(target);
+    }
+    // target;
+  }
+  // console.log('target', target);
+  idForFetch = target.dataset.id;
+  // if (event.target.nodeName === 'LI') {
+  //   idForFetch = event.target.dataset.id;
+  // } else if (event.target.nodeName === 'H3' || event.target.nodeName === 'P') {
+  //   idForFetch = event.target.parentNode.dataset.id;
+  // } else if (event.target.nodeName === 'IMG') {
+  //   idForFetch = event.target.parentNode.parentNode.dataset.id;
+  // }
+  // console.log(idForFetch);
   let response = await getById(idForFetch);
   console.log(response);
   renderModal(response);
   if (response.priceRanges) {
     renderPrices(response.priceRanges);
+  } else {
+    renderNoPrices();
   }
   openModal();
-  dataToCart(response);
+  // dataToCart(response);
 }
 
 function renderModal(data) {
-  const dateString = `${
-    data.dates.start.localDate
-  } ${data.dates.start.localTime.slice(0, 5)} (${data.dates.timezone})`;
-  let infoString;
-  if (data.info) {
-    infoString = data.info;
-  } else {
-    infoString = data.name;
+  let timeString = '';
+  if (data.dates.start.localTime) {
+    timeString = data.dates.start.localTime.slice(0, 5);
   }
+  const dateObj = {
+    date: data.dates.start.localDate,
+    time: timeString,
+    timezone: data.dates.timezone,
+  };
+  // console.log(Object.values(dateObj));
   // console.log(
   //   data.images[1].url,
   //   infoString,
@@ -66,6 +86,15 @@ function renderModal(data) {
   //   data.name,
   //   data.id
   // );
+  const dateString = Object.values(dateObj).join(', ');
+  // console.log(dateString);
+  let infoString;
+  if (data.info) {
+    infoString = data.info;
+  } else {
+    infoString = 'No additional info avaliable.';
+  }
+
   jsModal.innerHTML = `
         <div class="modal__logo"><img
             src="${data.images[1].url}"
@@ -121,10 +150,22 @@ function renderPrices(data) {
     .join('');
   pricesElem.innerHTML = pricesMarkup;
 }
+function renderNoPrices() {
+  const pricesElem = document.querySelector('.modal__prices');
+  pricesElem.innerHTML = `
+      <div class="prices__box">
+        <p class="modal__text prices__text">
+          No tickets avaliable at this moment.
+        </p>
+      </div>`;
+}
 export function onLoadMoreClick(event) {
   const modalWho = document.querySelector('#modal__name').textContent;
   // console.log(modalWho);
   closeModal();
   EventApi.setKeyword(modalWho);
+  EventApi.setCountry('');
+  EventApi.setPage(0);
+  console.log(EventApi.config);
   renderMarckup();
 }
