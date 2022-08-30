@@ -47,22 +47,35 @@
   padding-top: 9px;
   padding-right: 10px;
   width: 130px;
+  background-size: 103px 95px;
   @media screen and (min-width: 768px) {
+    background-image: url(../images/event_bg_tab_1x.png);
     padding-top: 10px;
     padding-right: 11px;
     width: 152px;
+    background-size: 120px 112px;
   }
   @media screen and (min-width: 1280px) {
+    background-image: url(../images/event_bg_desc_1x.png);
+    background-size: 227px 212px;
     padding-top: 19px;
     padding-right: 21px;
     width: 288px;
   }
+
   background-image: url(../images/event_bg_mb_1x.png);
   background-position: top right;
   background-repeat: no-repeat;
 }
 
 .event_img {
+  border: 2px solid var(--primary-bg-color);
+  position: relative;
+  background-color: rgb(230, 230, 230);
+  background-image: url(../images/fallback.png);
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: contain;
   margin-bottom: 8px;
   border-radius: 50px 0px;
   width: 120px;
@@ -79,8 +92,37 @@
   object-fit: cover;
 }
 
+img:before {
+  content: ' ';
+  display: block;
+
+  position: absolute;
+  top: -10px;
+  left: 0;
+  height: calc(30% + 10px);
+  width: 100%;
+  background-color: rgb(230, 230, 230);
+  border-radius: 5px;
+}
+
+img:after {
+  content: '' ' Image not found! ';
+  display: block;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  font-family: FontAwesome;
+  color: rgb(83, 80, 80);
+  width: 80%;
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  // text-align: center;
+}
+
 .event_title {
-  height: 35px;
+  height: 37px;
   overflow: hidden;
   margin-bottom: 4px;
   font-size: 14px;
@@ -93,11 +135,6 @@
     font-size: 16px;
     line-height: 20px;
   }
-}
-
-.list_item:hover .event_title {
-  height: auto;
-  overflow: visible;
 }
 
 .event_date {
