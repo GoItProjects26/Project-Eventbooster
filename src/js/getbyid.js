@@ -2,12 +2,12 @@ import { refs } from './refs';
 import { fetchApiData } from './api';
 import { openModal } from './modal';
 import { closeModal } from './modal';
-import { dataToCart } from './addtocart';
+// import { dataToCart } from './addtocart';
 import ticketIcon from '../images/ticket1.svg';
 import { EventApi } from './api';
 import { renderMarckup } from './renderHtml';
-
 const axios = require('axios').default;
+
 const jsModal = document.querySelector('.modal__container');
 // TEST
 // async function fefe() {
@@ -32,6 +32,7 @@ async function getById(id) {
 const eventList = document.querySelector('.event_list');
 eventList.addEventListener('click', onEventClick);
 async function onEventClick(event) {
+  console.log('target', event.target, 'current target', event.currentTarget);
   if (event.target.nodeName === 'LI') {
     idForFetch = event.target.dataset.id;
   } else if (event.target.nodeName === 'H3' || event.target.nodeName === 'P') {
@@ -39,6 +40,7 @@ async function onEventClick(event) {
   } else if (event.target.nodeName === 'IMG') {
     idForFetch = event.target.parentNode.parentNode.dataset.id;
   }
+  console.log(idForFetch);
   let response = await getById(idForFetch);
   console.log(response);
   renderModal(response);
