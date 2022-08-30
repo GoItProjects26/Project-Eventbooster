@@ -38,57 +38,64 @@ html {
 
 body {
   // mobile screens
-  background-image: url('../images/header/overlay-bottom-sm.png'),
+  background-image: url('../images/header/logo-bg-sm.png'),
+    url('../images/header/overlay-bottom-sm.png'),
     url('../images/header/overlay-top-sm.png'),
     url('../images/header/header-sm.jpg');
-  background-position: left 0px top 262px, left top, left top;
+  background-position: left 106px top -91px, left 0px top 262px, left top,
+    left top;
 
-  background-size: contain;
+  background-size: auto, contain;
   background-repeat: no-repeat;
 
   @media (min-device-pixel-ratio: 2),
     (-webkit-min-device-pixel-ratio: 2),
     (min-resolution: 192dpi),
     (min-resolution: 2dppx) {
-    background-image: url('../images/header/overlay-bottom-sm.png'),
+    background-image: url('../images/header/logo-bg-sm.png'),
+      url('../images/header/overlay-bottom-sm.png'),
       url('../images/header/overlay-top-sm.png'),
       url('../images/header/header-sm@2x.jpg');
-    background-position: left 0px top 262px, left top, left top;
+    background-position: left top, left 0px top 262px, left top, left top;
   }
 
   // tablet screens
   @media screen and (min-width: 768px) {
-    background-image: url('../images/header/overlay-bottom-md.png'),
+    background-image: url('../images/header/logo-bg-md.png'),
+      url('../images/header/overlay-bottom-md.png'),
       url('../images/header/overlay-top-md.png'),
       url('../images/header/header-md.jpg');
-    background-position: left 0px top 262px, left top, left top;
+    background-position: left top, left 0px top 262px, left top, left top;
 
     @media (min-device-pixel-ratio: 2),
       (-webkit-min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
-      background-image: url('../images/header/overlay-bottom-md.png'),
+      background-image: url('../images/header/logo-bg-md.png'),
+        url('../images/header/overlay-bottom-md.png'),
         url('../images/header/overlay-top-md.png'),
         url('../images/header/header-md@2x.jpg');
-      background-position: left 0px top 262px, left top, left top;
+      background-position: left top, left 0px top 262px, left top, left top;
     }
   }
 
   // // desktop screens
   @media screen and (min-width: 1280px) {
-    background-image: url('../images/header/overlay-bottom-lg.png'),
+    background-image: url('../images/header/logo-bg-lg.png'),
+      url('../images/header/overlay-bottom-lg.png'),
       url('../images/header/overlay-top-lg.png'),
       url('../images/header/header-lg.jpg');
-    background-position: left 0px top 344px, left top, left top;
+    background-position: left top, left 0px top 344px, left top, left top;
 
     @media (min-device-pixel-ratio: 2),
       (-webkit-min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
-      background-image: url('../images/header/overlay-bottom-lg.png'),
+      background-image: url('../images/header/logo-bg-lg.png'),
+        url('../images/header/overlay-bottom-lg.png'),
         url('../images/header/overlay-top-lg.png'),
         url('../images/header/header-lg@2x.jpg');
-      background-position: left 0px top 344px, left top, left top;
+      background-position: left top, left 0px top 344px, left top, left top;
     }
   }
 }
