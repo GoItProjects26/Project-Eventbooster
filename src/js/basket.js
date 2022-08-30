@@ -22,7 +22,7 @@ function onBasketShow() {
     refs.basketBackdrop.addEventListener("click", onClickBasketBackdrop)
     window.addEventListener("keydown", onEscKeyPressBasket);
     if (!userBasket.isBasketEmpty) {
-        refs.basketContainer.classList.toggle("hidden");
+        if (refs.basketContainer.classList.contains("hidden")) refs.basketContainer.classList.remove("hidden");
         onBasketFull()
     }   else {onBasketEmpty()}
 }
@@ -79,6 +79,7 @@ function onBasketFull () {
     anabledElement(refs.basketClearBtn);
     refs.basketTextFull.classList.remove("hidden");
     refs.basketTextEmpty.classList.add("hidden");
+
     userBasket.totalQuantity != 1 ? refs.basketTextTicket.textContent = "tickets" : refs.basketTextTicket.textContent = "ticket";
     setTimer(userBasket)
     
@@ -176,23 +177,6 @@ function onClickClearBtn(event) {
     onBasketEmpty();
     deleteTimer(timerId)
 
-    
-
 }
 
-
-
-function onClickStandardBuyBtn (event) {
-    this.addEvent()
-    this.increaseStandardQuantity()
-    refs.miniModal.classList.toggle("hidden")
-    //добавить закрытие модалки//
-}
-
-function onClickVipBuyBtn (event) {
-    this.addEvent()
-    this.increaseVipQuantity()
-    refs.miniModal.classList.toggle("hidden")
-     //добавить закрытие модалки//
-}
 
