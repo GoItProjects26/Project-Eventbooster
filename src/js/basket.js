@@ -16,12 +16,11 @@ function onBasketShow() {
     refs.basketModal.classList.toggle("hidden");
     refs.basketQuantity.textContent = userBasket.totalQuantity;
     refs.basketNum.textContent = userBasket.totalQuantity;
-   
+    
    
     renderBasketMarkup(userBasket.contentShoppingCart)/// Данные с именем события
     refs.basketBackdrop.addEventListener("click", onClickBasketBackdrop)
     window.addEventListener("keydown", onEscKeyPressBasket);
-    
     if (!userBasket.isBasketEmpty) {
         refs.basketContainer.classList.toggle("hidden");
         onBasketFull()
@@ -64,7 +63,8 @@ function onBasketEmpty() {
     disabledElement(refs.basketClearBtn);
     refs.basketTextFull.classList.add("hidden");
     refs.basketTextEmpty.classList.remove("hidden");
-    refs.basketTimer.innerHTML = " "
+    refs.basketTimer.innerHTML = "";
+    refs.basketTimerHeader.innerHTML = "";
     
 
 
