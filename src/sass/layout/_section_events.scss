@@ -80,7 +80,7 @@
 }
 
 .event_title {
-  height: 35px;
+  height: 37px;
   overflow: hidden;
   margin-bottom: 4px;
   font-size: 14px;
@@ -93,11 +93,6 @@
     font-size: 16px;
     line-height: 20px;
   }
-}
-
-.list_item:hover .event_title {
-  height: auto;
-  overflow: visible;
 }
 
 .event_date {
