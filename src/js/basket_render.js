@@ -10,7 +10,7 @@ function renderBasketMarkup(data) {
     data.forEach(({name, images, _embedded: {venues}}) => {
       let path = "./images/icons.svg#icon-location";
       let {city: {name: nameCity}, country: {name: nameCountry}} = venues[0];
-       markup += `<li class="event__item"><div class="event__container"><img src=${smallestPhoto(images)} class="event__img"><div><p class="event__text">${name}</p><div class="location__container">
+       markup += `<li class="event__item"><div class="event__container"><img src=${smallestPhoto(images)} class="event__img"><div class="event__thumb"><p class="event__text">${name}</p><div class="location__container">
        <svg class="location_icon" width="6" height="9" xmlns="http://www.w3.org/2000/svg"><path d="M3 0C1.346 0 0 1.403 0 3.128 0 5.296 3.003 9 3.003 9S6 5.19 6 3.128C6 1.403 4.654 0 3 0Zm.905 4.044c-.25.26-.577.39-.905.39a1.25 1.25 0 0 1-.905-.39c-.5-.52-.5-1.367 0-1.887a1.246 1.246 0 0 1 1.81 0c.5.52.5 1.367 0 1.887Z"/></svg>
        <p class="location__text">${nameCity}, ${nameCountry}</p></div></div></li>`;
     
