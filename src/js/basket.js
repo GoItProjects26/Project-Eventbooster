@@ -46,6 +46,7 @@ function updateBasket () {
             if (!refs.basketContainerHead.classList.contains("hidden")) refs.basketContainerHead.classList.add("hidden")
             disabledElement(refs.basketBuyBtn);
             disabledElement(refs.basketClearBtn);
+            refs.basketTimer.textContent = "";
             
         } else {
             renderBasketMarkup(userBasket.contentShoppingCart)/// Данные с именем события
@@ -65,6 +66,7 @@ function onBasketEmpty() {
     refs.basketTextEmpty.classList.remove("hidden");
     refs.basketTimer.innerHTML = "";
     refs.basketTimerHeader.innerHTML = "";
+    refs.basketTimer.textContent = "";
     
 
 
@@ -148,6 +150,7 @@ function onBasketClose() {
     refs.basketBackdrop.removeEventListener("click", onClickBasketBackdrop)
     window.removeEventListener("keydown", onEscKeyPressBasket);
     refs.basketModal.classList.toggle("hidden")
+    refs.basketTimer.textContent = "";
 }
 
 
