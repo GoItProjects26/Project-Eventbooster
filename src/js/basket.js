@@ -12,6 +12,7 @@ function onClickBasketHead (event) {
 }
 
 function onBasketShow() {
+    
     document.body.classList.toggle("no-scroll");
     refs.basketModal.classList.toggle("hidden");
     refs.basketQuantity.textContent = userBasket.totalQuantity;
@@ -25,6 +26,11 @@ function onBasketShow() {
         if (refs.basketContainer.classList.contains("hidden")) refs.basketContainer.classList.remove("hidden");
         onBasketFull()
     }   else {onBasketEmpty()}
+
+
+
+
+   
 }
 
 
