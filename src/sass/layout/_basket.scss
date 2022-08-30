@@ -274,6 +274,7 @@
         text-align: center;
         color: var(--modal-primary-text-color);
         overflow: scroll;
+        overflow-x: hidden;
         overflow-y: auto;
         border-radius: 5px;
     }
