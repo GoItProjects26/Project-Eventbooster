@@ -90,7 +90,7 @@ function onPageClick(event) {
   if (event.target.nodeName === 'LI') {
     // console.log(event.target.dataset.page);
     EventApi.setPage(+event.target.dataset.page);
-    EventApi.setKeyword('NBA');
+    // EventApi.setKeyword('NBA');
     // renderMarckupFromLocalStorage();
     // setTimeout(() => {
     //   window.scrollTo(0, 0);
