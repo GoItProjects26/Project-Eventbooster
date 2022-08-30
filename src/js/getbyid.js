@@ -39,9 +39,11 @@ async function onEventClick(event) {
     idForFetch = event.target.parentNode.parentNode.dataset.id;
   }
   let response = await getById(idForFetch);
-  console.log(response);
+  console.log(response, response.priceRanges);
   renderModal(response);
-  renderPrices(response.priceRanges);
+  if (response.priceRanges) {
+    renderPrices(response.priceRanges);
+  }
   openModal();
   dataToCart(response);
 }
@@ -56,6 +58,14 @@ function renderModal(data) {
   } else {
     infoString = data.name;
   }
+  console.log(
+    data.images[1].url,
+    infoString,
+    dateString,
+    data._embedded.venues[0].name,
+    data.name,
+    data.id
+  );
   jsModal.innerHTML = `
         <div class="modal__logo"><img
             src="${data.images[1].url}"

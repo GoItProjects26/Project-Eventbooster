@@ -1,12 +1,13 @@
 export const refs = {
   //MAKS
   eventList: document.querySelector('.event_list '),
-  paginatedList: document.querySelector(".paginated__list"),
-  itemActive: document.querySelector(".item-active"),
+  paginatedList: document.querySelector('.paginated__list'),
+  itemActive: document.querySelector('.item-active'),
   //================================================================================
   modalBuyBtn: document.querySelector('.js-buy-btn'),
   modalBackdrop: document.querySelector('.backdrop'),
   modalCloseBtn: document.querySelector('.modal__close-btn'),
+  modalMoreBtn: document.querySelector('.modal__more-btn'),
 
   basketModal: document.querySelector('.modal-basket-backdrop'),
   basketQuantity: document.querySelector('.modal-basket__quantity'),
@@ -23,13 +24,12 @@ export const refs = {
   basketBuyBtn: document.querySelector('.modal-basket__buy'),
   basketClearBtn: document.querySelector('.modal-basket__clear'),
   basketBackdrop: document.querySelector('.modal-basket-backdrop'),
-  basketTextEmpty: document.querySelector(".modal-basket__text--empty"),
-  basketTextFull: document.querySelector(".modal-basket__text--full"),
-  basketTextTicket: document.querySelector(".modal-basket__ticket"),
-  basketTimerHeader: document.querySelector(".basket__timer--header"),
-  basketTimer: document.querySelector(".basket__timer"),
-  svgIcon: document.querySelector(".location__use"),
-
+  basketTextEmpty: document.querySelector('.modal-basket__text--empty'),
+  basketTextFull: document.querySelector('.modal-basket__text--full'),
+  basketTextTicket: document.querySelector('.modal-basket__ticket'),
+  basketTimerHeader: document.querySelector('.basket__timer--header'),
+  basketTimer: document.querySelector('.basket__timer'),
+  svgIcon: document.querySelector('.location__use'),
 
   miniModal: document.querySelector('.mini-modal-backdrop'),
   miniModalBtnCart: document.querySelector('.mini-modal__button'),

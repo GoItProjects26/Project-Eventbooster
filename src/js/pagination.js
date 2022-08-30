@@ -58,7 +58,7 @@ export function pag1() {
       arr.push(`<li class="paginated__item" data-page="${i - 1}">${i}</li>`);
     }
   } else if (!after && before) {
-    // console.log('after', after, 'before', before);
+    console.log('after', after, 'before', before, 'current', current);
     for (let i = 1; i <= before; i++) {
       arr.push(`<li class="paginated__item" data-page="${i - 1}">${i}</li>`);
     }
@@ -90,7 +90,7 @@ function onPageClick(event) {
   if (event.target.nodeName === 'LI') {
     // console.log(event.target.dataset.page);
     EventApi.setPage(+event.target.dataset.page);
-    // EventApi.setKeyword('NBA');
+    EventApi.setKeyword('NBA');
     // renderMarckupFromLocalStorage();
     // setTimeout(() => {
     //   window.scrollTo(0, 0);
