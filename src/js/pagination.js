@@ -8,6 +8,7 @@ import { renderMarckupFromLocalStorage } from './renderHtml';
 
 export function pag1() {
   const serverResponce = JSON.parse(localStorage.getItem('event'));
+  console.log();
   let total;
   if (serverResponce.page.totalPages > 1000 / serverResponce.page.size) {
     total = Math.floor(1000 / serverResponce.page.size);
@@ -89,8 +90,11 @@ function onPageClick(event) {
   if (event.target.nodeName === 'LI') {
     // console.log(event.target.dataset.page);
     EventApi.setPage(+event.target.dataset.page);
-    EventApi.setKeyword('NBA');
+    // EventApi.setKeyword('NBA');
     // renderMarckupFromLocalStorage();
+    // setTimeout(() => {
+    //   window.scrollTo(0, 0);
+    // }, 1000);
     renderMarckup();
     pag1();
   }
