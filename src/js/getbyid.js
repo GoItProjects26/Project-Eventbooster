@@ -2,7 +2,7 @@ import { refs } from './refs';
 import { fetchApiData } from './api';
 import { openModal } from './modal';
 import { closeModal } from './modal';
-// import { dataToCart } from './addtocart';
+import { dataToCart } from './addtocart';
 import ticketIcon from '../images/ticket1.svg';
 import { EventApi } from './api';
 import { renderMarckup } from './renderHtml';
@@ -64,7 +64,7 @@ async function onEventClick(event) {
     renderNoPrices();
   }
   openModal();
-  // dataToCart(response);
+  dataToCart(response);
 }
 
 function renderModal(data) {
@@ -159,7 +159,7 @@ function renderNoPrices() {
         </p>
       </div>`;
 }
-export function onLoadMoreClick(event) {
+export function onLoadMoreClick() {
   const modalWho = document.querySelector('#modal__name').textContent;
   // console.log(modalWho);
   closeModal();
