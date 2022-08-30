@@ -35,18 +35,25 @@ function timeIsOver (obj) {
 }
 
 function setTimer (basketObj) {
-    let {minutes, seconds} = calculateTime(basketObj)
-    refs.basketTimer.textContent = `${minutes} : ${seconds}`;
-    refs.basketTimerHeader.textContent = `${minutes} : ${seconds}`;
+    timerDisplay(basketObj)
+ 
 return timerId =  setInterval(()=>{
-    let {minutes, seconds} = calculateTime(basketObj)
-        refs.basketTimer.textContent = `${minutes} : ${seconds}`;
-        refs.basketTimerHeader.textContent = `${minutes} : ${seconds}`;
 
+    timerDisplay(basketObj)
     }, basketObj.step)
 
 }
 
+function timerDisplay (timeObj) {
+    let {minutes, seconds} = calculateTime(timeObj)
+    if(!isNaN(minutes) || !isNaN(seconds)) {
+        refs.basketTimer.textContent = `${minutes} : ${seconds}`;
+        refs.basketTimerHeader.textContent = `${minutes} : ${seconds}`;
+    }
+}
+
 function deleteTimer (id) {
+    refs.basketTimer.textContent = "";
+    refs.basketTimerHeader.textContent = "";
     clearInterval(id)
 }

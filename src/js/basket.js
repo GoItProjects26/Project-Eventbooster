@@ -22,7 +22,7 @@ function onBasketShow() {
     refs.basketBackdrop.addEventListener("click", onClickBasketBackdrop)
     window.addEventListener("keydown", onEscKeyPressBasket);
     if (!userBasket.isBasketEmpty) {
-        refs.basketContainer.classList.toggle("hidden");
+        if (refs.basketContainer.classList.contains("hidden")) refs.basketContainer.classList.remove("hidden");
         onBasketFull()
     }   else {onBasketEmpty()}
 }
@@ -46,7 +46,7 @@ function updateBasket () {
             if (!refs.basketContainerHead.classList.contains("hidden")) refs.basketContainerHead.classList.add("hidden")
             disabledElement(refs.basketBuyBtn);
             disabledElement(refs.basketClearBtn);
-            refs.basketTimer.textContent = "";
+  
             
         } else {
             renderBasketMarkup(userBasket.contentShoppingCart)/// Данные с именем события
@@ -64,9 +64,8 @@ function onBasketEmpty() {
     disabledElement(refs.basketClearBtn);
     refs.basketTextFull.classList.add("hidden");
     refs.basketTextEmpty.classList.remove("hidden");
-    refs.basketTimer.innerHTML = "";
-    refs.basketTimerHeader.innerHTML = "";
-    refs.basketTimer.textContent = "";
+
+
     
 
 
@@ -80,6 +79,7 @@ function onBasketFull () {
     anabledElement(refs.basketClearBtn);
     refs.basketTextFull.classList.remove("hidden");
     refs.basketTextEmpty.classList.add("hidden");
+
     userBasket.totalQuantity != 1 ? refs.basketTextTicket.textContent = "tickets" : refs.basketTextTicket.textContent = "ticket";
     setTimer(userBasket)
     
@@ -150,7 +150,7 @@ function onBasketClose() {
     refs.basketBackdrop.removeEventListener("click", onClickBasketBackdrop)
     window.removeEventListener("keydown", onEscKeyPressBasket);
     refs.basketModal.classList.toggle("hidden")
-    refs.basketTimer.textContent = "";
+
 }
 
 
@@ -176,23 +176,7 @@ function onClickClearBtn(event) {
     userBasket.isBasketEmpty = true;
     onBasketEmpty();
     deleteTimer(timerId)
-    
 
 }
 
-
-
-function onClickStandardBuyBtn (event) {
-    this.addEvent()
-    this.increaseStandardQuantity()
-    refs.miniModal.classList.toggle("hidden")
-    //добавить закрытие модалки//
-}
-
-function onClickVipBuyBtn (event) {
-    this.addEvent()
-    this.increaseVipQuantity()
-    refs.miniModal.classList.toggle("hidden")
-     //добавить закрытие модалки//
-}
 
