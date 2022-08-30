@@ -1,10 +1,19 @@
 import {refs} from "./refs";
 export {userBasket, onClickBasketBackdrop, onEscKeyPressBasket, ESC_KEY_CODE, onBasketShow, updateBasket}
 import Basket from "./class_basket";
-import {deleteTimer, setTimer} from './timer';
+import {deleteTimer, timerDisplay} from './timer';
 import {renderBasketMarkup} from "./basket_render";
 
 const ESC_KEY_CODE = "Escape";
+
+
+function setTimer (basketObj) {
+    timerDisplay(basketObj)
+    return timerId =  setInterval(()=>{
+    timerDisplay(basketObj)
+    }, basketObj.step);
+
+}
 
 refs.basketHead.addEventListener("click", onClickBasketHead);
 function onClickBasketHead (event) {
@@ -36,7 +45,7 @@ function onBasketShow() {
 
 
 function updateBasket () {
-    setTimeout (() =>{
+
         if (userBasket.totalQuantity === 0) {
             if (!refs.basketContainer.classList.contains("hidden")) {
                 refs.basketContainer.classList.add("hidden");
@@ -44,7 +53,6 @@ function updateBasket () {
             userBasket.isBasketEmpty = true;
             deleteTimer(timerId);
             onBasketEmpty();
-            
             refs.basketQuantity.innerHTML = userBasket.totalQuantity
             refs.basketNumHead.innerHTML = userBasket.totalQuantity
             refs.basketMarkupContainer.innerHTML = "";
@@ -61,7 +69,7 @@ function updateBasket () {
             refs.basketNumHead.textContent = userBasket.totalQuantity
             if (refs.basketContainerHead.classList.contains("hidden")) refs.basketContainerHead.classList.remove("hidden")
         }
-    },6)
+
 
 }
 
