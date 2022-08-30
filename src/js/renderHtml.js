@@ -4,7 +4,7 @@ import { EventApi } from './api';
 
 import { createPaginationOnLoad } from './pagination/pag'
 
-export const iconLocation = `
+const iconLocation = `
 <defs>
 <symbol 
         id="icon-location" viewBox="0 0 21 32"><path
