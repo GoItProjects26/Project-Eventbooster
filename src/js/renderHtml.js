@@ -4,7 +4,7 @@ import { EventApi } from './api';
 
 import { createPaginationOnLoad } from './pagination/pag'
 
-const iconLocation = `
+export const iconLocation = `
 <defs>
 <symbol 
         id="icon-location" viewBox="0 0 21 32"><path
@@ -68,6 +68,7 @@ function marckup(eventsArray) {
 
 // template for cards
 function templateItems(event) {
+
   return `
    <li class="list_item" data-id ="${event.id}">
         <div class="event_img">
@@ -101,7 +102,7 @@ function desiredObjectForPage(value) {
     name: value.name,
     localDate: value.dates.start.localDate,
     mobImg: value.images[3].url,
-    concertHall: value._embedded?.venues?.[0].name,
+    concertHall: value._embedded?.venues?.[0].name ?? value._embedded?.venues?.[0].address.line1,
   };
 }
 
