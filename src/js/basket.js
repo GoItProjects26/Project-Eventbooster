@@ -118,6 +118,7 @@ let userBasket = {};
 function firstLoadPage () {
     if (!localStorage.getItem("userBasket")) return userBasket = new Basket; //должно создаваться при загрузке Фетча
     const oldUserBasket = (JSON.parse(localStorage.getItem("userBasket")))
+    if(oldUserBasket.timer < Date.now) return userBasket = new Basket
     userBasket = new Basket;
     return Object.assign(userBasket, oldUserBasket)
 
