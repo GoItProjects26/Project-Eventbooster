@@ -24,7 +24,9 @@ export const refs = {
   basketTextEmpty: document.querySelector(".modal-basket__text--empty"),
   basketTextFull: document.querySelector(".modal-basket__text--full"),
   basketTextTicket: document.querySelector(".modal-basket__ticket"),
+  basketTimerHeader: document.querySelector(".basket__timer--header"),
   basketTimer: document.querySelector(".basket__timer"),
+  svgIcon: document.querySelector(".location__use"),
 
 
   miniModal: document.querySelector('.mini-modal-backdrop'),
