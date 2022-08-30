@@ -60,12 +60,41 @@ function templateItems(event) {
   return `
    <li class="list_item" data-id ="${event.id}">
         <div class="event_img">
-          <img
+  <picture>
+                    <source
+                      media="(min-width: 1280px)"
+                      srcset="
+                        ${event.img1xDesc} 1x,
+                         ${event.img2xDesc} 2x
+                      "
+                      type="image/jpg"
+                    />
+
+                    <source
+                      media="(min-width: 768px)"
+                      srcset="
+                        ${event.tabImg1x} 1x,
+                         ${event.tabImg2x} 2x
+                      "
+                      type="image/jpg"
+                    />
+
+                    <source
+                      media="(max-width: 767px)"
+                      srcset="
+                        ${event.mobImg1x} 1x,
+                         ${event.mobImg2x} 2x
+                      "
+                      type="image/jpg"
+                    />
+
+                     <img
             src="${event.mobImg}"
             alt="${event.name}"
             width="120"
             height="151"
           />
+                  </picture>
         </div>
         <h3 class="event_title">${event.name}</h3>
         <p class="event_date">${event.localDate}</p>
@@ -85,13 +114,21 @@ function shortDataFromServer(eventsArrayFull) {
 
 //generate object with less key:value from incoming object
 function desiredObjectForPage(value) {
+
+  console.log(value.images.filter(img => img.height > 151 ? img.width > 120 : false).find(el => el.height < 365));
   return {
     id: value.id,
     name: value.name,
     localDate: value.dates.start.localDate,
-    mobImg: value.images[3].url,
-    concertHall:
-      value._embedded?.venues?.[0].name ??
-      value._embedded?.venues?.[0].address.line1,
+
+    mobImg1x: value.images.filter(img => img.height > 151 ? img.width > 120 : false).find(el => el.height < 370 ? el.width < 400 : false).url,
+    mobImg2x: value.images.filter(img => img.height > 151 ? img.width > 120 : false).find(el => el.height < 365).url,
+
+    tabImg1x: value.images[1].url,
+    tabImg2x: value.images[2].url,
+
+    descImg1x: value.images[1].url,
+    descImg2x: value.images[2].url,
+    concertHall: value._embedded?.venues?.[0].name ?? value._embedded?.venues?.[0].address.line1,
   };
 }

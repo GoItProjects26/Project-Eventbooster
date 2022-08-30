@@ -169,9 +169,11 @@
         left: 50%;
         transform: translate(-50%, -50%);
         scale: 1;
-        max-width: 440px;
+        max-width: 420px;
         min-width: 240px;
         min-height: 400px;
+        max-height: 90vmin;
+ 
         border-radius: 100px 0px;
         display: flex;
         padding: 5px 5px 20px 5px;
@@ -214,7 +216,8 @@
         top: 0;
         right: 0;
         transform: translate(50%, -50%);
-    }
+        max-height: 90vh;
+        }
 
     .basket__timer{
         color: var(--accent-bg-color);
@@ -225,7 +228,7 @@
     .modal-basket__container {
         display: flex;
         flex-direction: column;
-       width: 100%;
+        width: 100%;
         justify-content: flex-end;
 
     }
@@ -266,9 +269,14 @@
     }
 
     .modal-basket__name {
+        max-height: 45vh;
         padding-left: 0;
         text-align: center;
         color: var(--modal-primary-text-color);
+        overflow: scroll;
+        overflow-x: hidden;
+        overflow-y: auto;
+        border-radius: 5px;
     }
 
     .event__item{
@@ -295,6 +303,7 @@
         border-radius: 3px;
         width: 90px;
         height: 60px;
+        margin-right: 5px;
 
         @media screen and (max-width: 320px) {
             display: none;
@@ -304,11 +313,18 @@
         @media screen and (min-width: 768px) {
             width: 120px;
             height: 80px;
+            margin-right: 10px;
                   
         }  
+
+        
         
        
     }
+    .event__thumb {
+        width: 100%;
+    }
+
 .event__text {
     margin-left: auto;
     margin-right: auto;
@@ -370,8 +386,9 @@
 
 .location_icon {
     fill:inherit;
+    margin-right: 5px;
 
-    @media screen and (max-width: 320px) {
+    @media screen and (max-width: 768px) {
         display: none;
           
         }
