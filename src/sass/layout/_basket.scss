@@ -148,7 +148,7 @@
         width: 100%;
         height: 100%;
         
-    
+        overflow-y: auto;
         background-color: rgba(32, 13, 29, 0.6);
         backdrop-filter: blur(3px); 
         z-index: 1000;
@@ -171,14 +171,13 @@
         scale: 1;
         max-width: 420px;
         min-width: 240px;
-        min-height: 400px;
-        max-height: 90vmin;
- background-image: url(../images/body/noise-sm.png);
+        min-height: 300px;
+       
+         background-image: url(../images/body/noise-sm.png);
         border-radius: 100px 0px;
         display: flex;
         padding: 5px 5px 20px 5px;
-    
-        background-color: #FFF2FD;
+        background-color: var( --modal-bg-color);
 
             
         @media screen and (min-width: 600px) {
@@ -269,13 +268,10 @@
     }
 
     .modal-basket__name {
-        max-height: 45vh;
+   
         padding-left: 0;
         text-align: center;
         color: var(--modal-primary-text-color);
-        overflow: scroll;
-        overflow-x: hidden;
-        overflow-y: auto;
         border-radius: 5px;
     }
 
@@ -283,7 +279,9 @@
         padding: 5px;
         font-weight: 700;
         background-color: var(--primary-text-color);
-        border-radius: 3px;
+        border-radius: 5px;
+        border: 1px solid var(--accent-bg-color);
+        box-shadow: none;
 
     }
 
@@ -338,15 +336,24 @@
         
         text-align: center;
     }
+
     .modal-basket__item:not(:last-child) {
-        margin-bottom: 20px;
+        margin-bottom: 10px;
+
+        @media screen and (min-width: 768px) {
+      
+            margin-bottom: 20px;
+        }  
+
+   
     }
 
     .modal-basket__continue,
     .modal-basket__buy,
     .modal-basket__clear {
-        padding-top: 10px;
-        padding-bottom: 10px;
+
+        padding-top: 5px;
+        padding-bottom: 5px;
         min-width: 145px;
         font-weight: 500;
         border-color: var(--accent-bg-color);
@@ -359,6 +366,13 @@
         transition-property: box-shadow;
         transition-duration: 250ms;
         transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+       
+        @media screen and (min-width: 768px) {
+            padding-top: 10px;
+            padding-bottom: 10px;
+                  
+        }  
+
 
         
     }

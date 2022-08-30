@@ -3,13 +3,6 @@ html {
   scroll-behavior: smooth;
 }
 
-body {
-  font-family: "Montserrat", sans-serif;
-  color: var(--main-text-color-black);
-  background-color: var(--primary-bg-color);
-  background-repeat: no-repeat;
-}
-
 .link {
   text-decoration: none;
 }
