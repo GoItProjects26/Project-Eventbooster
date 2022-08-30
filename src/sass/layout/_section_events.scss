@@ -17,7 +17,6 @@
   row-gap: 32px;
   column-gap: 20px;
 
-  justify-content: space-between;
   list-style: none;
   // margin: 0;
   padding: 0;
@@ -59,8 +58,122 @@
   background-image: url(../images/event_bg_mb_1x.png);
   background-position: top right;
   background-repeat: no-repeat;
+
+  /////////////////////////////////
+  cursor: pointer;
+  position: relative;
+  animation: bounce-in-top 0.7s 0.6s both;
 }
 
+// .list_item:hover {
+//   transform: scale(1.05);
+// }
+
+.list_item:hover .event_img,
+.list_item:focus .event_img {
+  box-shadow: 0 0 5px var(--primary-text-color),
+    0 0 10px var(--accent-text-color), 0 0 20px var(--accent-text-color),
+    0 0 30px var(--accent-text-color), 0 0 20px var(--accent-text-color),
+    0 0 5px var(--accent-text-color);
+  animation-name: pulsing;
+  animation-duration: 1000ms;
+  animation-timing-function: ease-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+.list_item:hover .event_title,
+.list_item:focus .event_title {
+  color: var(--modal-primary-text-color);
+
+  text-shadow: var(--primary-text-color) 0px 0px 10px,
+    var(--primary-text-color) 0px 0px 15px,
+    var(--primary-text-color) 0px 0px 20px;
+  animation-name: pulsing-text;
+  animation-duration: 1000ms;
+  animation-timing-function: ease-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+.list_item:hover .event_date,
+.list_item:focus .event_date {
+  color: var(--modal-primary-text-color);
+
+  text-shadow: var(--primary-text-color) 0px 0px 5px,
+    var(--primary-text-color) 0px 0px 10px,
+    var(--primary-text-color) 0px 0px 15px,
+    var(--primary-text-color) 0px 0px 20px;
+  animation-name: pulsing-text;
+  animation-duration: 1000ms;
+  animation-timing-function: ease-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@keyframes pulsing {
+  0% {
+    box-shadow: 0 0 1px var(--primary-text-color),
+      0 0 2px var(--primary-text-color), 0 0 3px var(--primary-text-color),
+      0 0 4px var(--accent-text-color), 0 0 3px var(--accent-text-color),
+      0 0 6px var(--accent-text-color), 0 0 4px var(--accent-text-color),
+      0 0 1px var(--accent-text-color);
+  }
+  100% {
+    box-shadow: 0 0 5px var(--primary-text-color),
+      0 0 10px var(--primary-text-color), 0 0 15px var(--primary-text-color),
+      0 0 20px var(--accent-text-color), 0 0 15px var(--accent-text-color),
+      0 0 25px var(--accent-text-color), 0 0 20px var(--accent-text-color),
+      0 0 5px var(--accent-text-color);
+  }
+}
+
+@keyframes pulsing-text {
+  0% {
+    text-shadow: 0 0 1px var(--primary-text-color),
+      0 0 2px var(--primary-text-color), 0 0 3px var(--primary-text-color),
+      0 0 4px var(--accent-text-color), 0 0 3px var(--accent-text-color),
+      0 0 6px var(--accent-text-color), 0 0 4px var(--accent-text-color),
+      0 0 1px var(--accent-text-color);
+  }
+  100% {
+    text-shadow: 0 0 5px var(--primary-text-color),
+      0 0 10px var(--primary-text-color), 0 0 15px var(--primary-text-color),
+      0 0 20px var(--accent-text-color), 0 0 15px var(--accent-text-color),
+      0 0 25px var(--accent-text-color), 0 0 20px var(--accent-text-color),
+      0 0 5px var(--accent-text-color);
+  }
+}
+
+@keyframes bounce-in-top {
+  0% {
+    transform: translateY(-220px);
+    animation-timing-function: ease-in;
+    opacity: 0;
+  }
+  38% {
+    transform: translateY(0);
+    animation-timing-function: ease-out;
+    opacity: 1;
+  }
+  55% {
+    transform: translateY(-70px);
+    animation-timing-function: ease-in;
+  }
+  72% {
+    transform: translateY(0);
+    animation-timing-function: ease-out;
+  }
+  95% {
+    transform: translateY(-12px);
+    animation-timing-function: ease-in;
+  }
+  100% {
+    transform: translateY(0);
+    animation-timing-function: ease-out;
+  }
+}
+////////////////////////////
 .event_img {
   position: relative;
   background-color: rgb(230, 230, 230);

@@ -29,7 +29,7 @@ body.light {
 
 .theme__container {
   position: absolute;
-  top: 90px;
+  top: 75px;
   right: 28px;
 
   @media screen and (min-width: 768px) {
@@ -50,15 +50,17 @@ body.light {
 }
 
 .label {
-  // position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
 
-  padding: 5px;
-  // margin: 0;
-  width: 23px;
-  height: 14px;
+  width: 12px;
+  height: 7px;
+
+  @media screen and (min-width: 768px) {
+    width: 23px;
+    height: 14px;
+  }
 
   border-radius: 50px;
   transform: scale(1.5);
@@ -70,26 +72,59 @@ body.light {
 .ball {
   position: absolute;
 
-  width: 13px;
-  height: 13px;
+  width: 7px;
+  height: 7px;
 
-  top: 1px;
-  left: 0px;
   border-radius: 50%;
   transition: transform 0.2s linear;
 
   background-color: var(--primary-text-color);
+
+  @media screen and (min-width: 768px) {
+    top: 0.5px;
+    width: 13px;
+    height: 13px;
+  }
 }
 
 .checkbox:checked + .label .ball {
-  transform: translateX(10px);
+  // background-color: var(--primary-text-color);
   background-color: var(--modal-primary-text-color);
+  transform: translateX(5px);
+
+  @media screen and (min-width: 768px) {
+    transform: translateX(10px);
+  }
 }
 
-// .fa-moon {
-//   color: pink;
-// }
+.theme-iqon-hidden {
+  display: none;
+}
 
-// .fa-sun {
-//   color: yellow;
-// }
+.theme__iqon-sun {
+  position: relative;
+
+  bottom: 8px;
+  left: 1px;
+
+  @media screen and (min-width: 768px) {
+    bottom: 2px;
+    right: 2px;
+    width: 12px;
+    height: 11px;
+  }
+}
+
+.theme__iqon-moon {
+  position: relative;
+  fill: var(--primary-text-color);
+  bottom: 5px;
+  right: 3px;
+
+  @media screen and (min-width: 768px) {
+    bottom: 6px;
+    right: 6px;
+    width: 25px;
+    height: 25px;
+  }
+}

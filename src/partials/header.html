@@ -44,8 +44,25 @@
     <div class="theme__container">
       <input type="checkbox" class="checkbox" id="checkbox" />
       <label for="checkbox" class="label">
-        <!-- <i class="fas fa-moon"></i> выбрать svg в чекбокс
-    <i class='fas fa-sun'></i> -->
+        <div class="ball">
+          <svg class="theme__iqon-sun" width="5" height="5">
+            <use
+              class="theme__iqon"
+              href="./images/icons.svg#theme-sun-iqon"
+            ></use>
+          </svg>
+          <svg
+            class="theme__iqon-moon theme-iqon-hidden"
+            width="12"
+            height="12"
+          >
+            <use
+              class="theme__iqon theme__moon"
+              href="./images/icons.svg#icon-moon"
+            ></use>
+          </svg>
+        </div>
+      <label for="checkbox" class="label">
         <div class="ball"></div>
       </label>
     </div>

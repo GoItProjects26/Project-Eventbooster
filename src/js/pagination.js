@@ -97,9 +97,9 @@ function onPageClick(event) {
     // EventApi.setKeyword('NBA');
     // renderMarckupFromLocalStorage();
 
-    // setTimeout(() => {
-    //   window.scrollTo(0, 0);
-    // }, 1000);
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+    }, 1000);
 
     renderMarckup();
     // pag1();
