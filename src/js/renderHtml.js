@@ -64,8 +64,8 @@ function templateItems(event) {
                     <source
                       media="(min-width: 1280px)"
                       srcset="
-                        ${event.img1xDesc} 1x,
-                         ${event.img2xDesc} 2x
+                        ${event.descImg1x} 1x,
+                         ${event.descImg1x} 2x
                       "
                       type="image/jpg"
                     />
@@ -115,7 +115,7 @@ function shortDataFromServer(eventsArrayFull) {
 //generate object with less key:value from incoming object
 function desiredObjectForPage(value) {
 
-  console.log(value.images.filter(img => img.height > 151 ? img.width > 120 : false).find(el => el.height < 365));
+  console.log(value.images.filter(img => img.height > 674 ? img.width > 534 : false).find(el => el.height < 1200));
   return {
     id: value.id,
     name: value.name,
@@ -124,11 +124,11 @@ function desiredObjectForPage(value) {
     mobImg1x: value.images.filter(img => img.height > 151 ? img.width > 120 : false).find(el => el.height < 370 ? el.width < 400 : false).url,
     mobImg2x: value.images.filter(img => img.height > 151 ? img.width > 120 : false).find(el => el.height < 365).url,
 
-    tabImg1x: value.images[1].url,
-    tabImg2x: value.images[2].url,
+    tabImg1x: value.images.filter(img => img.height > 674 ? img.width > 534 : false).find(el => el.height < 1200).url,
+    tabImg2x: value.images.filter(img => img.height > 674 ? img.width > 534 : false).find(el => el.height < 1200).url,
 
-    descImg1x: value.images[1].url,
-    descImg2x: value.images[2].url,
+    descImg1x: value.images.filter(img => img.height > 674 ? img.width > 534 : false).find(el => el.height < 1200).url,
+    descImg2x: value.images.filter(img => img.height > 674 ? img.width > 534 : false).find(el => el.height < 1200).url,
     concertHall: value._embedded?.venues?.[0].name ?? value._embedded?.venues?.[0].address.line1,
   };
 }
