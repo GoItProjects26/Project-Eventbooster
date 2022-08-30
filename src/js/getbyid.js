@@ -32,15 +32,29 @@ async function getById(id) {
 const eventList = document.querySelector('.event_list');
 eventList.addEventListener('click', onEventClick);
 async function onEventClick(event) {
-  console.log('target', event.target, 'current target', event.currentTarget);
-  if (event.target.nodeName === 'LI') {
-    idForFetch = event.target.dataset.id;
-  } else if (event.target.nodeName === 'H3' || event.target.nodeName === 'P') {
-    idForFetch = event.target.parentNode.dataset.id;
-  } else if (event.target.nodeName === 'IMG') {
-    idForFetch = event.target.parentNode.parentNode.dataset.id;
+  // console.log('target', event.target);
+  let target = event.target;
+  if (event.target.nodeName === 'UL') {
+    return;
   }
-  console.log(idForFetch);
+  if (event.target.nodeName !== 'LI' && event.target.nodeName !== 'UL') {
+    // console.log(target.parentNode);
+    while (target.nodeName !== 'LI') {
+      target = target.parentNode;
+      // console.log(target);
+    }
+    // target;
+  }
+  // console.log('target', target);
+  idForFetch = target.dataset.id;
+  // if (event.target.nodeName === 'LI') {
+  //   idForFetch = event.target.dataset.id;
+  // } else if (event.target.nodeName === 'H3' || event.target.nodeName === 'P') {
+  //   idForFetch = event.target.parentNode.dataset.id;
+  // } else if (event.target.nodeName === 'IMG') {
+  //   idForFetch = event.target.parentNode.parentNode.dataset.id;
+  // }
+  // console.log(idForFetch);
   let response = await getById(idForFetch);
   console.log(response);
   renderModal(response);
@@ -50,7 +64,7 @@ async function onEventClick(event) {
     renderNoPrices();
   }
   openModal();
-  dataToCart(response);
+  // dataToCart(response);
 }
 
 function renderModal(data) {
@@ -72,7 +86,7 @@ function renderModal(data) {
   //   data.name,
   //   data.id
   // );
-  const dateString = Object.values(dateObj).join(' ');
+  const dateString = Object.values(dateObj).join(', ');
   // console.log(dateString);
   let infoString;
   if (data.info) {
