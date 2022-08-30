@@ -2,7 +2,7 @@ import './js/theme';
 
 import './js/onEvent';
 // import './js/pagination/pagination1';
-import './js/pagination';
+// import './js/pagination';
 import './js/modal.js';
 import './js/getbyid';
 
@@ -16,3 +16,5 @@ import './js/inputs/country-form';
 import './js/geo/geoApi';
 
 import './js/country/dropDown';
+
+import './js/pagination/pag';

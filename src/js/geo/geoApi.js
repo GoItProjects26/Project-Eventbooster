@@ -1,13 +1,27 @@
-import axios from 'axios';
-
+import { EventApi } from '../api';
+import { countryCodes } from '../country/countryList';
+import { renderMarckup } from '../renderHtml';
+import Geohash from "./hash";
 
 
 export async function findCountryByIp() {
     const response = await fetch('http://ip-api.com/json/?fields=country');
     const data = await response.json();
-    return console.log(data.country);
+    const country = data.country.toUpperCase();
+    const code = countryCodes.find(el => el.name === country).code;
+    EventApi.setCountry(code);
+    renderMarckup();
+    return
 }
 
+export function getLatLong() {
+    navigator.geolocation.getCurrentPosition((Position) => {
+        console.log(Position.coords.latitude, Position.coords.longitude)
+        const hash = Geohash.encode(Position.coords.latitude, Position.coords.longitude, 5);
+        console.log(hash);
+        EventApi.setGeoPoint(hash)
+    });
+}
 
 
 

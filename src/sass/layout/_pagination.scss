@@ -14,8 +14,11 @@
     line-height: 1.22;
   }
 }
-
-.paginated__item {
+.pagination__order {
+  display: flex;
+  justify-content: center;
+}
+.paginated__list .paginated__item {
   padding: 6px 12px;
   cursor: pointer;
 }
@@ -36,6 +39,10 @@
   color: var(--accent-text-color);
   border: 1px solid var(--accent-text-color);
   border-radius: 10px 0px;
+}
+
+.js-hidden {
+  display: none;
 }
 
 .paginated__item.back__item {
