@@ -12,7 +12,7 @@ function onClickBasketHead (event) {
 }
 
 function onBasketShow() {
-    
+    document.body.classList.toggle("no-scroll");
     refs.basketModal.classList.toggle("hidden");
     refs.basketQuantity.textContent = userBasket.totalQuantity;
     refs.basketNum.textContent = userBasket.totalQuantity;
@@ -151,7 +151,7 @@ function onBasketClose() {
     refs.basketBackdrop.removeEventListener("click", onClickBasketBackdrop)
     window.removeEventListener("keydown", onEscKeyPressBasket);
     refs.basketModal.classList.toggle("hidden")
-
+    document.body.classList.toggle("no-scroll");
 }
 
 
