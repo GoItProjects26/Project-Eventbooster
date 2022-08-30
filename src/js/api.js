@@ -2,7 +2,8 @@ import axios from 'axios';
 
 const BASE_URL = 'https://app.ticketmaster.com/discovery/v2/';
 const source = 'events';
-const API_KEY = '5HiPtCjBuAY9gthoMA0oQuJCLkmuGiMG';
+// const API_KEY = '5HiPtCjBuAY9gthoMA0oQuJCLkmuGiMG';
+const API_KEY = '6iAtgNGAR43W6F7x79CI9WmegarTMZK1';
 
 export class EventApi {
   static config = {
@@ -37,11 +38,11 @@ export class EventApi {
     //   browser only: 'blob'
     responseType: 'json', // default
   };
-  constructor() { }
+  constructor() {}
   static async fetchApiData() {
     const responce = await axios.request(this.config);
     const data = responce.data;
-    localStorage.setItem("event", JSON.stringify(data));
+    localStorage.setItem('event', JSON.stringify(data));
     return data;
   }
   static setCountry(country) {
@@ -57,7 +58,7 @@ export class EventApi {
     this.config.params.page = page;
   }
   static getPage(page) {
-    return this.config.params.page
+    return this.config.params.page;
   }
   static setGeoPoint(hash) {
     this.config.params.geoPoint = hash;

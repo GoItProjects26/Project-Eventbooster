@@ -19,7 +19,8 @@ const jsModal = document.querySelector('.modal__container');
 let axiosConfig = {
   baseURL: 'https://app.ticketmaster.com/discovery/v2/events',
   params: {
-    apikey: '5HiPtCjBuAY9gthoMA0oQuJCLkmuGiMG',
+    // apikey: '5HiPtCjBuAY9gthoMA0oQuJCLkmuGiMG',
+    apikey: '6iAtgNGAR43W6F7x79CI9WmegarTMZK1',
   },
 };
 let idForFetch = '';
@@ -39,7 +40,7 @@ async function onEventClick(event) {
     idForFetch = event.target.parentNode.parentNode.dataset.id;
   }
   let response = await getById(idForFetch);
-  console.log(response, response.priceRanges);
+  console.log(response);
   renderModal(response);
   if (response.priceRanges) {
     renderPrices(response.priceRanges);
@@ -58,14 +59,14 @@ function renderModal(data) {
   } else {
     infoString = data.name;
   }
-  console.log(
-    data.images[1].url,
-    infoString,
-    dateString,
-    data._embedded.venues[0].name,
-    data.name,
-    data.id
-  );
+  // console.log(
+  //   data.images[1].url,
+  //   infoString,
+  //   dateString,
+  //   data._embedded.venues[0].name,
+  //   data.name,
+  //   data.id
+  // );
   jsModal.innerHTML = `
         <div class="modal__logo"><img
             src="${data.images[1].url}"
@@ -126,5 +127,6 @@ export function onLoadMoreClick(event) {
   // console.log(modalWho);
   closeModal();
   EventApi.setKeyword(modalWho);
+  EventApi.setCountry('');
   renderMarckup();
 }

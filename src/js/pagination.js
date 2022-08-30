@@ -1,21 +1,25 @@
-const ref = {
-  paginatedList: document.querySelector('.paginated__list'),
-  paginatedItem: [],
-};
 import { EventApi } from './api';
 import { renderMarckup } from './renderHtml';
 import { renderMarckupFromLocalStorage } from './renderHtml';
 
-export function pag1() {
-  const serverResponce = JSON.parse(localStorage.getItem('event'));
-  console.log();
+const ref = {
+  paginatedList: document.querySelector('.paginated__list'),
+};
+
+export function pag1(totalPages) {
   let total;
-  if (serverResponce.page.totalPages > 1000 / serverResponce.page.size) {
-    total = Math.floor(1000 / serverResponce.page.size);
+  // console.log(totalPages);
+  // if (data.page.totalPages > 1000 / data.page.size) {
+  //   total = Math.floor(1000 / data.page.size);
+  // } else {
+  //   total = data.page.totalPages;
+  // }
+  if (totalPages > 1000 / 16) {
+    total = Math.floor(1000 / 16);
   } else {
-    total = serverResponce.page.totalPages;
+    total = totalPages;
   }
-  // console.log(serverResponce.page);
+  // console.log(data.page);
   // console.log(total);
 
   // console.log('current page', EventApi.config.params.page);
@@ -48,18 +52,18 @@ export function pag1() {
       `<li class="paginated__item" data-page="${total - 1}">${total}</li>`
     );
   } else if (after && !before) {
-    console.log('after', after, 'before', before);
+    // console.log('after', after, 'before', before, 'current', current);
     arr.push(`<li class="paginated__item" data-page="0">1</li>`);
     arr.push(
       `<li class="paginated__item forward__item" data-page="${after}">...</li>`
     );
-    for (let i = after; i <= total; i++) {
+    for (let i = total - 4; i <= total; i++) {
       // console.log(i);
       arr.push(`<li class="paginated__item" data-page="${i - 1}">${i}</li>`);
     }
   } else if (!after && before) {
-    console.log('after', after, 'before', before, 'current', current);
-    for (let i = 1; i <= before; i++) {
+    // console.log('after', after, 'before', before, 'current', current);
+    for (let i = 1; i <= 5; i++) {
       arr.push(`<li class="paginated__item" data-page="${i - 1}">${i}</li>`);
     }
     arr.push(
@@ -70,22 +74,17 @@ export function pag1() {
     );
   }
   let string = arr.join('');
-  // console.log(string);
-  // return string;
+
   ref.paginatedList.innerHTML = string;
-  ref.paginatedItem = document.querySelectorAll('.paginated__item');
-  // console.log(ref.paginatedItem[current - 1]);
-  // console.log(current);
-  ref.paginatedItem.forEach(elem => {
+  const paginatedItems = document.querySelectorAll('.paginated__item');
+
+  paginatedItems.forEach(elem => {
     if (elem.textContent == current) elem.classList.add('item-active');
   });
   ref.paginatedList.addEventListener('click', onPageClick);
-  // ref.paginatedItem[current - 1].classList.add('item-active');
-  // document.querySelector
 }
-// результат в консоли
-// все, что нужно - пуши в массив цифр заменить разметкой
-pag1();
+
+// pag1();
 function onPageClick(event) {
   if (event.target.nodeName === 'LI') {
     // console.log(event.target.dataset.page);
@@ -96,6 +95,6 @@ function onPageClick(event) {
     //   window.scrollTo(0, 0);
     // }, 1000);
     renderMarckup();
-    pag1();
+    // pag1();
   }
 }
