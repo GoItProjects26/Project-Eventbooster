@@ -115,14 +115,14 @@ function shortDataFromServer(eventsArrayFull) {
 //generate object with less key:value from incoming object
 function desiredObjectForPage(value) {
 
-  // console.log(value.images.filter(img => img.height > 350 ? img.width < 270 : false))//.find(el => el.width > 240 ? el.height < 361 : false));
+  console.log(value.images.filter(img => img.height > 151 ? img.width > 120 : false).find(el => el.height < 365));
   return {
     id: value.id,
     name: value.name,
     localDate: value.dates.start.localDate,
 
-    mobImg1x: value.images[3].url,
-    mobImg2x: value.images[3].url,
+    mobImg1x: value.images.filter(img => img.height > 151 ? img.width > 120 : false).find(el => el.height < 370 ? el.width < 400 : false).url,
+    mobImg2x: value.images.filter(img => img.height > 151 ? img.width > 120 : false).find(el => el.height < 365).url,
 
     tabImg1x: value.images[1].url,
     tabImg2x: value.images[2].url,
