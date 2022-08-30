@@ -1,3 +1,18 @@
+header {
+  background-image: url('../images/header/logo-bg-sm.png');
+  background-position: left top;
+  background-size: auto;
+  background-repeat: no-repeat;
+
+  @media screen and (min-width: 768px) {
+    background-image: url('../images/header/logo-bg-md.png');
+  }
+
+  @media screen and (min-width: 1200px) {
+    background-image: url('../images/header/logo-bg-lg.png');
+  }
+}
+
 .header__container {
   padding-top: 80px;
   padding-bottom: 56px;
