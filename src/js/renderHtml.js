@@ -19,6 +19,7 @@ export async function renderMarckup() {
     // createPaginationOnLoad(totalPagesFromServer, totalPagesOnSite);
     if (!eventsArrayFull) {
       refs.eventList.innerHTML = `<h3 class="section_title">No any event found in your country</h3>`;
+      refs.paginatedList.innerHTML = '';
       return;
     }
     const eventsArray = shortDataFromServer(eventsArrayFull);
