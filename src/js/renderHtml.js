@@ -2,6 +2,8 @@ import { Geohash } from './geo/hash';
 import { refs } from './refs';
 import { EventApi } from './api';
 
+import { createPaginationOnLoad } from './pagination/pag'
+
 const iconLocation = `
 <defs>
 <symbol 
@@ -15,14 +17,18 @@ const iconLocation = `
        </symbol>
              </defs>`;
 //master function
-// const event = new EventApi();
+
 //render markup from server responce
 export async function renderMarckup() {
   try {
     const responce = await EventApi.fetchApiData();
     const eventsArrayFull = responce._embedded?.events;
+    const totalPagesFromServer = responce.page.totalPages;
+    const totalPagesOnSite = totalPagesFromServer - 1 > 62 ? 62 : totalPagesFromServer - 1;
+
+    createPaginationOnLoad(totalPagesFromServer, totalPagesOnSite);
     if (!eventsArrayFull) {
-      alert('Sorry, there is no such event');
+      refs.eventList.innerHTML = `<h3 class="section_title">No any event found in your country</h3>`;
       return;
     }
     const eventsArray = shortDataFromServer(eventsArrayFull);
@@ -33,15 +39,23 @@ export async function renderMarckup() {
 }
 //render markup from local storage
 export async function renderMarckupFromLocalStorage() {
+
   const localStorageData = localStorage.getItem('event');
   try {
-    const eventsArrayFull = JSON.parse(localStorageData)._embedded.events;
+    const eventsArrayFull = JSON.parse(localStorageData)._embedded?.events;
+    if (!eventsArrayFull) {
+      refs.eventList.innerHTML = `<h3 class="section_title">No any event found in your country</h3>`;
+      return
+    }
+    console.log('after');
     const eventsArray = shortDataFromServer(eventsArrayFull);
     marckup(eventsArray);
   } catch (error) {
     console.log(error);
   }
 }
+
+
 //slave functions
 // create marckup for home page
 function marckup(eventsArray) {
@@ -87,13 +101,9 @@ function desiredObjectForPage(value) {
     name: value.name,
     localDate: value.dates.start.localDate,
     mobImg: value.images[3].url,
-    concertHall: value._embedded.venues?.[0].name,
+    concertHall: value._embedded?.venues?.[0].name,
   };
 }
-//will be logic for 1st time visit our site
-function loadRandomEvent() {}
 
-// navigator.geolocation.getCurrentPosition((Position) => {
 
-//     console.log(Position.coords.latitude, Position.coords.longitude)
-// });
+

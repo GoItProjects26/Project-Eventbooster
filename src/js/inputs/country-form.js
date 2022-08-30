@@ -6,9 +6,12 @@ import { countryCodes } from '../country/countryList';
 refs.countryForm.addEventListener('change', onCountrySearch);
 
 function onCountrySearch() {
+  event.preventDefault();
   const countryName = refs.countryForm.elements.countryQuery.value;
   const countryObj = countryCodes.find(country => country.name === countryName);
   const countryCode = countryObj.code;
   EventApi.setCountry(countryCode);
+  EventApi.setPage('0');
   renderMarckup();
 }
+
