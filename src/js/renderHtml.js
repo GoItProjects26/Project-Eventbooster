@@ -19,10 +19,13 @@ export async function renderMarckup() {
     // createPaginationOnLoad(totalPagesFromServer, totalPagesOnSite);
     if (!eventsArrayFull) {
       refs.eventList.innerHTML = `<h3 class="section_title">No any event found in your country</h3>`;
+      refs.paginatedList.innerHTML = '';
       return;
     }
     const eventsArray = shortDataFromServer(eventsArrayFull);
     marckup(eventsArray);
+    // console.log(eventsArrayFull);
+    // console.log('pages', totalPagesFromServer);
     pag1(totalPagesFromServer);
   } catch (error) {
     console.log(error);
@@ -114,21 +117,38 @@ function shortDataFromServer(eventsArrayFull) {
 
 //generate object with less key:value from incoming object
 function desiredObjectForPage(value) {
-
-  console.log(value.images.filter(img => img.height > 674 ? img.width > 534 : false).find(el => el.height < 1200));
+  console.log(
+    value.images
+      .filter(img => (img.height > 674 ? img.width > 534 : false))
+      .find(el => el.height < 1200)
+  );
   return {
     id: value.id,
     name: value.name,
     localDate: value.dates.start.localDate,
 
-    mobImg1x: value.images.filter(img => img.height > 151 ? img.width > 120 : false).find(el => el.height < 370 ? el.width < 400 : false).url,
-    mobImg2x: value.images.filter(img => img.height > 151 ? img.width > 120 : false).find(el => el.height < 365).url,
+    mobImg1x: value.images
+      .filter(img => (img.height > 151 ? img.width > 120 : false))
+      .find(el => (el.height < 370 ? el.width < 400 : false)).url,
+    mobImg2x: value.images
+      .filter(img => (img.height > 151 ? img.width > 120 : false))
+      .find(el => el.height < 365).url,
 
-    tabImg1x: value.images.filter(img => img.height > 674 ? img.width > 534 : false).find(el => el.height < 1200).url,
-    tabImg2x: value.images.filter(img => img.height > 674 ? img.width > 534 : false).find(el => el.height < 1200).url,
+    tabImg1x: value.images
+      .filter(img => (img.height > 674 ? img.width > 534 : false))
+      .find(el => el.height < 1200).url,
+    tabImg2x: value.images
+      .filter(img => (img.height > 674 ? img.width > 534 : false))
+      .find(el => el.height < 1200).url,
 
-    descImg1x: value.images.filter(img => img.height > 674 ? img.width > 534 : false).find(el => el.height < 1200).url,
-    descImg2x: value.images.filter(img => img.height > 674 ? img.width > 534 : false).find(el => el.height < 1200).url,
-    concertHall: value._embedded?.venues?.[0].name ?? value._embedded?.venues?.[0].address.line1,
+    descImg1x: value.images
+      .filter(img => (img.height > 674 ? img.width > 534 : false))
+      .find(el => el.height < 1200).url,
+    descImg2x: value.images
+      .filter(img => (img.height > 674 ? img.width > 534 : false))
+      .find(el => el.height < 1200).url,
+    concertHall:
+      value._embedded?.venues?.[0].name ??
+      value._embedded?.venues?.[0].address.line1,
   };
 }
