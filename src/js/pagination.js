@@ -7,6 +7,7 @@ const ref = {
 };
 
 export function pag1(totalPages) {
+  // console.log('pagination', totalPages);
   let total;
   // console.log(totalPages);
   // if (data.page.totalPages > 1000 / data.page.size) {
@@ -27,8 +28,9 @@ export function pag1(totalPages) {
   let arr = [];
   let after;
   let before;
+  // console.log('total', total, 'current', current);
+
   if (total - current > 3) {
-    // console.log('total', total - current, 'current', current);
     before = current + 2;
   }
   if (current > 4) {
@@ -72,6 +74,10 @@ export function pag1(totalPages) {
     arr.push(
       `<li class="paginated__item" data-page="${total - 1}">${total}</li>`
     );
+  } else {
+    for (let i = 1; i <= total; i++) {
+      arr.push(`<li class="paginated__item" data-page="${i - 1}">${i}</li>`);
+    }
   }
   let string = arr.join('');
 
@@ -84,7 +90,6 @@ export function pag1(totalPages) {
   ref.paginatedList.addEventListener('click', onPageClick);
 }
 
-// pag1();
 function onPageClick(event) {
   if (event.target.nodeName === 'LI') {
     // console.log(event.target.dataset.page);
