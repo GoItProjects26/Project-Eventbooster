@@ -4,6 +4,7 @@ import { renderMarckup } from '../renderHtml';
 import { countryCodes } from '../country/countryList';
 
 refs.countryForm.addEventListener('change', onCountrySearch);
+refs.countryForm.addEventListener('dblclick', onCountryFormReset);
 
 function onCountrySearch(event) {
   event.preventDefault();
@@ -15,3 +16,6 @@ function onCountrySearch(event) {
   renderMarckup();
 }
 
+function onCountryFormReset() {
+  refs.countryForm.elements.countryQuery.value = '';
+}
