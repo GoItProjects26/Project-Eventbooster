@@ -1,4 +1,5 @@
 export const countryCodes = [
+  { name: 'ALL COUNTRIES', code: 'XX' },
   { name: 'AUSTRIA', code: 'AT' },
   { name: 'AUSTRALIA', code: 'AU' },
   { name: 'BELGIUM', code: 'BE' },

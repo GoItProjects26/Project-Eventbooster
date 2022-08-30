@@ -25,6 +25,7 @@ function calculateTime(obj) {
     const begin = obj?.contentShoppingCart[0]?.timer;
     const end = begin + obj.duration
     let passedTime = end - Date.now();
+  
     if (passedTime <= 500) timeIsOver(obj)
     return addLeadingZero(convertMs(passedTime));
 }
@@ -32,21 +33,30 @@ function calculateTime(obj) {
 function timeIsOver (obj) {
     obj.clearByTimerEvent()
     updateBasket ()
+    refs.basketTimerHeader.textContent = "";
 }
 
 function setTimer (basketObj) {
-    let {minutes, seconds} = calculateTime(basketObj)
-    refs.basketTimer.textContent = `${minutes} : ${seconds}`;
-    refs.basketTimerHeader.textContent = `${minutes} : ${seconds}`;
-return timerId =  setInterval(()=>{
-    let {minutes, seconds} = calculateTime(basketObj)
-        refs.basketTimer.textContent = `${minutes} : ${seconds}`;
-        refs.basketTimerHeader.textContent = `${minutes} : ${seconds}`;
 
+    timerDisplay(basketObj)
+ 
+return timerId =  setInterval(()=>{
+
+    timerDisplay(basketObj)
     }, basketObj.step)
 
 }
 
+function timerDisplay (timeObj) {
+    let {minutes, seconds} = calculateTime(timeObj)
+    if(!isNaN(minutes) || !isNaN(seconds)) {
+        refs.basketTimer.textContent = `${minutes} : ${seconds}`;
+        refs.basketTimerHeader.textContent = `${minutes} : ${seconds}`;
+    }
+}
+
 function deleteTimer (id) {
+    refs.basketTimer.textContent = "";
+    refs.basketTimerHeader.textContent = "";
     clearInterval(id)
 }

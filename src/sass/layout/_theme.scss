@@ -2,10 +2,28 @@ body.light {
   background-color: var(--modal-bg-color);
   color: var(--modal-primary-text-color);
   background-image: url('../images/body/noise-lg.png');
+  background-size: cover;
+
+  header {
+    background-image: linear-gradient(
+        to right,
+        rgba(249, 200, 232, 0.4),
+        rgba(238, 227, 234, 0.4)
+      ),
+      url('../images/header/concert.png');
+    background-position: left bottom;
+    background-size: auto;
+    background-repeat: repeat-x;
+  }
 
   .search-form,
   .country-form {
     border: 1px solid var(--accent-text-color);
+  }
+
+  .search-form__input,
+  .country-form__input {
+    color: var(--secondaty-text-color);
   }
 }
 
