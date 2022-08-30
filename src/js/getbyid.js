@@ -4,6 +4,8 @@ import { openModal } from './modal';
 import { closeModal } from './modal';
 import { dataToCart } from './addtocart';
 import ticketIcon from '../images/ticket1.svg';
+import { EventApi } from './api';
+import { renderMarckup } from './renderHtml';
 
 const axios = require('axios').default;
 const jsModal = document.querySelector('.modal__container');
@@ -79,7 +81,7 @@ function renderModal(data) {
           </li>
           <li class="modal__item">
             <h3 class="modal__title">WHO</h3>
-            <p class="modal__text">${data.name}</p>
+            <p class="modal__text" id="modal__name">${data.name}</p>
           </li>
           <li class="modal__item">
             <h3 class="modal__title">PRICES</h3>
@@ -88,6 +90,9 @@ function renderModal(data) {
         </ul>
       </div>`;
 }
+
+import ticketIcon from '../images/ticket1.svg';
+
 function renderPrices(data) {
   // console.log(data);
   const pricesElem = document.querySelector('.modal__prices');
@@ -95,11 +100,7 @@ function renderPrices(data) {
     .map(
       (elem, index) => `
       <div class="prices__box">
-       <img
-          class="prices__icon"
-          src="${ticketIcon}"
-          alt="Ticket icon"
-        />
+<img class="prices__icon" src="${ticketIcon}" alt="Ticket icon" />
         <p class="modal__text prices__text">
           ${elem.type} ${elem.min} - ${elem.max} ${elem.currency}
         </p>
@@ -109,4 +110,11 @@ function renderPrices(data) {
     )
     .join('');
   pricesElem.innerHTML = pricesMarkup;
+}
+export function onLoadMoreClick(event) {
+  const modalWho = document.querySelector('#modal__name').textContent;
+  // console.log(modalWho);
+  closeModal();
+  EventApi.setKeyword(modalWho);
+  renderMarckup();
 }

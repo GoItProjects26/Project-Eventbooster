@@ -1,7 +1,5 @@
 import { refs } from './refs';
-
-// let backdrop = document.querySelector('.backdrop');
-// let modalCloseBtn = document.querySelector('.modal__close-btn');
+import { onLoadMoreClick } from './getbyid';
 
 export function openModal() {
   refs.modalBackdrop.classList.remove('is-hidden');
@@ -9,6 +7,7 @@ export function openModal() {
   refs.modalCloseBtn.addEventListener('click', closeModal);
   refs.modalBackdrop.addEventListener('click', onBackdropClick);
   window.addEventListener('keydown', onEscKeydown);
+  refs.modalMoreBtn.addEventListener('click', onLoadMoreClick);
 }
 
 export function closeModal() {
