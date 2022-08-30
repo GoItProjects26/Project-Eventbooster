@@ -1,17 +1,23 @@
-const ref = {
-  paginatedList: document.querySelector('.paginated__list'),
-  paginatedItem: [],
-};
 import { EventApi } from './api';
 import { renderMarckup } from './renderHtml';
 import { renderMarckupFromLocalStorage } from './renderHtml';
 
-export function pag1(data) {
+const ref = {
+  paginatedList: document.querySelector('.paginated__list'),
+};
+
+export function pag1(totalPages) {
   let total;
-  if (data.page.totalPages > 1000 / data.page.size) {
-    total = Math.floor(1000 / data.page.size);
+  // console.log(totalPages);
+  // if (data.page.totalPages > 1000 / data.page.size) {
+  //   total = Math.floor(1000 / data.page.size);
+  // } else {
+  //   total = data.page.totalPages;
+  // }
+  if (totalPages > 1000 / 16) {
+    total = Math.floor(1000 / 16);
   } else {
-    total = data.page.totalPages;
+    total = totalPages;
   }
   // console.log(data.page);
   // console.log(total);
@@ -70,9 +76,9 @@ export function pag1(data) {
   let string = arr.join('');
 
   ref.paginatedList.innerHTML = string;
-  ref.paginatedItem = document.querySelectorAll('.paginated__item');
+  const paginatedItems = document.querySelectorAll('.paginated__item');
 
-  ref.paginatedItem.forEach(elem => {
+  paginatedItems.forEach(elem => {
     if (elem.textContent == current) elem.classList.add('item-active');
   });
   ref.paginatedList.addEventListener('click', onPageClick);
@@ -89,6 +95,6 @@ function onPageClick(event) {
     //   window.scrollTo(0, 0);
     // }, 1000);
     renderMarckup();
-    pag1();
+    // pag1();
   }
 }
