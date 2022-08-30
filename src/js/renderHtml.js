@@ -1,8 +1,8 @@
 import { Geohash } from './geo/hash';
 import { refs } from './refs';
 import { EventApi } from './api';
-
-import { createPaginationOnLoad } from './pagination/pag'
+import { pag1 } from './pagination';
+import { createPaginationOnLoad } from './pagination/pag';
 
 const iconLocation = `
 <defs>
@@ -24,8 +24,9 @@ export async function renderMarckup() {
     const responce = await EventApi.fetchApiData();
     const eventsArrayFull = responce._embedded?.events;
     const totalPagesFromServer = responce.page.totalPages;
-    const totalPagesOnSite = totalPagesFromServer - 1 > 62 ? 62 : totalPagesFromServer - 1;
-
+    const totalPagesOnSite =
+      totalPagesFromServer - 1 > 62 ? 62 : totalPagesFromServer - 1;
+    pag1(responce);
     createPaginationOnLoad(totalPagesFromServer, totalPagesOnSite);
     if (!eventsArrayFull) {
       refs.eventList.innerHTML = `<h3 class="section_title">No any event found in your country</h3>`;
@@ -39,13 +40,12 @@ export async function renderMarckup() {
 }
 //render markup from local storage
 export async function renderMarckupFromLocalStorage() {
-
   const localStorageData = localStorage.getItem('event');
   try {
     const eventsArrayFull = JSON.parse(localStorageData)._embedded?.events;
     if (!eventsArrayFull) {
       refs.eventList.innerHTML = `<h3 class="section_title">No any event found in your country</h3>`;
-      return
+      return;
     }
     console.log('after');
     const eventsArray = shortDataFromServer(eventsArrayFull);
@@ -54,7 +54,6 @@ export async function renderMarckupFromLocalStorage() {
     console.log(error);
   }
 }
-
 
 //slave functions
 // create marckup for home page
@@ -68,7 +67,6 @@ function marckup(eventsArray) {
 
 // template for cards
 function templateItems(event) {
-
   return `
    <li class="list_item" data-id ="${event.id}">
         <div class="event_img">
@@ -102,9 +100,8 @@ function desiredObjectForPage(value) {
     name: value.name,
     localDate: value.dates.start.localDate,
     mobImg: value.images[3].url,
-    concertHall: value._embedded?.venues?.[0].name ?? value._embedded?.venues?.[0].address.line1,
+    concertHall:
+      value._embedded?.venues?.[0].name ??
+      value._embedded?.venues?.[0].address.line1,
   };
 }
-
-
-
