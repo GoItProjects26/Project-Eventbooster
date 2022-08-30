@@ -7,11 +7,12 @@ function renderBasketMarkup(data) {
     refs.basketMarkupContainer.innerHTML = '';
     let markup = '';
 
-    data.forEach(({name, images, accessibility: {ticketLimit}}) => {
-      
-      
-      markup += `<li class="event__item"><div class="event__container"><img src=${smallestPhoto(images)} class="event__img"><div><p class="event__text">${name}</p></div></li>`;
-    });
+    data.forEach(({name, images, _embedded: {venues}}) => {
+      let path = "./images/icons.svg#icon-location";
+      let {city: {name: nameCity}, country: {name: nameCountry}} = venues[0];
+       markup += `<li class="event__item"><div class="event__container"><img src=${smallestPhoto(images)} class="event__img"><div><p class="event__text">${name}</p><div class="location__container"><svg class="location__svg" width="20" height="20"><use class="location__use" href=${path}></use></svg><p class="location__text">${nameCity}, ${nameCountry}</p></div></div></li>`;
+    
+      });
     refs.basketMarkupContainer.insertAdjacentHTML('beforeend', markup);
   }
 
@@ -25,3 +26,5 @@ function renderBasketMarkup(data) {
       })
       return arr[0].url
     }
+
+// refs.svgIcon.setAttribute("href", "./images/icons.svg#icon-location");

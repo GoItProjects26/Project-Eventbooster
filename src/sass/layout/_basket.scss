@@ -261,6 +261,11 @@
         color: var(--accent-bg-color);
         background-color: var(--primary-text-color);
         cursor: pointer;
+
+        transition-property: box-shadow;
+        transition-duration: 250ms;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
         
     }
 
@@ -275,6 +280,30 @@
         0 0 5px var(--primary-text-color);
     }
 
+.location__container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.location__text {
+    font-size: 13px;
+    font-weight: 400;
+}
+
+.location__svg {
+    fill:inherit;
+    
+}
+
+
+    .basket__timer--header {
+        position: absolute;
+        right: 80px;
+        top: 55px;
+        font-weight: 700;
+        font-size: 16px;
+        color: #DC56C5;
+    }
 
 
 

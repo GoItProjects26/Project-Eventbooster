@@ -37,10 +37,11 @@ function timeIsOver (obj) {
 function setTimer (basketObj) {
     let {minutes, seconds} = calculateTime(basketObj)
     refs.basketTimer.textContent = `${minutes} : ${seconds}`;
+    refs.basketTimerHeader.textContent = `${minutes} : ${seconds}`;
 return timerId =  setInterval(()=>{
     let {minutes, seconds} = calculateTime(basketObj)
         refs.basketTimer.textContent = `${minutes} : ${seconds}`;
-
+        refs.basketTimerHeader.textContent = `${minutes} : ${seconds}`;
 
     }, basketObj.step)
 
