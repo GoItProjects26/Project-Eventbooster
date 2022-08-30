@@ -19,7 +19,8 @@ const jsModal = document.querySelector('.modal__container');
 let axiosConfig = {
   baseURL: 'https://app.ticketmaster.com/discovery/v2/events',
   params: {
-    apikey: '5HiPtCjBuAY9gthoMA0oQuJCLkmuGiMG',
+    // apikey: '5HiPtCjBuAY9gthoMA0oQuJCLkmuGiMG',
+    apikey: '6iAtgNGAR43W6F7x79CI9WmegarTMZK1',
   },
 };
 let idForFetch = '';
@@ -126,5 +127,6 @@ export function onLoadMoreClick(event) {
   // console.log(modalWho);
   closeModal();
   EventApi.setKeyword(modalWho);
+  EventApi.setCountry('');
   renderMarckup();
 }
