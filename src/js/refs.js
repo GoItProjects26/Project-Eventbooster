@@ -4,7 +4,9 @@ export const refs = {
   paginatedList: document.querySelector(".paginated__list"),
   itemActive: document.querySelector(".item-active"),
   //================================================================================
-  modalBuyBtn: document.querySelector('.modal__buy-btn'),
+  modalBuyBtn: document.querySelector('.js-buy-btn'),
+  modalBackdrop: document.querySelector('.backdrop'),
+  modalCloseBtn: document.querySelector('.modal__close-btn'),
 
   basketModal: document.querySelector('.modal-basket-backdrop'),
   basketQuantity: document.querySelector('.modal-basket__quantity'),
@@ -21,11 +23,16 @@ export const refs = {
   basketBuyBtn: document.querySelector('.modal-basket__buy'),
   basketClearBtn: document.querySelector('.modal-basket__clear'),
   basketBackdrop: document.querySelector('.modal-basket-backdrop'),
+  basketTextEmpty: document.querySelector(".modal-basket__text--empty"),
+  basketTextFull: document.querySelector(".modal-basket__text--full"),
+  basketTextTicket: document.querySelector(".modal-basket__ticket"),
+  basketTimer: document.querySelector(".basket__timer"),
+
 
   miniModal: document.querySelector('.mini-modal-backdrop'),
   miniModalBtnCart: document.querySelector('.mini-modal__button'),
   miniModalBtnClose: document.querySelector('.mini-modal__close'),
-  miniModalBackdrop: document.querySelector(".mini-modal-backdrop"),
+  miniModalBackdrop: document.querySelector('.mini-modal-backdrop'),
 
   searchForm: document.querySelector('#search-form'),
   searchInput: document.querySelector('.search-form__input'),

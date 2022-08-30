@@ -15,10 +15,11 @@
       </div>
     <div class="modal-basket__container">
       <div class="modal-basket__text-container">
-    <div class="basket__timer">TIMER</div>
-    <p class="modal-basket__text">You have booked <span class="modal-basket__quantity">0</span><span class="modal-basket__ticket">tickets</span>   for the following events:</p>
+    <div class="basket__timer"></div>
+    <p class="modal-basket__text modal-basket__text--empty">You have not selected an event yet.  Cart is empty</p>
+    <p class="modal-basket__text modal-basket__text--full hidden">You have booked <span class="modal-basket__quantity">0</span><span class="modal-basket__ticket"></span>   for the following events:</p>
     <ul class="modal-basket__name list">
-        <li >
+        <li>
         <div>
             <div class="modal-basket__name">Name event</div>
             <!-- <div>
@@ -40,8 +41,8 @@
   <div>
     <ul class="modal-basket__list list">
     <li class="modal-basket__item"><button class="modal-basket__continue" type="button">CONTINUE  BOOKING</button></li>
-    <li class="modal-basket__item"><button class="modal-basket__buy" type="button">BUY</button></li>
-    <li class="modal-basket__item"><button class="modal-basket__clear" type="button">CLEAR THE LIST</button></li>
+    <li class="modal-basket__item"><button class="modal-basket__buy" type="button" disabled>BUY</button></li>
+    <li class="modal-basket__item"><button class="modal-basket__clear" type="button" disabled>CLEAR THE LIST</button></li>
   </ul>
   </div>
 </div> 
