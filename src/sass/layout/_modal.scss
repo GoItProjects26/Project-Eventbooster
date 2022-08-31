@@ -46,6 +46,7 @@
   margin: 0;
   border: none;
   background-color: transparent;
+  cursor: pointer;
 }
 .modal__icon {
   display: block;
@@ -187,6 +188,7 @@
   border: 1px solid var(--modal-accent-text-color);
   border-radius: 5px;
   background-color: transparent;
+  cursor: pointer;
   @media screen and (min-width: 768px) {
     width: 255px;
     margin-top: 40px;
@@ -216,6 +218,7 @@
   background-color: var(--modal-color);
   border: none;
   border-radius: 5px;
+  cursor: pointer;
 }
 .prices__btn-txt {
   font-family: Montserrat;
