@@ -18,3 +18,4 @@ import './js/geo/geoApi';
 import './js/country/dropDown';
 
 // import './js/pagination/pag';
+import './js/geo/log';
