@@ -1,4 +1,5 @@
 import './js/theme';
+import './js/spinner';
 
 import './js/onEvent';
 // import './js/pagination/pagination1';

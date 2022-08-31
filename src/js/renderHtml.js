@@ -7,10 +7,12 @@ import { createPaginationOnLoad } from './pagination/pag';
 const iconLocation = `
  <svg class="location_icon" width="6" height="9" xmlns="http://www.w3.org/2000/svg"><path d="M3 0C1.346 0 0 1.403 0 3.128 0 5.296 3.003 9 3.003 9S6 5.19 6 3.128C6 1.403 4.654 0 3 0Zm.905 4.044c-.25.26-.577.39-.905.39a1.25 1.25 0 0 1-.905-.39c-.5-.52-.5-1.367 0-1.887a1.246 1.246 0 0 1 1.81 0c.5.52.5 1.367 0 1.887Z"/></svg>`;
 //master function
+let preLoad = document.querySelector('.orbit-spinner');
 
 //render markup from server responce
 export async function renderMarckup() {
   try {
+    preLoad.classList.remove('visually-hidden');
     const responce = await EventApi.fetchApiData();
     const eventsArrayFull = responce._embedded?.events;
     const totalPagesFromServer = responce.page.totalPages;
@@ -18,12 +20,16 @@ export async function renderMarckup() {
       totalPagesFromServer - 1 > 62 ? 62 : totalPagesFromServer - 1;
     // createPaginationOnLoad(totalPagesFromServer, totalPagesOnSite);
     if (!eventsArrayFull) {
+      preLoad.classList.add('visually-hidden');
       refs.eventList.innerHTML = `<h3 class="section_title">No any event found in your country</h3>`;
       refs.paginatedList.innerHTML = '';
       return;
     }
     const eventsArray = shortDataFromServer(eventsArrayFull);
+    preLoad.classList.add('visually-hidden');
+
     marckup(eventsArray);
+
     // console.log(eventsArrayFull);
     // console.log('pages', totalPagesFromServer);
     pag1(totalPagesFromServer);
