@@ -5,7 +5,7 @@ export default class Basket {
         this.vipQuantity = 0;
         this.standardQuantity = 0;
         this.totalQuantity = 0;
-        this.duration = 600000;
+        this.duration = 810000;
         this.step = 1000;
         this.isBasketEmpty = true;
     }
@@ -28,6 +28,8 @@ export default class Basket {
 
   addEvent(dataId) {
     dataId.timer = Date.now();
+    console.log(dataId.timer)
+    console.log("add")
     this.contentShoppingCart.push(dataId);
   }
 

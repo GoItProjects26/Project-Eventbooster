@@ -27,6 +27,7 @@ function calculateTime(obj) {
     let passedTime = end - Date.now();
   
     if (passedTime <= 500) timeIsOver(obj);
+    
     return addLeadingZero(convertMs(passedTime));
 }
 
@@ -43,6 +44,9 @@ function timerDisplay (timeObj) {
     if(!isNaN(minutes) || !isNaN(seconds)) {
         refs.basketTimer.textContent = `${minutes} : ${seconds}`;
         refs.basketTimerHeader.textContent = `${minutes} : ${seconds}`;
+    } else {
+        refs.basketTimer.textContent = "";
+        refs.basketTimerHeader.textContent = "";
     }
 }
 
