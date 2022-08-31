@@ -140,7 +140,7 @@ function localStorageCheck () {
     const oldUserBasket = (JSON.parse(localStorage.getItem("userBasket")))
     userBasket = new Basket;
     
-    if (oldUserBasket.contentShoppingCart[oldUserBasket.contentShoppingCart.length - 1].timer < Date.now() - userBasket.duration) return userBasket = new Basket
+    if (oldUserBasket.contentShoppingCart[oldUserBasket.contentShoppingCart.length - 1]?.timer < Date.now() - userBasket.duration) return userBasket = new Basket
     return Object.assign(userBasket, oldUserBasket)
 
 }
