@@ -6,6 +6,7 @@ import {
     signInWithEmailAndPassword, signOut, onAuthStateChanged, GoogleAuthProvider
 } from "firebase/auth";
 import { getDatabase, ref, set, child, get, update, push } from "firebase/database";
+import {clearAfterSignOut} from "../basket" //clean basket
 //Файл настройок для ФАЯБЕЙЗА з акаунту
 const firebaseConfig = {
     apiKey: "AIzaSyA1qR_n73lnbDIB96TfK_yMCuERhUDCeuA",
@@ -104,6 +105,8 @@ function userAway(params) {
         logBtn.addEventListener('click', createForm);
         logBtn.classList.remove('js-hidden');
         // Sign-out successful.
+
+        clearAfterSignOut()
     }).catch((error) => {
         notiflix.Notify.failure(`${error.message}`)
         // An error happened.

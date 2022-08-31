@@ -42,7 +42,7 @@ export class EventApi {
   static async fetchApiData() {
     const responce = await axios.request(this.config);
     const data = responce.data;
-    localStorage.setItem('event', JSON.stringify(data));
+    // localStorage.setItem('event', JSON.stringify(data));
     return data;
   }
   static setCountry(country) {

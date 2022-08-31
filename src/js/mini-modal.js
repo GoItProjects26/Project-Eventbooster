@@ -2,7 +2,7 @@
 
 
 import {refs} from "./refs";
-import {userBasket, ESC_KEY_CODE, onBasketShow} from "./basket";
+import {userBasket, ESC_KEY_CODE, onBasketShow, addToLocalStorage} from "./basket";
 
 import {closeModal} from "./modal"
 export {onClickModalBuyBtn}
@@ -13,11 +13,11 @@ export {onClickModalBuyBtn}
 // refs.modalBuyBtn.addEventListener("click", onClickModalBuyBtn);
     function onClickModalBuyBtn(data) {
         refs.miniModal.classList.toggle("hidden");
-        const basketId = data.id;
+        // const basketId = data.id;
         userBasket.addEvent(data);
         userBasket.increaseStandardQuantity()
-        localStorage.setItem("userBasket", JSON.stringify(userBasket));
-    
+        addToLocalStorage(userBasket);
+  
         refs.miniModalBackdrop.addEventListener("click", onClickMiniModalBackdrop);
         window.addEventListener("keydown", onEscKeyPressMiniModal);
         refs.basketContainerHead.classList.remove("hidden")
