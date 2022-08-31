@@ -63,6 +63,12 @@
   cursor: pointer;
 }
 
+.modal__btn-sign-in:hover,
+.modal__btn-sign-in:focus {
+  background-color: var(--accent-text-color);
+  color: var(--modal-color);
+}
+
 .signin__btn-text {
   font-family: Montserrat;
   font-size: 14px;
@@ -84,6 +90,12 @@
   border-radius: 5px;
   background-color: transparent;
   cursor: pointer;
+}
+
+.modal__btn-sign-up:hover,
+.modal__btn-sign-up:focus {
+  background-color: var(--accent-text-color);
+  color: var(--primary-text-color);
 }
 
 .registration__input {
