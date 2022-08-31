@@ -74,7 +74,7 @@ function logInUser() {
         .then((userCredential) => {
             // Signed in 
             const user = userCredential.user;
-            uid = user.uid;
+            let uid = user.uid;
             console.log(user);
             // ...
             notiflix.Notify.success(`User #${uid} logged`);
