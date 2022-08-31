@@ -1,33 +1,53 @@
-
 <div class="modal-basket-backdrop hidden">
-  <div class="modal-basket" js-modal-basket>
+  <div class="modal-basket js-modal-basket">
     <div class="basket basket--modal">
-        <a class="basket__link" href="#" >
-          <svg class="basket__svg"aria-label="shopping cart" width="20" height = "20">
-            <use href="./images/icons.svg#icon-cart"></use> 
-          </svg>
-          <div class="basket__container basket__container--modal hidden" js-basket-modal>
-            <span class="basket__num basket__num--modal" js-basket-num>
-              0
-            </span>
-          </div>
-        </a>
-      </div>
+      <a class="basket__link" href="#">
+        <svg
+          class="basket__svg"
+          aria-label="shopping cart"
+          width="20"
+          height="20"
+        >
+          <use href="./images/icons.svg#icon-cart"></use>
+        </svg>
+        <div
+          class="basket__container basket__container--modal hidden js-basket-modal"
+        >
+          <span class="basket__num basket__num--modal js-basket-num"> 0 </span>
+        </div>
+      </a>
+    </div>
     <div class="modal-basket__container">
       <div class="modal-basket__text-container">
-    <div class="basket__timer"></div>
-    <p class="modal-basket__text modal-basket__text--empty">You have not selected an event yet.  Cart is empty</p>
-    <p class="modal-basket__text modal-basket__text--full hidden">You have booked <span class="modal-basket__quantity">0</span><span class="modal-basket__ticket"></span>   for the following events:</p>
-    <ul class="modal-basket__name list">
-    </ul>
+        <div class="basket__timer"></div>
+        <p class="modal-basket__text modal-basket__text--empty">
+          You have not selected an event yet. Cart is empty
+        </p>
+        <p class="modal-basket__text modal-basket__text--full hidden">
+          You have booked <span class="modal-basket__quantity">0</span
+          ><span class="modal-basket__ticket"></span> for the following events:
+        </p>
+        <ul class="modal-basket__name list"></ul>
+      </div>
+      <div>
+        <ul class="modal-basket__list list">
+          <li class="modal-basket__item">
+            <button class="modal-basket__continue" type="button">
+              CONTINUE BOOKING
+            </button>
+          </li>
+          <li class="modal-basket__item">
+            <button class="modal-basket__buy" type="button" disabled>
+              BUY
+            </button>
+          </li>
+          <li class="modal-basket__item">
+            <button class="modal-basket__clear" type="button" disabled>
+              CLEAR THE LIST
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
-  <div>
-    <ul class="modal-basket__list list">
-    <li class="modal-basket__item"><button class="modal-basket__continue" type="button">CONTINUE  BOOKING</button></li>
-    <li class="modal-basket__item"><button class="modal-basket__buy" type="button" disabled>BUY</button></li>
-    <li class="modal-basket__item"><button class="modal-basket__clear" type="button" disabled>CLEAR THE LIST</button></li>
-  </ul>
-  </div>
-</div> 
-</div>
 </div>
