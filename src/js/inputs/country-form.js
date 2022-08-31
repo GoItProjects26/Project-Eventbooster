@@ -4,7 +4,7 @@ import { renderMarckup } from '../renderHtml';
 import { countryCodes } from '../country/countryList';
 
 refs.countryForm.addEventListener('change', onCountrySearch);
-refs.countryForm.addEventListener('dblclick', onCountryFormReset);
+refs.countryInput.addEventListener('mouseenter', onCountryFormReset);
 
 function onCountrySearch(event) {
   event.preventDefault();
