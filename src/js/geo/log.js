@@ -1,3 +1,4 @@
+import notiflix from 'notiflix'
 import { initializeApp } from 'firebase/app';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { getDatabase, ref, set, child, get, update, push } from "firebase/database";
@@ -14,31 +15,34 @@ const firebaseConfig = {
 // Initialize Firebase в коді на сайті 
 const app = initializeApp(firebaseConfig);
 // створння сутності для реєстрації
-const auth = getAuth(app);
+export const auth = getAuth(app);
 //створння сутності для доступ до БД
 const database = getDatabase(app);
 //шлях до БД
 const dbRef = ref(database);
+//==========================================================
 
-
-
+//отримуємо доступ до кнопки входу в аккаунт і шапки сайту для створення дин. розмітки
+const signOutBtn = document.querySelector('.js-sign-out');
 const logBtn = document.querySelector('.js-sign');
 const header = document.querySelector('header');
+//слухаємо кнопку входу в аккаунт 
+logBtn.addEventListener('click', createForm);
 
-logBtn.addEventListener('click', createForm)
-
-
+// Динамічно створбємо форму реєстрації
 function createForm() {
+    // створюємо темплейт розмітки
     let tmp = getAuthForm();
+    //додаєм розмітку
     header.insertAdjacentHTML("beforeend", tmp);
-
+    //оримуємо доступ до створених динамічно елементів
     const refAuth = {
         signUp: document.querySelector('.js-signup-btn'),
         signIn: document.querySelector('.js-signin-btn'),
         authCloseBtn: document.querySelector('.js-auth-close'),
         authBlock: document.querySelector('.js-auth-backdrop'),
     };
-    //закриття модалки реєстрації
+    //закриття модалки реєстрації по кліку на бекдроп, ескейп, кнопку-хрестик
     refAuth.authCloseBtn.addEventListener("click", () => refAuth.authBlock.remove());
     window.addEventListener('keydown', (e) => e.code === 'Escape' ? refAuth.authBlock.remove() : null);
     refAuth.authBlock.addEventListener("click", (e) => e.currentTarget === e.target ? refAuth.authBlock.remove() : null);
@@ -46,117 +50,73 @@ function createForm() {
     refAuth.signUp.addEventListener("click", signUpUser);
     refAuth.signIn.addEventListener("click", logInUser);
 }
-let uid = null;
-//створення розмітки форми по натиску 
-export function getAuthForm() {
-    return `<div class="backdrop js-auth-backdrop">
-  <!-- is-hidden -->
-  <div class="reg-modal ">
-    <button type="button" class="modal__close-btn js-auth-close">
-    x
-      <svg class="modal__icon">
-        <use href="./images/icons.svg#icon-close"></use>
-      </svg>
-    </button>
-    <form class="registration__form js-registration-form" id="log-form">
-      <div class="reg_textfield reg__float-label">
-        <label class="registration__label" for="email">Email</label>
-        <input
-          type="email"
-          class="registration__input"
-          id="email"
-          name="email"
-          placeholder="Write your email"
-          required
-        />
-      </div>
-      <div class="reg_textfield reg__float-label">
-        <label class="registration__label" for="password">Password</label>
-        <input
-          type="password"
-          class="registration__input input__mar"
-          id="password"
-          name="password"
-          placeholder="Write your password"
-          required
-        />
-      </div>
-      <button type="submit" class="modal__btn-sign-in js-signin-btn">
-        <p class="signin__btn-text">Sign in</p>
-      </button>
-      <button type="submit" class="modal__btn-sign-up js-signup-btn">
-        <p class="signup__btn-text">Registration</p>
-      </button>
-    </form>
-  </div>
-</div>`
-    //     return `
-    //     <form class="mui-form" id="log-form">
-    //       <div class="mui-textfield mui-textfield--float-label">
-    //         <input type="email" id="email" name ="email" required>
-    //         <label for="email">Email</label>
-    //       </div>
-    //       <div class="mui-textfield mui-textfield--float-label">
-    //         <input type="password" id="password" name ="password" required>
-    //         <label for="password">Пароль</label>
-    //       </div>
-    //       <button
-    //         type="submit"
-    //         class="btn-sign-in"
-    //       >
-    //         Войти
-    //       </button>
 
-    //         <button
-    //         type="submit"
-    //         class="btn-sign-up"
-    //       >
-    //         Зарегестрироваться
-    //       </button>
-    //     </form>
-    //   `
-}
-//вход юзера
+//==================створюємо 
+//вхід юзера
 function logInUser() {
+    // першкоджаєм оновлення сторінки на подію сабміт(====*)
     event.preventDefault();
-    const logForm = document.querySelector('#log-form');
+    // отримуємо значення інпутів форми
+    const logForm = document.querySelector('.js-registration-form');
     const password = logForm.password.value;
     const email = logForm.email.value;
+    // формула фаєрбейс для реєстрації по email, password
     signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             // Signed in 
             const user = userCredential.user;
             uid = user.uid;
             // ...
-            // writeUserData(userId = 0, user)
+            notiflix.Notify.success(`User #${uid} logged`);
+            //показуємо кнопку виходу і додаємо слухач
+            signOutBtn.classList.remove('js-hidden');
+            signOutBtn.addEventListener('click', userAway);
+            //ховаємо кнопку входу і знімаємо слухач
+            logBtn.removeEventListener('click', createForm);
+            logBtn.classList.add('js-hidden');
+            //закриваємо форму реєстрації
+            document.querySelector('.js-auth-backdrop').remove();
             console.log(user);
         })
         .catch((error) => {
+            notiflix.Notify.failure(`User not found`);
             const errorCode = error.code;
             const errorMessage = error.message;
         });
-    console.log('signIn')
 }
 
 //вихід юзера з аккаунту
-const signOutBtn = document.querySelector('#signOut');
-signOutBtn.addEventListener('click', userAway)
 function userAway(params) {
     signOut(auth).then(() => {
-        console.log('you out of your accaunt');
+        notiflix.Notify.info("Sign-out successful");
+        //ховаємо кнопку виходу і знімаємо слухач
+        signOutBtn.classList.add('js-hidden');
+        signOutBtn.removeEventListener('click', userAway);
+        //показуємо кнопку входу і додаємо слухач
+        logBtn.addEventListener('click', createForm);
+        logBtn.classList.remove('js-hidden');
         // Sign-out successful.
     }).catch((error) => {
+        notiflix.Notify.failure(`${error.message}`)
         // An error happened.
     });
 }
+
 //создание юзра
 function signUpUser() {
-    event.preventDefault();
-    const logForm = document.querySelector('#log-form');
-    const password = logForm.password.value;
-    const email = logForm.email.value;
-    createUserWithEmailAndPassword(auth, email, password);
-    console.log(' signUp');
+    try {
+        event.preventDefault();
+        //отримання даних з форми
+        const logForm = document.querySelector('.js-registration-form');
+        const password = logForm.password.value;
+        const email = logForm.email.value;
+        //створення юзера за допомогою мила і паролю
+        createUserWithEmailAndPassword(auth, email, password);
+        notiflix.Notify.success(`New accaunt created. Sign in please!`)
+    } catch (error) {
+        console.log(error);
+        notiflix.Notify.failure(`Some problem with regisration`)
+    }
 }
 
 // запис в базу даних повний перезапис всіх данних за значнням ключа
@@ -245,4 +205,47 @@ export function writeNewPost(postData = {}) {
         console.log(error);
     }
 
+}
+
+
+//створення розмітки форми по натиску 
+export function getAuthForm() {
+    return `<div class="backdrop js-auth-backdrop">
+  <!-- is-hidden -->
+  <div class="reg-modal ">
+    <button type="button" class="modal__close-btn js-auth-close">
+    x
+    </button>
+    <form class="registration__form js-registration-form" id="log-form">
+      <div class="reg_textfield reg__float-label">
+        <label class="registration__label" for="email">Email</label>
+        <input
+          type="email"
+          class="registration__input"
+          id="email"
+          name="email"
+          placeholder="Write your email"
+          required
+        />
+      </div>
+      <div class="reg_textfield reg__float-label">
+        <label class="registration__label" for="password">Password</label>
+        <input
+          type="password"
+          class="registration__input input__mar"
+          id="password"
+          name="password"
+          placeholder="Write your password"
+          required
+        />
+      </div>
+      <button type="submit" class="modal__btn-sign-in js-signin-btn">
+        <span class="signin__btn-text">Sign in</span>
+      </button>
+      <button type="submit" class="modal__btn-sign-up js-signup-btn">
+        <span class="signup__btn-text">Registration</span>
+      </button>
+    </form>
+  </div>
+</div>`
 }
