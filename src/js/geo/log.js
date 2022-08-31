@@ -1,6 +1,10 @@
 import notiflix from 'notiflix'
 import { initializeApp } from 'firebase/app';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import {
+    getAuth, signInWithPopup,
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword, signOut, onAuthStateChanged, GoogleAuthProvider
+} from "firebase/auth";
 import { getDatabase, ref, set, child, get, update, push } from "firebase/database";
 //Файл настройок для ФАЯБЕЙЗА з акаунту
 const firebaseConfig = {
@@ -16,6 +20,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 // створння сутності для реєстрації
 export const auth = getAuth(app);
+// створння сутності для реєстрації через гугл
+const provider = new GoogleAuthProvider();
 //створння сутності для доступ до БД
 const database = getDatabase(app);
 //шлях до БД
@@ -41,6 +47,7 @@ function createForm() {
         signIn: document.querySelector('.js-signin-btn'),
         authCloseBtn: document.querySelector('.js-auth-close'),
         authBlock: document.querySelector('.js-auth-backdrop'),
+        googleSignBtn: document.querySelector('.js-signup-btn-google'),
     };
     //закриття модалки реєстрації по кліку на бекдроп, ескейп, кнопку-хрестик
     refAuth.authCloseBtn.addEventListener("click", () => refAuth.authBlock.remove());
@@ -49,6 +56,7 @@ function createForm() {
     //входим в аккаунт або рєструємся
     refAuth.signUp.addEventListener("click", signUpUser);
     refAuth.signIn.addEventListener("click", logInUser);
+    refAuth.googleSignBtn.addEventListener("click", googleSignIn);
 }
 
 //==================створюємо 
@@ -103,7 +111,7 @@ function userAway(params) {
 }
 
 //создание юзра
-function signUpUser() {
+async function signUpUser() {
     try {
         event.preventDefault();
         //отримання даних з форми
@@ -111,11 +119,13 @@ function signUpUser() {
         const password = logForm.password.value;
         const email = logForm.email.value;
         //створення юзера за допомогою мила і паролю
-        createUserWithEmailAndPassword(auth, email, password);
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        console.log(userCredential);
         notiflix.Notify.success(`New accaunt created. Sign in please!`)
     } catch (error) {
-        console.log(error);
-        notiflix.Notify.failure(`Some problem with regisration`)
+        // console.log(error.code);
+        // console.log(error.message);
+        notiflix.Notify.failure(`${error.code, error.message}`)
     }
 }
 
@@ -208,7 +218,7 @@ export function writeNewPost(postData = {}) {
 
 }
 
-
+//=================================================
 //створення розмітки форми по натиску 
 export function getAuthForm() {
     return `<div class="backdrop js-auth-backdrop">
@@ -243,10 +253,47 @@ export function getAuthForm() {
       <button type="submit" class="modal__btn-sign-in js-signin-btn">
         <span class="signin__btn-text">Sign in</span>
       </button>
-      <button type="submit" class="modal__btn-sign-up js-signup-btn">
+      <button type="button" class="modal__btn-sign-up js-signup-btn">
         <span class="signup__btn-text">Registration</span>
+      </button>
+      <button type="button" class="modal__btn-sign_google js-signup-btn-google">
+        <span class="signup__btn-text">Sign in with Google</span>
       </button>
     </form>
   </div>
 </div>`
+}
+//слухач чи юзер авторизований чи ні
+onAuthStateChanged(auth, (user) => {
+    if (user) {
+        logBtn.classList.add('js-hidden');
+        signOutBtn.classList.remove('js-hidden');
+        signOutBtn.addEventListener('click', userAway);
+    } else {
+        logBtn.addEventListener('click', createForm);
+        logBtn.classList.remove('js-hidden');
+        signOutBtn.classList.add('js-hidden');
+    }
+});
+
+//ГУГЛ
+function googleSignIn() {
+    signInWithPopup(auth, provider)
+        .then((result) => {
+            // This gives you a Google Access Token. You can use it to access the Google API.
+            const credential = GoogleAuthProvider.credentialFromResult(result);
+            const token = credential.accessToken;
+            // The signed-in user info.
+            const user = result.user;
+            // ...
+        }).catch((error) => {
+            // Handle Errors here.
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            // The email of the user's account used.
+            const email = error.customData.email;
+            // The AuthCredential type that was used.
+            const credential = GoogleAuthProvider.credentialFromError(error);
+            // ...
+        });
 }
