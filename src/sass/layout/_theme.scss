@@ -2,7 +2,8 @@ body.light {
   background-color: var(--modal-bg-color);
   color: var(--modal-primary-text-color);
   background-image: url('../images/body/noise-lg.png');
-  background-size: cover;
+  background-size: auto;
+  background-repeat: repeat;
 
   header {
     background-image: linear-gradient(
@@ -22,8 +23,15 @@ body.light {
   }
 
   .search-form__input,
-  .country-form__input {
+  .country-form__input,
+  .search-form__input::placeholder,
+  .country-form__input::placeholder {
     color: var(--secondaty-text-color);
+  }
+
+  .search-form__svg,
+  .country-form__svg {
+    fill: var(--secondaty-text-color);
   }
 }
 

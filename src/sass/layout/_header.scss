@@ -178,6 +178,11 @@ fieldset {
   width: 100%;
 }
 
+.search-form__input::placeholder,
+.country-form__input::placeholder {
+  color: var(--modal-bg-color);
+}
+
 .search-form__btn,
 .country-form__select {
   width: 30px;
@@ -192,9 +197,14 @@ fieldset {
   opacity: 0;
 }
 
+.search-form__svg,
+.country-form__svg {
+  fill: var(--modal-bg-color);
+}
+
 .country-form__svg {
   position: absolute;
-  top: 17px;
-  right: 38px;
+  top: 16px;
+  right: 37px;
   pointer-events: none;
 }
