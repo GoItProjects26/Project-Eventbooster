@@ -200,24 +200,52 @@ fieldset {
 }
 
 .sign-btn {
-  position: relative;
-  // top: 20px;
-  // left: 10px;
+  position: absolute;
+  top: 50px;
+  left: 18px;
 
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 70px;
-  height: 20px;
+  width: 40px;
+  height: 10px;
   background-color: var(--modal-color);
   border: none;
-  border-radius: 5px;
+  border-radius: 2px;
+
+  @media screen and (min-width: 768px) {
+    top: 70px;
+    left: 35px;
+
+    width: 70px;
+    height: 20px;
+    border-radius: 5px;
+  }
+
+  @media screen and (min-width: 1200px) {
+    top: 130px;
+    left: 20px;
+
+    width: 100px;
+    height: 25px;
+    border-radius: 5px;
+  }
 }
 
 .sign__btn-text {
-  font-size: 12px;
-  line-height: 1.2;
+  font-size: 6px;
+  line-height: 1;
   letter-spacing: 0em;
   text-align: left;
   color: var(--primary-text-color);
+
+  @media screen and (min-width: 768px) {
+    font-size: 10px;
+    line-height: 1.2;
+    border-radius: 5px;
+  }
+
+  @media screen and (min-width: 1200px) {
+    font-size: 12px;
+  }
 }
