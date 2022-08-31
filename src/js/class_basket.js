@@ -1,14 +1,15 @@
 export default class Basket {
-  constructor() {
-    this.contentShoppingCart = [];
-    this.vipQuantity = 0;
-    this.standardQuantity = 0;
-    this.totalQuantity = 0;
-    // this.duration = 120000;
-    this.duration = 10000;
-    this.step = 1000;
-    this.isBasketEmpty = true;
-  }
+
+    constructor () {
+        this.contentShoppingCart = [];
+        this.vipQuantity = 0;
+        this.standardQuantity = 0;
+        this.totalQuantity = 0;
+        this.duration = 620000;
+        this.step = 1000;
+        this.isBasketEmpty = true;
+    }
+
 
   increaseVipQuantity() {
     this.vipQuantity += 1;
