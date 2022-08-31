@@ -5,7 +5,7 @@ export const refs = {
   itemActive: document.querySelector('.item-active'),
   //================================================================================
   modalBuyBtn: document.querySelector('.js-buy-btn'),
-  modalBackdrop: document.querySelector('.backdrop'),
+  modalBackdrop: document.querySelector('.js-event-backdrop'),
   modalCloseBtn: document.querySelector('.modal__close-btn'),
   modalMoreBtn: document.querySelector('.modal__more-btn'),
 
