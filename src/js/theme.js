@@ -19,6 +19,12 @@ checkbox.addEventListener('click', () => {
 
 window.addEventListener('load', event => {
   if (localStorage.getItem('lightModeStatus') == 'true') {
+    document
+      .querySelector('.theme__iqon-sun')
+      .classList.add('theme-iqon-hidden');
+    document
+      .querySelector('.theme__iqon-moon')
+      .classList.remove('theme-iqon-hidden');
     document.body.classList.add('light');
     document.getElementById('checkbox').checked = true;
   }
