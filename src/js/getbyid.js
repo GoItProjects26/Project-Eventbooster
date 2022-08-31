@@ -6,6 +6,7 @@ import { dataToCart } from './addtocart';
 import ticketIcon from '../images/ticket1.svg';
 import { EventApi } from './api';
 import { renderMarckup } from './renderHtml';
+import { selectPicturesForModal } from './img-select';
 const axios = require('axios').default;
 
 const jsModal = document.querySelector('.modal__container');
@@ -43,14 +44,13 @@ async function onEventClick(event) {
       target = target.parentNode;
       // console.log(target);
     }
-    // target;
   }
   // console.log('target', target);
   idForFetch = target.dataset.id;
 
   // console.log(idForFetch);
   let response = await getById(idForFetch);
-  console.log(response);
+  // console.log(response);
   renderModal(response);
   if (response.priceRanges) {
     renderPrices(response);
@@ -62,6 +62,7 @@ async function onEventClick(event) {
 }
 
 function renderModal(data) {
+  let imgArray = selectPicturesForModal(data);
   let timeString = '';
   if (data.dates.start.localTime) {
     timeString = data.dates.start.localTime.slice(0, 5);
@@ -71,15 +72,6 @@ function renderModal(data) {
     time: timeString,
     timezone: data.dates.timezone,
   };
-  // console.log(Object.values(dateObj));
-  // console.log(
-  //   data.images[1].url,
-  //   infoString,
-  //   dateString,
-  //   data._embedded.venues[0].name,
-  //   data.name,
-  //   data.id
-  // );
   const dateString = Object.values(dateObj).join(', ');
   // console.log(dateString);
   let infoString;
@@ -91,13 +83,13 @@ function renderModal(data) {
 
   jsModal.innerHTML = `
         <div class="modal__logo"><img
-            src="${data.images[1].url}"
+            src="${imgArray[1].url}"
             alt=""
           /></div>
       <div class="modal__data-container">
         <div class="modal__big-logo">   
          <img  
-            src="${data.images[1].url}"
+            src="${imgArray[0].url}"
             alt=""
           /></div>
         <ul class="modal__list list">
@@ -142,7 +134,7 @@ function renderPrices(data) {
       <button type="button" class="prices__btn js-buy-btn center" data-index="${index}">
         <p class="prices__btn-txt">ADD TO CART</p>
       </button>
-      <a href="${index}"><button type="button" class="prices__btn center">
+      <a href="${data.url}" rel="noopener noreferrer"><button type="button" class="prices__btn center">
         <p class="prices__btn-txt">BUY TICKET</p>
       </button></a>
   `
