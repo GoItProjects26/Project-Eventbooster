@@ -10,7 +10,12 @@ function onCountrySearch(event) {
   event.preventDefault();
   const countryName = refs.countryForm.elements.countryQuery.value;
   const countryObj = countryCodes.find(country => country.name === countryName);
-  const countryCode = countryObj.code;
+  let countryCode = countryObj.code;
+
+  if (countryCode === 'XX') {
+    countryCode = '';
+  }
+
   EventApi.setCountry(countryCode);
   EventApi.setPage('0');
   renderMarckup();

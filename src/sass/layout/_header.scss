@@ -124,7 +124,10 @@ header {
   }
 }
 
-.header__search {
+fieldset {
+  border: none;
+  outline: none;
+
   @media screen and (min-width: 768px) {
     display: flex;
     align-items: center;
@@ -164,7 +167,7 @@ header {
 .country-form__input {
   font-size: 16px;
   line-height: 1.25;
-  color: var(--secondaty-text-color);
+  color: var(--modal-bg-color);
   background-color: transparent;
   border: none;
   outline: none;
@@ -194,4 +197,27 @@ header {
   top: 17px;
   right: 38px;
   pointer-events: none;
+}
+
+.sign-btn {
+  position: relative;
+  // top: 20px;
+  // left: 10px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70px;
+  height: 20px;
+  background-color: var(--modal-color);
+  border: none;
+  border-radius: 5px;
+}
+
+.sign__btn-text {
+  font-size: 12px;
+  line-height: 1.2;
+  letter-spacing: 0em;
+  text-align: left;
+  color: var(--primary-text-color);
 }

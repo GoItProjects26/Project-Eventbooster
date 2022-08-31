@@ -1,0 +1,104 @@
+.reg-modal {
+  position: relative;
+  margin: 30px auto;
+  z-index: 999;
+  background-color: var(--modal-bg-color);
+  max-width: 100%;
+  width: calc(100% - 150px);
+  height: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 60px;
+  padding-bottom: 32px;
+  min-width: 280px;
+  border-top-left-radius: 50px;
+  border-bottom-right-radius: 50px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+
+  @media screen and (min-width: 768px) {
+    padding-left: 74px;
+    padding-right: 74px;
+    padding-top: 60px;
+    padding-bottom: 40px;
+    width: 480px;
+    // border-top-left-radius: 300px;
+    // border-bottom-right-radius: 300px;
+  }
+  @media screen and (min-width: 1280px) {
+    padding-left: 74px;
+    padding-right: 74px;
+    padding-top: 54px;
+    padding-bottom: 40px;
+    // width: 768px;
+    // border-top-left-radius: 300px;
+    // border-bottom-right-radius: 300px;
+  }
+}
+
+.registration-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.reg_textfield {
+  display: flex;
+  flex-direction: column;
+}
+
+.registration__label {
+  color: var(--modal-accent-text-color);
+}
+
+.modal__btn-sign-in {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 30px;
+  background-color: var(--modal-color);
+  border: none;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.signin__btn-text {
+  font-family: Montserrat;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.22;
+  letter-spacing: 0em;
+  text-align: left;
+  color: var(--primary-text-color);
+}
+
+.modal__btn-sign-up {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 30px;
+  color: var(--modal-accent-text-color);
+  border: 1px solid var(--modal-accent-text-color);
+  border-radius: 5px;
+  background-color: transparent;
+}
+
+.registration__input {
+  background-color: var(--input-bg-color);
+  backdrop-filter: blur(20px);
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+  border-radius: 20px;
+  border: 1px solid var(--accent-text-color);
+  padding: 10px 32px;
+  margin-bottom: 10px;
+
+  height: 30px;
+  max-width: 300px;
+}
+
+.input__mar {
+  margin-bottom: 15px;
+}
