@@ -212,34 +212,35 @@ fieldset {
 
 .sign-btn {
   position: absolute;
-  top: 50px;
-  left: 18px;
-
+  top: 35px;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 40px;
-  height: 10px;
+  min-width: 120px;
+  height: 30px;
   background-color: var(--modal-color);
   border: none;
   border-radius: 2px;
   cursor: pointer;
 
   @media screen and (min-width: 768px) {
-    top: 70px;
-    left: 35px;
+    top: 50px;
+    left: 18px;
+    top: 80px;
+    left: 90px;
 
     width: 70px;
-    height: 20px;
+    height: 30px;
     border-radius: 5px;
   }
 
   @media screen and (min-width: 1280px) {
     top: 130px;
-    left: 20px;
-
+    left: 75px;
     width: 100px;
-    height: 25px;
+    height: 40px;
     border-radius: 5px;
   }
 }
@@ -247,20 +248,25 @@ fieldset {
   margin-bottom: 10px;
 }
 .sign__btn-text {
-  font-size: 6px;
+  font-size: 18px;
+  font-weight: 700;
   line-height: 1;
   letter-spacing: 0em;
   text-align: left;
   color: var(--primary-text-color);
 
   @media screen and (min-width: 768px) {
-    font-size: 10px;
+    font-size: 18px;
+    font-weight: 700;
+    font-size: 16px;
     line-height: 1.2;
     border-radius: 5px;
   }
 
   @media screen and (min-width: 1280px) {
-    font-size: 12px;
+    font-size: 18px;
+    font-weight: 700;
+    font-size: 16px;
   }
 }
 
