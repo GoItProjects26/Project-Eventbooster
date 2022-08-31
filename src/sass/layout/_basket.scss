@@ -268,7 +268,10 @@
     }
 
     .modal-basket__name {
-   
+    //     -ms-overflow-style: none;
+    //     scrollbar-width: none; 
+    //     overflow-y: scroll;
+    //   height: 400px;
         padding-left: 0;
         text-align: center;
         color: var(--modal-primary-text-color);
