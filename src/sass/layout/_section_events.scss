@@ -33,7 +33,9 @@
     column-gap: 32px;
   }
 }
-
+.event__pic {
+  object-fit: cover;
+}
 .list_item {
   display: block;
   padding-top: 9px;
