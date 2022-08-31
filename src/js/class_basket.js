@@ -31,6 +31,7 @@ export default class Basket {
         this.contentShoppingCart.push(dataId);
     }
 
+
     clearByTimerEvent() {
         this.contentShoppingCart.shift()
         if ( this.standardQuantity > 0) this.decreaseStandardQuantity ()

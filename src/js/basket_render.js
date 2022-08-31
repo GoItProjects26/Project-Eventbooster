@@ -18,14 +18,16 @@ function renderBasketMarkup(data) {
   // console.log(countEventer(userBasket))
 
 
-    let uniqArrId = [...new Set(data.map((data) => data.id))]
+    let uniqArrId = [...new Set(data.map((data) => data.id))] //уникальный массив ИД
     console.log(uniqArrId)
-    let arrId = data.map(box => box.id)
+    let arrId = data.map(box => box.id) //просто массив ИД
     console.log(arrId)
     uniqArrId.forEach((item) => {
       let count = 0;
       let {name, images, _embedded: {venues}, id: eventId} = (data.find((hit) => hit.id = item))
       let {city: {name: nameCity}, country: {name: nameCountry}} = venues[0];
+      
+      
       data.forEach((value) => {
         if(value.id == item) return count +=1;
       }

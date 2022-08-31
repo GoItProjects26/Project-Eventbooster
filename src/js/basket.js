@@ -8,7 +8,7 @@ const ESC_KEY_CODE = "Escape";
 
 
 function setTimer (basketObj) {
-    timerDisplay(basketObj)
+    timerDisplay(basketObj) 
     return timerId =  setInterval(()=>{
     timerDisplay(basketObj)
     }, basketObj.step);
