@@ -4,7 +4,7 @@ export default class Basket {
         this.vipQuantity = 0;
         this.standardQuantity = 0;
         this.totalQuantity = 0;
-        this.duration = 620000;
+        this.duration = 10000;
         this.step = 1000;
         this.isBasketEmpty = true;
     }

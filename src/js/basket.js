@@ -45,6 +45,7 @@ function onBasketShow() {
 
 
 function updateBasket () {
+    setTimeout (()=>{
 
         if (userBasket.totalQuantity === 0) {
             if (!refs.basketContainer.classList.contains("hidden")) {
@@ -69,7 +70,7 @@ function updateBasket () {
             refs.basketNumHead.textContent = userBasket.totalQuantity
             if (refs.basketContainerHead.classList.contains("hidden")) refs.basketContainerHead.classList.remove("hidden")
         }
-
+    }, 6)
 
 }
 
