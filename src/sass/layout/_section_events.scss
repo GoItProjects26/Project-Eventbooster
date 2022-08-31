@@ -99,6 +99,7 @@
 .list_item:hover .event_date,
 .list_item:focus .event_date {
   color: var(--modal-primary-text-color);
+  font-weight: 500;
 
   text-shadow: var(--primary-text-color) 0px 0px 5px,
     var(--primary-text-color) 0px 0px 10px,

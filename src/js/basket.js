@@ -45,31 +45,32 @@ function onBasketShow() {
 
 
 function updateBasket() {
+    setTimeout(() => {
 
-    if (userBasket.totalQuantity === 0) {
-        if (!refs.basketContainer.classList.contains("hidden")) {
-            refs.basketContainer.classList.add("hidden");
+        if (userBasket.totalQuantity === 0) {
+            if (!refs.basketContainer.classList.contains("hidden")) {
+                refs.basketContainer.classList.add("hidden");
+            }
+            userBasket.isBasketEmpty = true;
+            deleteTimer(timerId);
+            onBasketEmpty();
+            refs.basketQuantity.innerHTML = userBasket.totalQuantity
+            refs.basketNumHead.innerHTML = userBasket.totalQuantity
+            refs.basketMarkupContainer.innerHTML = "";
+            localStorage.removeItem("userBasket");
+            if (!refs.basketContainerHead.classList.contains("hidden")) refs.basketContainerHead.classList.add("hidden")
+            disabledElement(refs.basketBuyBtn);
+            disabledElement(refs.basketClearBtn);
+
+
+        } else {
+            renderBasketMarkup(userBasket.contentShoppingCart)/// Данные с именем события
+            refs.basketQuantity.textContent = userBasket.totalQuantity;
+            refs.basketNum.textContent = userBasket.totalQuantity;
+            refs.basketNumHead.textContent = userBasket.totalQuantity
+            if (refs.basketContainerHead.classList.contains("hidden")) refs.basketContainerHead.classList.remove("hidden")
         }
-        userBasket.isBasketEmpty = true;
-        deleteTimer(timerId);
-        onBasketEmpty();
-        refs.basketQuantity.innerHTML = userBasket.totalQuantity
-        refs.basketNumHead.innerHTML = userBasket.totalQuantity
-        refs.basketMarkupContainer.innerHTML = "";
-        localStorage.removeItem("userBasket");
-        if (!refs.basketContainerHead.classList.contains("hidden")) refs.basketContainerHead.classList.add("hidden")
-        disabledElement(refs.basketBuyBtn);
-        disabledElement(refs.basketClearBtn);
-
-
-    } else {
-        renderBasketMarkup(userBasket.contentShoppingCart)/// Данные с именем события
-        refs.basketQuantity.textContent = userBasket.totalQuantity;
-        refs.basketNum.textContent = userBasket.totalQuantity;
-        refs.basketNumHead.textContent = userBasket.totalQuantity
-        if (refs.basketContainerHead.classList.contains("hidden")) refs.basketContainerHead.classList.remove("hidden")
-    }
-
+    }, 6)
 
 }
 
@@ -78,6 +79,10 @@ function onBasketEmpty() {
     disabledElement(refs.basketClearBtn);
     refs.basketTextFull.classList.add("hidden");
     refs.basketTextEmpty.classList.remove("hidden");
+
+
+
+
 
 
 }
@@ -189,5 +194,3 @@ function onClickClearBtn(event) {
     deleteTimer(timerId)
 
 }
-
-

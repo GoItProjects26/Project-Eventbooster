@@ -1,8 +1,17 @@
 body.light {
   background-color: var(--modal-bg-color);
   color: var(--modal-primary-text-color);
-  background-image: url('../images/body/noise-lg.png');
+  background-image: url('../images/body/noise-sm.png');
   background-size: cover;
+  background-position: left top;
+
+  @media screen and (min-width: 768px) {
+    background-image: url('../images/body/allnoise-md-light.png');
+  }
+
+  @media screen and (min-width: 1200px) {
+    background-image: url('../images/body/allnoise-lg-light.png');
+  }
 
   header {
     background-image: linear-gradient(
@@ -22,8 +31,15 @@ body.light {
   }
 
   .search-form__input,
-  .country-form__input {
+  .country-form__input,
+  .search-form__input::placeholder,
+  .country-form__input::placeholder {
     color: var(--secondaty-text-color);
+  }
+
+  .search-form__svg,
+  .country-form__svg {
+    fill: var(--secondaty-text-color);
   }
 }
 

@@ -5,6 +5,7 @@ import { onClickModalBuyBtn } from "./mini-modal"
 import { writeNewPost } from './geo/log'
 import { auth } from './geo/log'
 export function dataToCart(data) {
+  let postData = data;
   refs.modalBuyBtn = document.querySelectorAll('.js-buy-btn');
   refs.modalBuyBtn.forEach(elem => {
     elem.addEventListener("click", () => {
@@ -13,12 +14,15 @@ export function dataToCart(data) {
         return
       }
       onClickModalBuyBtn(data);
+
       writeNewPost(data);
+
     });
 
   });
 
 }
+
 
 
 // refs.modalBuyBtn.addEventListener("click", onClickModalBuyBtn);
