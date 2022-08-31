@@ -270,7 +270,6 @@ onAuthStateChanged(auth, (user) => {
         signOutBtn.classList.remove('js-hidden');
         signOutBtn.addEventListener('click', userAway);
     } else {
-        console.log("not avto");
         logBtn.addEventListener('click', createForm);
         logBtn.classList.remove('js-hidden');
         signOutBtn.classList.add('js-hidden');
