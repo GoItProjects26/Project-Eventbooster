@@ -97,7 +97,7 @@ function templateItems(event) {
                       type="image/jpg"
                     />
 
-                     <img
+                     <img class="event__pic"
             src="${event.mobImg}"
             alt="${event.name}"
             width="120"
