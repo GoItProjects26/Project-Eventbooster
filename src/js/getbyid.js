@@ -6,16 +6,8 @@ import { dataToCart } from './addtocart';
 import ticketIcon from '../images/ticket1.svg';
 import { EventApi } from './api';
 import { renderMarckup } from './renderHtml';
-import { selectPicturesForModal } from './img-select';
+import { selectPicturesForModal } from './event-modal/img-select';
 const axios = require('axios').default;
-
-const jsModal = document.querySelector('.modal__container');
-// TEST
-// async function fefe() {
-//   const reqRes = await fetchApiData();
-//   console.log(reqRes);
-// }
-// fefe();
 
 let axiosConfig = {
   baseURL: 'https://app.ticketmaster.com/discovery/v2/events',
@@ -81,7 +73,7 @@ function renderModal(data) {
     infoString = 'No additional info avaliable.';
   }
 
-  jsModal.innerHTML = `
+  refs.jsModal.innerHTML = `
         <div class="modal__logo"><img
             src="${imgArray[1].url}"
             alt=""
