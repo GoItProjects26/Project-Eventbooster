@@ -22,51 +22,99 @@ const dbRef = ref(database);
 
 
 
-const logBtn = document.querySelector('.login-btn');
+const logBtn = document.querySelector('.js-sign');
 const header = document.querySelector('header');
 
 logBtn.addEventListener('click', createForm)
 
 
 function createForm() {
-    event.preventDefault();
     let tmp = getAuthForm();
     header.insertAdjacentHTML("beforeend", tmp);
 
-    const signUp = document.querySelector('.btn-sign-up');
-    const signIn = document.querySelector('.btn-sign-in');
-
-    signUp.addEventListener("click", signUpUser);
-    signIn.addEventListener("click", logInUser);
+    const refAuth = {
+        signUp: document.querySelector('.js-signup-btn'),
+        signIn: document.querySelector('.js-signin-btn'),
+        authCloseBtn: document.querySelector('.js-auth-close'),
+        authBlock: document.querySelector('.js-auth-backdrop'),
+    };
+    //закриття модалки реєстрації
+    refAuth.authCloseBtn.addEventListener("click", () => refAuth.authBlock.remove());
+    window.addEventListener('keydown', (e) => e.code === 'Escape' ? refAuth.authBlock.remove() : null);
+    refAuth.authBlock.addEventListener("click", (e) => e.currentTarget === e.target ? refAuth.authBlock.remove() : null);
+    //входим в аккаунт або рєструємся
+    refAuth.signUp.addEventListener("click", signUpUser);
+    refAuth.signIn.addEventListener("click", logInUser);
 }
 let uid = null;
 //створення розмітки форми по натиску 
 export function getAuthForm() {
-    return `
-    <form class="mui-form" id="log-form">
-      <div class="mui-textfield mui-textfield--float-label">
-        <input type="email" id="email" name ="email" required>
-        <label for="email">Email</label>
+    return `<div class="backdrop js-auth-backdrop">
+  <!-- is-hidden -->
+  <div class="reg-modal ">
+    <button type="button" class="modal__close-btn js-auth-close">
+    x
+      <svg class="modal__icon">
+        <use href="./images/icons.svg#icon-close"></use>
+      </svg>
+    </button>
+    <form class="registration__form js-registration-form" id="log-form">
+      <div class="reg_textfield reg__float-label">
+        <label class="registration__label" for="email">Email</label>
+        <input
+          type="email"
+          class="registration__input"
+          id="email"
+          name="email"
+          placeholder="Write your email"
+          required
+        />
       </div>
-      <div class="mui-textfield mui-textfield--float-label">
-        <input type="password" id="password" name ="password" required>
-        <label for="password">Пароль</label>
+      <div class="reg_textfield reg__float-label">
+        <label class="registration__label" for="password">Password</label>
+        <input
+          type="password"
+          class="registration__input input__mar"
+          id="password"
+          name="password"
+          placeholder="Write your password"
+          required
+        />
       </div>
-      <button
-        type="submit"
-        class="btn-sign-in"
-      >
-        Войти
+      <button type="submit" class="modal__btn-sign-in js-signin-btn">
+        <p class="signin__btn-text">Sign in</p>
       </button>
-
-        <button
-        type="submit"
-        class="btn-sign-up"
-      >
-        Зарегестрироваться
+      <button type="submit" class="modal__btn-sign-up js-signup-btn">
+        <p class="signup__btn-text">Registration</p>
       </button>
     </form>
-  `
+  </div>
+</div>`
+    //     return `
+    //     <form class="mui-form" id="log-form">
+    //       <div class="mui-textfield mui-textfield--float-label">
+    //         <input type="email" id="email" name ="email" required>
+    //         <label for="email">Email</label>
+    //       </div>
+    //       <div class="mui-textfield mui-textfield--float-label">
+    //         <input type="password" id="password" name ="password" required>
+    //         <label for="password">Пароль</label>
+    //       </div>
+    //       <button
+    //         type="submit"
+    //         class="btn-sign-in"
+    //       >
+    //         Войти
+    //       </button>
+
+    //         <button
+    //         type="submit"
+    //         class="btn-sign-up"
+    //       >
+    //         Зарегестрироваться
+    //       </button>
+    //     </form>
+    //   `
 }
 //вход юзера
 function logInUser() {
