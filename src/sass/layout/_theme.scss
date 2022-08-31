@@ -9,7 +9,7 @@ body.light {
     background-image: url('../images/body/allnoise-md-light.png');
   }
 
-  @media screen and (min-width: 1200px) {
+  @media screen and (min-width: 1280px) {
     background-image: url('../images/body/allnoise-lg-light.png');
   }
 
@@ -57,7 +57,7 @@ body.light {
     right: 50px;
   }
 
-  @media screen and (min-width: 1200px) {
+  @media screen and (min-width: 1280px) {
     top: 103px;
     right: 31px;
   }
@@ -75,7 +75,7 @@ body.light {
   align-items: center;
 
   width: 12px;
-  height: 7px;
+  height: 6px;
 
   @media screen and (min-width: 768px) {
     width: 15px;
@@ -96,9 +96,9 @@ body.light {
 
 .ball {
   position: absolute;
-
-  width: 7px;
-  height: 7px;
+  display: flex;
+  width: 8px;
+  height: 8px;
 
   border-radius: 50%;
   transition: transform 0.2s linear;
@@ -107,16 +107,16 @@ body.light {
 
   @media screen and (min-width: 768px) {
     // top: 0.5px;
-    right: 7px;
-    width: 8px;
-    height: 8px;
+    right: 6px;
+    width: 12px;
+    height: 12px;
   }
 
   @media screen and (min-width: 1280px) {
     // top: 0.5px;
-    right: 8px;
-    width: 10px;
-    height: 10px;
+    right: 7px;
+    width: 14px;
+    height: 14px;
   }
 }
 
@@ -138,29 +138,33 @@ body.light {
 }
 
 .theme__iqon-sun {
-  position: relative;
+  // position: relative;
 
-  bottom: 8px;
-  left: 1px;
+  // bottom: 8px;
+  // left: 1px;
+  width: 6px;
+  height: 6px;
 
   @media screen and (min-width: 768px) {
-    bottom: 2px;
-    right: 2px;
-    width: 12px;
-    height: 11px;
+    // bottom: 2px;
+    // right: 2px;
+    width: 10px;
+    height: 10px;
   }
 }
 
 .theme__iqon-moon {
-  position: relative;
+  // position: relative;
+  // fill: var(--accent-bg-color);
   fill: var(--primary-text-color);
-  bottom: 5px;
-  right: 3px;
-
+  // bottom: 5px;
+  // right: 3px;
+  width: 6px;
+  height: 6px;
   @media screen and (min-width: 768px) {
-    bottom: 6px;
-    right: 6px;
-    width: 25px;
-    height: 25px;
+    // bottom: 6px;
+    // right: 6px;
+    width: 10px;
+    height: 10px;
   }
 }

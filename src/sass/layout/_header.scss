@@ -8,7 +8,7 @@ header {
     background-image: url('../images/header/logo-bg-md.png');
   }
 
-  @media screen and (min-width: 1200px) {
+  @media screen and (min-width: 1280px) {
     background-image: url('../images/header/logo-bg-lg.png');
   }
 }
@@ -22,7 +22,7 @@ header {
     padding-bottom: 80px;
   }
 
-  @media screen and (min-width: 1200px) {
+  @media screen and (min-width: 1280px) {
     padding-bottom: 120px;
   }
 }
@@ -41,7 +41,7 @@ header {
     left: 32px;
   }
 
-  @media screen and (min-width: 1200px) {
+  @media screen and (min-width: 1280px) {
     width: 136px;
     height: 65px;
     top: 40px;
@@ -80,7 +80,7 @@ header {
 }
 
 .logo__svg--desk {
-  @media screen and (min-width: 1200px) {
+  @media screen and (min-width: 1280px) {
     display: block;
   }
 }
@@ -95,7 +95,7 @@ header {
     right: 32px;
   }
 
-  @media screen and (min-width: 1200px) {
+  @media screen and (min-width: 1280px) {
     top: 40px;
     right: 16px;
   }
@@ -117,7 +117,7 @@ header {
     font-size: 30px;
   }
 
-  @media screen and (min-width: 1200px) {
+  @media screen and (min-width: 1280px) {
     margin-bottom: 48px;
     font-size: 50px;
     width: 608px;
@@ -152,7 +152,7 @@ fieldset {
     width: 336px;
   }
 
-  @media screen and (min-width: 1200px) {
+  @media screen and (min-width: 1280px) {
     width: 288px;
   }
 }
@@ -233,7 +233,7 @@ fieldset {
     border-radius: 5px;
   }
 
-  @media screen and (min-width: 1200px) {
+  @media screen and (min-width: 1280px) {
     top: 130px;
     left: 20px;
 
@@ -258,7 +258,7 @@ fieldset {
     border-radius: 5px;
   }
 
-  @media screen and (min-width: 1200px) {
+  @media screen and (min-width: 1280px) {
     font-size: 12px;
   }
 }
