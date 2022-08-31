@@ -276,6 +276,7 @@
     }
 
     .event__item{
+        position: relative;
         padding: 5px;
         font-weight: 700;
         background-color: var(--primary-text-color);
@@ -319,6 +320,77 @@
         
        
     }
+
+    .event__box{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        top: -4px;
+        left: 85px;
+        background-color: var(--accent-bg-color);
+        border-radius: 50%;
+        
+
+        @media screen and (max-width: 320px) {
+            display: none;
+              
+            }
+
+            @media screen and (min-width: 320px) {
+   
+                top: 10px;
+                left: 85px;
+                      
+            } 
+            @media screen and (min-width: 600px) {
+   
+                top: 0px;
+                left: 85px;
+                      
+            } 
+        
+        @media screen and (min-width: 768px) {
+            width: 25px;
+            height: 25px;
+            top: -4px;
+            left: 110px;
+
+            box-shadow: 0 0 5px var(--accent-text-color), 0 0 10px var(--accent-text-color), 0 0 15px var(--accent-text-color), 0 0 20px var(--accent-text-color),
+            0 0 15px var(--primary-text-color), 0 0 30px var(--primary-text-color), 0 0 20px var(--primary-text-color),
+            0 0 5px var(--primary-text-color);
+                  
+        }  
+    }
+    .event__quantity {
+        color: var(--primary-text-color);
+    }
+
+.close__box {
+position: absolute;
+top: -2px;
+right: 1px;
+
+@media screen and (max-width: 320px) {
+    display: none;
+      
+    }
+
+@media screen and (min-width: 768px) {
+    top: -2px;
+    right: 5px;
+          
+}  
+}
+
+
+
+    .closes__icon{
+   fill:  var(--accent-bg-color);
+    }
+
     .event__thumb {
         width: 100%;
     }
@@ -333,7 +405,6 @@
 
 
     .modal-basket__item {
-        
         text-align: center;
     }
 
