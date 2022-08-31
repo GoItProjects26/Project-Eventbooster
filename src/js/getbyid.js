@@ -19,8 +19,8 @@ const jsModal = document.querySelector('.modal__container');
 let axiosConfig = {
   baseURL: 'https://app.ticketmaster.com/discovery/v2/events',
   params: {
-    // apikey: '5HiPtCjBuAY9gthoMA0oQuJCLkmuGiMG',
-    apikey: '6iAtgNGAR43W6F7x79CI9WmegarTMZK1',
+    apikey: '5HiPtCjBuAY9gthoMA0oQuJCLkmuGiMG',
+    // apikey: '6iAtgNGAR43W6F7x79CI9WmegarTMZK1',
   },
 };
 let idForFetch = '';
@@ -47,19 +47,13 @@ async function onEventClick(event) {
   }
   // console.log('target', target);
   idForFetch = target.dataset.id;
-  // if (event.target.nodeName === 'LI') {
-  //   idForFetch = event.target.dataset.id;
-  // } else if (event.target.nodeName === 'H3' || event.target.nodeName === 'P') {
-  //   idForFetch = event.target.parentNode.dataset.id;
-  // } else if (event.target.nodeName === 'IMG') {
-  //   idForFetch = event.target.parentNode.parentNode.dataset.id;
-  // }
+
   // console.log(idForFetch);
   let response = await getById(idForFetch);
   console.log(response);
   renderModal(response);
   if (response.priceRanges) {
-    renderPrices(response.priceRanges);
+    renderPrices(response);
   } else {
     renderNoPrices();
   }
@@ -101,7 +95,8 @@ function renderModal(data) {
             alt=""
           /></div>
       <div class="modal__data-container">
-        <div class="modal__big-logo">   <img
+        <div class="modal__big-logo">   
+         <img  
             src="${data.images[1].url}"
             alt=""
           /></div>
@@ -133,9 +128,9 @@ function renderModal(data) {
 import ticketIcon from '../images/ticket1.svg';
 
 function renderPrices(data) {
-  // console.log(data);
+  console.log('data', data);
   const pricesElem = document.querySelector('.modal__prices');
-  let pricesMarkup = data
+  let pricesMarkup = data.priceRanges
     .map(
       (elem, index) => `
       <div class="prices__box">
@@ -144,7 +139,12 @@ function renderPrices(data) {
           ${elem.type} ${elem.min} - ${elem.max} ${elem.currency}
         </p>
       </div>
-      <button type="button" class="prices__btn js-buy-btn center" data-index="${index}"><p class="prices__btn-txt">ADD TO CART</p></button>
+      <button type="button" class="prices__btn js-buy-btn center" data-index="${index}">
+        <p class="prices__btn-txt">ADD TO CART</p>
+      </button>
+      <a href="${index}"><button type="button" class="prices__btn center">
+        <p class="prices__btn-txt">BUY TICKET</p>
+      </button></a>
   `
     )
     .join('');
@@ -166,6 +166,6 @@ export function onLoadMoreClick() {
   EventApi.setKeyword(modalWho);
   EventApi.setCountry('');
   EventApi.setPage(0);
-  console.log(EventApi.config);
+  // console.log(EventApi.config);
   renderMarckup();
 }

@@ -117,11 +117,6 @@ function shortDataFromServer(eventsArrayFull) {
 
 //generate object with less key:value from incoming object
 function desiredObjectForPage(value) {
-  console.log(
-    value.images
-      .filter(img => (img.height > 674 ? img.width > 534 : false))
-      .find(el => el.height < 1200)
-  );
   return {
     id: value.id,
     name: value.name,
