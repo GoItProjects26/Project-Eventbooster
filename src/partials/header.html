@@ -22,7 +22,7 @@
     <!-- Basket -->
     <div class="basket__timer--header"></div>
     <div class="basket basket--header">
-      <a class="basket__link basket__link--header" href="#" js-basket>
+      <a class="basket__link basket__link--header js-basket" href="#">
         <svg
           class="basket__svg basket__svg--header"
           aria-label="shopping-basket"
@@ -32,22 +32,21 @@
           <use href="./images/icons.svg#icon-cart"></use>
         </svg>
         <div
-          class="basket__container basket__container--modal hidden"
-          js-basket-head
+          class="basket__container basket__container--modal hidden js-basket-head"
         >
-          <span class="basket__num basket__num--modal" js-basket-num-head>
+          <span class="basket__num basket__num--modal js-basket-num-head">
             0
           </span>
         </div>
       </a>
     </div>
     <h1 class="header__title">Find best events<br />around the world</h1>
-    
+
     <!-- Theme checker-->
     <div class="theme__container">
       <input type="checkbox" class="checkbox" id="checkbox" />
       <label for="checkbox" class="label">
-        <div class="ball">
+        <span class="ball">
           <svg class="theme__iqon-sun" width="5" height="5">
             <use
               class="theme__iqon"
@@ -64,16 +63,15 @@
               href="./images/icons.svg#icon-moon"
             ></use>
           </svg>
-        </div>
-      <label for="checkbox" class="label">
-        <div class="ball"></div>
+        </span>
+        <!-- <span class="ball"></span> -->
       </label>
     </div>
 
     <!-- Registration button -->
     <button type="button" class="sign-btn js-sign">
-        <p class="sign__btn-text">Sign in</p>
-      </button>
+      <span class="sign__btn-text">Sign in</span>
+    </button>
 
     <!-- Search form -->
     <fieldset class="header__search">

@@ -11,14 +11,14 @@ export const refs = {
 
   basketModal: document.querySelector('.modal-basket-backdrop'),
   basketQuantity: document.querySelector('.modal-basket__quantity'),
-  basketHead: document.querySelector('[js-basket]'), //перед пушем поменять на класс
-  basketContainerHead: document.querySelector('[js-basket-head]'),
-  basketNumHead: document.querySelector('[js-basket-num-head]'),
+  basketHead: document.querySelector('.js-basket'),
+  basketContainerHead: document.querySelector('.js-basket-head'),
+  basketNumHead: document.querySelector('.js-basket-num-head'),
 
-  // basketVipBtn: document.querySelector("[js-vip]"),
-  // basketStandardBtn: document.querySelector("[js-standard]"),
-  basketContainer: document.querySelector('[js-basket-modal]'),
-  basketNum: document.querySelector('[js-basket-num]'),
+  // basketVipBtn: document.querySelector(".js-vip"),
+  // basketStandardBtn: document.querySelector(".js-standard"),
+  basketContainer: document.querySelector('.js-basket-modal'),
+  basketNum: document.querySelector('.js-basket-num'),
   basketMarkupContainer: document.querySelector('.modal-basket__name'),
   basketContinueBookingBtn: document.querySelector('.modal-basket__continue'),
   basketBuyBtn: document.querySelector('.modal-basket__buy'),
