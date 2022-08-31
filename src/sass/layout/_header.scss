@@ -222,6 +222,7 @@ fieldset {
   background-color: var(--modal-color);
   border: none;
   border-radius: 2px;
+  cursor: pointer;
 
   @media screen and (min-width: 768px) {
     top: 70px;
