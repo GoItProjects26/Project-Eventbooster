@@ -31,6 +31,7 @@ export const refs = {
   basketTimerHeader: document.querySelector('.basket__timer--header'),
   basketTimer: document.querySelector('.basket__timer'),
   svgIcon: document.querySelector('.location__use'),
+  deleteButton: document.querySelectorAll(".close__box"),
 
   miniModal: document.querySelector('.mini-modal-backdrop'),
   miniModalBtnCart: document.querySelector('.mini-modal__button'),

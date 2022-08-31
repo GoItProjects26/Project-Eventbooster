@@ -220,6 +220,7 @@ function onClickClearBtn(event) {
 
 }
 
+
 export function clearAfterSignOut () {
     userBasket.clearList()
     refs.basketQuantity.innerHTML = userBasket.totalQuantity
@@ -231,4 +232,21 @@ export function clearAfterSignOut () {
     if(!refs.basketContainer.classList.contains("hidden")) refs.basketContainer.classList.add("hidden")
     onBasketEmpty();
     deleteTimer(timerId)
+}
+
+
+refs.basketMarkupContainer.addEventListener("click", onClickDeleteButton);
+function onClickDeleteButton(event) {
+  if(event.target.closest(".close__box") === null) return;
+
+  event.target.closest("LI").dataset.id
+ 
+  for (let i = 0; i <= userBasket.contentShoppingCart.length - 1; i +=1) {
+    if (userBasket.contentShoppingCart[i].id === event.target.closest("LI").dataset.id){
+        userBasket.contentShoppingCart.splice(i, 1)
+        userBasket.decreaseStandardQuantity()
+        break;
+    }
+  }
+  updateBasket()
 }
