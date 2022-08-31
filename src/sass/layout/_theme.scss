@@ -1,9 +1,17 @@
 body.light {
   background-color: var(--modal-bg-color);
   color: var(--modal-primary-text-color);
-  background-image: url('../images/body/noise-lg.png');
-  background-size: auto;
-  background-repeat: repeat;
+  background-image: url('../images/body/noise-sm.png');
+  background-size: cover;
+  background-position: left top;
+
+  @media screen and (min-width: 768px) {
+    background-image: url('../images/body/allnoise-md-light.png');
+  }
+
+  @media screen and (min-width: 1200px) {
+    background-image: url('../images/body/allnoise-lg-light.png');
+  }
 
   header {
     background-image: linear-gradient(
