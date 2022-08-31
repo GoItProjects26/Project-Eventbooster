@@ -119,6 +119,7 @@ function signUpUser() {
     }
 }
 
+//===========================БД
 // запис в базу даних повний перезапис всіх данних за значнням ключа
 function writeUserData(userId = 0, user) {
     userId = user.uid;
@@ -131,34 +132,34 @@ function writeUserData(userId = 0, user) {
 }
 //читаєм базу данних - запрос на сервер
 
-const userId = "N0LAFP2hX9gmY6fH9ih67NCP1nI3";
+// const userId = "N0LAFP2hX9gmY6fH9ih67NCP1nI3";
 
-const gtDataBtn = document.querySelector('.get-btn');
+// const gtDataBtn = document.querySelector('.get-btn');
 
-gtDataBtn.addEventListener('click', () => {
-    try {
-        if (!auth.currentUser) {
-            return console.log('зайдіть в аккаунт');
-        }
-        const path = auth.currentUser?.uid;
-        get(child(dbRef, `users/${path}`)).then((snapshot) => {
-            if (snapshot.exists()) {
-                console.log(snapshot.val());
-            } else {
-                console.log("No data available");
-            }
-        }).catch((error) => {
-            console.error(error);
-        })
-    } catch (error) {
-        console.log(error);
-    }
+// gtDataBtn.addEventListener('click', () => {
+//     try {
+//         if (!auth.currentUser) {
+//             return console.log('зайдіть в аккаунт');
+//         }
+//         const path = auth.currentUser?.uid;
+//         get(child(dbRef, `users/${path}`)).then((snapshot) => {
+//             if (snapshot.exists()) {
+//                 console.log(snapshot.val());
+//             } else {
+//                 console.log("No data available");
+//             }
+//         }).catch((error) => {
+//             console.error(error);
+//         })
+//     } catch (error) {
+//         console.log(error);
+//     }
 
-})
+// })
 
 //Доповнення інформації без витирання внесеної інформації
-const writeNew = document.querySelector('#writeNewPost');
-writeNew.addEventListener('click', () => writeNewPost());
+// const writeNew = document.querySelector('#writeNewPost');
+// writeNew.addEventListener('click', () => writeNewPost());
 
 
 

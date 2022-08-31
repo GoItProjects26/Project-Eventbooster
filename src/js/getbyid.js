@@ -112,7 +112,7 @@ function renderModal(data) {
 import ticketIcon from '../images/ticket1.svg';
 
 function renderPrices(data) {
-  console.log('data', data);
+  // console.log('data', data);
   const pricesElem = document.querySelector('.modal__prices');
   let pricesMarkup = data.priceRanges
     .map(
