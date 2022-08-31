@@ -22,4 +22,5 @@ function onEventSearch(event) {
 
 function onSearchFormReset() {
   refs.searchForm.elements.searchQuery.value = '';
+  EventApi.setKeyword('');
 }

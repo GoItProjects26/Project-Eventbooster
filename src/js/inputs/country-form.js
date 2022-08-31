@@ -23,4 +23,5 @@ function onCountrySearch(event) {
 
 function onCountryFormReset() {
   refs.countryForm.elements.countryQuery.value = '';
+  EventApi.setCountry('');
 }
