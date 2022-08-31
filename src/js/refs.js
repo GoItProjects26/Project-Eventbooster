@@ -4,6 +4,7 @@ export const refs = {
   paginatedList: document.querySelector('.paginated__list'),
   itemActive: document.querySelector('.item-active'),
   //================================================================================
+  jsModal: document.querySelector('.modal__container'),
   modalBuyBtn: document.querySelector('.js-buy-btn'),
   modalBackdrop: document.querySelector('.js-event-backdrop'),
   modalCloseBtn: document.querySelector('.modal__close-btn'),
