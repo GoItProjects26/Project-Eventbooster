@@ -1,4 +1,4 @@
-export {deleteTimer, setTimer};
+export {deleteTimer, timerDisplay};
 import {updateBasket} from "./basket";
 import {refs} from "./refs";
 
@@ -26,7 +26,7 @@ function calculateTime(obj) {
     const end = begin + obj.duration
     let passedTime = end - Date.now();
   
-    if (passedTime <= 500) timeIsOver(obj)
+    if (passedTime <= 500) timeIsOver(obj);
     return addLeadingZero(convertMs(passedTime));
 }
 
@@ -36,16 +36,7 @@ function timeIsOver (obj) {
     refs.basketTimerHeader.textContent = "";
 }
 
-function setTimer (basketObj) {
 
-    timerDisplay(basketObj)
- 
-return timerId =  setInterval(()=>{
-
-    timerDisplay(basketObj)
-    }, basketObj.step)
-
-}
 
 function timerDisplay (timeObj) {
     let {minutes, seconds} = calculateTime(timeObj)

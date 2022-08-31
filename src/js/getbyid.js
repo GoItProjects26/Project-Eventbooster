@@ -47,13 +47,7 @@ async function onEventClick(event) {
   }
   // console.log('target', target);
   idForFetch = target.dataset.id;
-  // if (event.target.nodeName === 'LI') {
-  //   idForFetch = event.target.dataset.id;
-  // } else if (event.target.nodeName === 'H3' || event.target.nodeName === 'P') {
-  //   idForFetch = event.target.parentNode.dataset.id;
-  // } else if (event.target.nodeName === 'IMG') {
-  //   idForFetch = event.target.parentNode.parentNode.dataset.id;
-  // }
+
   // console.log(idForFetch);
   let response = await getById(idForFetch);
   console.log(response);
@@ -166,6 +160,6 @@ export function onLoadMoreClick() {
   EventApi.setKeyword(modalWho);
   EventApi.setCountry('');
   EventApi.setPage(0);
-  console.log(EventApi.config);
+  // console.log(EventApi.config);
   renderMarckup();
 }

@@ -11,7 +11,7 @@ export const refs = {
 
   basketModal: document.querySelector('.modal-basket-backdrop'),
   basketQuantity: document.querySelector('.modal-basket__quantity'),
-  basketHead: document.querySelector('[js-basket]'),
+  basketHead: document.querySelector('[js-basket]'), //перед пушем поменять на класс
   basketContainerHead: document.querySelector('[js-basket-head]'),
   basketNumHead: document.querySelector('[js-basket-num-head]'),
 
