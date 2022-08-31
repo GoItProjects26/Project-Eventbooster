@@ -1,51 +1,51 @@
-import {refs} from "./refs";
-export {userBasket, onClickBasketBackdrop, onEscKeyPressBasket, ESC_KEY_CODE, onBasketShow, updateBasket}
+import { refs } from "./refs";
+export { userBasket, onClickBasketBackdrop, onEscKeyPressBasket, ESC_KEY_CODE, onBasketShow, updateBasket }
 import Basket from "./class_basket";
-import {deleteTimer, timerDisplay} from './timer';
-import {renderBasketMarkup} from "./basket_render";
+import { deleteTimer, timerDisplay } from './timer';
+import { renderBasketMarkup } from "./basket_render";
 
 const ESC_KEY_CODE = "Escape";
 
 
-function setTimer (basketObj) {
-    timerDisplay(basketObj) 
-    return timerId =  setInterval(()=>{
+function setTimer(basketObj) {
     timerDisplay(basketObj)
+    return timerId = setInterval(() => {
+        timerDisplay(basketObj)
     }, basketObj.step);
 
 }
 
 refs.basketHead.addEventListener("click", onClickBasketHead);
-function onClickBasketHead (event) {
+function onClickBasketHead(event) {
     onBasketShow()
 }
 
 function onBasketShow() {
-    
+
     document.body.classList.toggle("no-scroll");
     refs.basketModal.classList.toggle("hidden");
     refs.basketQuantity.textContent = userBasket.totalQuantity;
     refs.basketNum.textContent = userBasket.totalQuantity;
-    
-   
+
+
     renderBasketMarkup(userBasket.contentShoppingCart)/// Данные с именем события
     refs.basketBackdrop.addEventListener("click", onClickBasketBackdrop)
     window.addEventListener("keydown", onEscKeyPressBasket);
     if (!userBasket.isBasketEmpty) {
         if (refs.basketContainer.classList.contains("hidden")) refs.basketContainer.classList.remove("hidden");
         onBasketFull()
-    }   else {onBasketEmpty()}
+    } else { onBasketEmpty() }
 
 
 
 
-   
+
 }
 
 
 
-function updateBasket () {
-    setTimeout (()=>{
+function updateBasket() {
+    setTimeout(() => {
 
         if (userBasket.totalQuantity === 0) {
             if (!refs.basketContainer.classList.contains("hidden")) {
@@ -61,8 +61,8 @@ function updateBasket () {
             if (!refs.basketContainerHead.classList.contains("hidden")) refs.basketContainerHead.classList.add("hidden")
             disabledElement(refs.basketBuyBtn);
             disabledElement(refs.basketClearBtn);
-  
-            
+
+
         } else {
             renderBasketMarkup(userBasket.contentShoppingCart)/// Данные с именем события
             refs.basketQuantity.textContent = userBasket.totalQuantity;
@@ -81,7 +81,7 @@ function onBasketEmpty() {
     refs.basketTextEmpty.classList.remove("hidden");
 
 
-    
+
 
 
 
@@ -89,7 +89,7 @@ function onBasketEmpty() {
 
 
 
-function onBasketFull () {
+function onBasketFull() {
     anabledElement(refs.basketBuyBtn);
     anabledElement(refs.basketClearBtn);
     refs.basketTextFull.classList.remove("hidden");
@@ -97,7 +97,7 @@ function onBasketFull () {
 
     userBasket.totalQuantity != 1 ? refs.basketTextTicket.textContent = "tickets" : refs.basketTextTicket.textContent = "ticket";
     setTimer(userBasket)
-    
+
 }
 
 function anabledElement(element) {
@@ -106,7 +106,7 @@ function anabledElement(element) {
     element.style.borderColor = "#4c00fe";
 }
 
-function disabledElement (element) {
+function disabledElement(element) {
     element.disabled = true;
     element.style.color = "grey";
     element.style.borderColor = "grey";
@@ -115,14 +115,14 @@ function disabledElement (element) {
 
 
 function onClickBasketBackdrop(event) {
-    if(event.currentTarget === event.target) {
+    if (event.currentTarget === event.target) {
         onBasketClose()
     }
 }
 
-function onEscKeyPressBasket (event) {
-        if(event.code === ESC_KEY_CODE) {
-            onBasketClose()
+function onEscKeyPressBasket(event) {
+    if (event.code === ESC_KEY_CODE) {
+        onBasketClose()
     }
 }
 
@@ -130,11 +130,11 @@ function onEscKeyPressBasket (event) {
 
 
 let userBasket = {};
-function firstLoadPage () {
+function firstLoadPage() {
     if (!localStorage.getItem("userBasket")) return userBasket = new Basket; //должно создаваться при загрузке Фетча
     const oldUserBasket = (JSON.parse(localStorage.getItem("userBasket")))
     userBasket = new Basket;
-    if(oldUserBasket.timer < Date.now - userBasket.duration) return userBasket = new Basket
+    if (oldUserBasket.timer < Date.now - userBasket.duration) return userBasket = new Basket
     return Object.assign(userBasket, oldUserBasket)
 
 }
@@ -144,7 +144,7 @@ firstLoadPage()
 if (!userBasket.isBasketEmpty && refs.basketContainerHead.classList.contains("hidden")) {
     refs.basketContainerHead.classList.remove("hidden")
     refs.basketNumHead.textContent = userBasket.totalQuantity;
-    
+
 }
 
 refs.basketQuantity.textContent = userBasket.totalQuantity
@@ -154,7 +154,7 @@ if (userBasket.totalQuantity === 0 && !refs.basketNum.classList.contains("hidden
 
 
 refs.basketContinueBookingBtn.addEventListener("click", onClickBasketContinueShoppingBtn);
-function onClickBasketContinueShoppingBtn (event) {
+function onClickBasketContinueShoppingBtn(event) {
     if (!userBasket.isBasketEmpty && refs.basketContainerHead.classList.contains("hidden")) refs.basketContainerHead.classList.remove("hidden")
     if (userBasket.isBasketEmpty && !refs.basketContainerHead.classList.contains("hidden")) refs.basketContainerHead.classList.add("hidden")
     localStorage.setItem("userBasket", JSON.stringify(userBasket));
@@ -171,10 +171,10 @@ function onBasketClose() {
 
 
 refs.basketBuyBtn.addEventListener("click", onClickBuyBtn)
-function onClickBuyBtn (event) {
+function onClickBuyBtn(event) {
     userBasket.contentShoppingCart.forEach(id => {
         clearTimeout(id)
-    } )
+    })
     window.open("https://next.privat24.ua/", '_blank')
     onBasketClose()
 
@@ -182,8 +182,8 @@ function onClickBuyBtn (event) {
 
 refs.basketClearBtn.addEventListener("click", onClickClearBtn)
 function onClickClearBtn(event) {
-    if(!refs.basketContainer.classList.contains("hidden")) refs.basketContainer.classList.add("hidden")
-    if(!refs.basketContainerHead.classList.contains("hidden")) refs.basketContainerHead.classList.add("hidden")
+    if (!refs.basketContainer.classList.contains("hidden")) refs.basketContainer.classList.add("hidden")
+    if (!refs.basketContainerHead.classList.contains("hidden")) refs.basketContainerHead.classList.add("hidden")
     userBasket.clearList()
     refs.basketQuantity.innerHTML = userBasket.totalQuantity
     refs.basketNumHead.innerHTML = userBasket.totalQuantity
@@ -194,5 +194,3 @@ function onClickClearBtn(event) {
     deleteTimer(timerId)
 
 }
-
-
