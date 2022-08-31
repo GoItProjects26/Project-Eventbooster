@@ -11,20 +11,19 @@ export {onClickModalBuyBtn}
 
 
 // refs.modalBuyBtn.addEventListener("click", onClickModalBuyBtn);
-function onClickModalBuyBtn (event) {
-    refs.miniModal.classList.toggle("hidden");
-    const basketId = event.target.closest("[data-id]").dataset.id
-    const {_embedded: {events}} = (JSON.parse(localStorage.getItem("event")))
-    const userEvent = events.find(({id}) => id === basketId)
-    userBasket.addEvent(userEvent)
-    userBasket.increaseStandardQuantity ()
-    localStorage.setItem("userBasket", JSON.stringify(userBasket));
-    refs.miniModalBackdrop.addEventListener("click", onClickMiniModalBackdrop);
-    window.addEventListener("keydown", onEscKeyPressMiniModal);
-    refs.basketContainerHead.classList.remove("hidden")
-    refs.basketNumHead.textContent = userBasket.totalQuantity;
-
-    userBasket.isBasketEmpty = false;
+    function onClickModalBuyBtn(data) {
+        refs.miniModal.classList.toggle("hidden");
+        const basketId = data.id;
+        userBasket.addEvent(data);
+        userBasket.increaseStandardQuantity()
+        localStorage.setItem("userBasket", JSON.stringify(userBasket));
+    
+        refs.miniModalBackdrop.addEventListener("click", onClickMiniModalBackdrop);
+        window.addEventListener("keydown", onEscKeyPressMiniModal);
+        refs.basketContainerHead.classList.remove("hidden")
+        refs.basketNumHead.textContent = userBasket.totalQuantity;
+        userBasket.isBasketEmpty = false;
+    
     
 }
 

@@ -5,7 +5,7 @@ export default class Basket {
         this.vipQuantity = 0;
         this.standardQuantity = 0;
         this.totalQuantity = 0;
-        this.duration = 620000;
+        this.duration = 600000;
         this.step = 1000;
         this.isBasketEmpty = true;
     }
@@ -31,10 +31,12 @@ export default class Basket {
     this.contentShoppingCart.push(dataId);
   }
 
+
   clearByTimerEvent() {
     this.contentShoppingCart.shift();
     if (this.standardQuantity > 0) this.decreaseStandardQuantity();
   }
+
 
   //     const event = setTimeout(() => {
   //         this.contentShoppingCart.shift()
