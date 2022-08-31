@@ -44,6 +44,11 @@
   border: none;
   background-color: transparent;
   cursor: pointer;
+  // transition: rotate 250ms ease-in;
+  // &:hover,
+  // &:focus {
+  //   rotate: 180deg;
+  // }
 }
 .modal__icon {
   display: block;
@@ -53,6 +58,11 @@
   @media screen and (min-width: 1280px) {
     width: 25px;
     height: 25px;
+  }
+  transition: scale 250ms ease-in;
+  &:hover,
+  &:focus {
+    scale: 1.1;
   }
 }
 .modal__big-logo {
@@ -186,9 +196,20 @@
   border-radius: 5px;
   background-color: transparent;
   cursor: pointer;
+  transition: all 250ms ease-in;
   @media screen and (min-width: 768px) {
     width: 255px;
     margin-top: 40px;
+  }
+  &:hover,
+  &:focus {
+    // scale: 1.03;
+    transition: scale 250ms ease-in;
+    box-shadow: 0 0 5px var(--accent-text-color),
+      0 0 5px var(--accent-text-color), 0 0 5px var(--accent-text-color),
+      0 0 5px var(--accent-text-color), 0 0 5px var(--primary-text-color),
+      0 0 5px var(--primary-text-color), 0 0 5px var(--primary-text-color),
+      0 0 5px var(--primary-text-color);
   }
 }
 
@@ -216,6 +237,17 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  transition: all 250ms ease-in;
+
+  &:hover {
+    // scale: 1.03;
+    // transition: scale 250ms ease-in;
+    box-shadow: 0 0 5px var(--accent-text-color),
+      0 0 5px var(--accent-text-color), 0 0 5px var(--accent-text-color),
+      0 0 5px var(--accent-text-color), 0 0 5px var(--primary-text-color),
+      0 0 5px var(--primary-text-color), 0 0 5px var(--primary-text-color),
+      0 0 5px var(--primary-text-color);
+  }
 }
 .prices__btn-txt {
   font-family: Montserrat;

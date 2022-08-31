@@ -112,7 +112,6 @@ function renderModal(data) {
 import ticketIcon from '../images/ticket1.svg';
 
 function renderPrices(data) {
-  // console.log('data', data);
   const pricesElem = document.querySelector('.modal__prices');
   let pricesMarkup = data.priceRanges
     .map(
@@ -126,7 +125,7 @@ function renderPrices(data) {
       <button type="button" class="prices__btn js-buy-btn center" data-index="${index}">
         <p class="prices__btn-txt">ADD TO CART</p>
       </button>
-      <a href="${data.url}" rel="noopener noreferrer"><button type="button" class="prices__btn center">
+      <a href="${data.url}" target="_blank" rel="noopener noreferrer"><button type="button" class="prices__btn center">
         <p class="prices__btn-txt">BUY TICKET</p>
       </button></a>
   `
@@ -145,11 +144,9 @@ function renderNoPrices() {
 }
 export function onLoadMoreClick() {
   const modalWho = document.querySelector('#modal__name').textContent;
-  // console.log(modalWho);
   closeModal();
   EventApi.setKeyword(modalWho);
   EventApi.setCountry('');
   EventApi.setPage(0);
-  // console.log(EventApi.config);
   renderMarckup();
 }
