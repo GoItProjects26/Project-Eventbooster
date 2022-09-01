@@ -97,6 +97,14 @@ body.light {
   .paginated__item.forward__item {
     border-radius: 100px 0px 0px 100px;
   }
+
+  .paginated__item {
+    color: var(--modal-accent-text-color);
+  }
+
+  .item-active {
+    color: var(--primary-text-color);
+  }
 }
 
 .theme__container {
