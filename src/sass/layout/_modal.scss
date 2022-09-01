@@ -50,6 +50,11 @@
   //   rotate: 180deg;
   // }
 }
+.modal__fix-size {
+  @media screen and (min-width: 1280px) {
+    padding-right: 17px;
+  }
+}
 .modal__icon {
   display: block;
   fill: var(--modal-color);
