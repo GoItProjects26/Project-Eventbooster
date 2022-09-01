@@ -17,13 +17,13 @@ export async function findCountryByIp() {
 
 export function getLatLong() {
   navigator.geolocation.getCurrentPosition(Position => {
-    console.log(Position.coords.latitude, Position.coords.longitude);
+    // console.log(Position.coords.latitude, Position.coords.longitude);
     const hash = Geohash.encode(
       Position.coords.latitude,
       Position.coords.longitude,
       5
     );
-    console.log(hash);
+    // console.log(hash);
     EventApi.setGeoPoint(hash);
   });
 }
