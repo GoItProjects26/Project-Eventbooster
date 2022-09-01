@@ -1,15 +1,16 @@
 import notiflix from 'notiflix'
 import { initializeApp } from 'firebase/app';
 import {
-    getAuth, signInWithPopup,
+    getAuth, signInWithPopup, signInWithRedirect, getRedirectResult,
     createUserWithEmailAndPassword,
-    signInWithEmailAndPassword, signOut, onAuthStateChanged, GoogleAuthProvider
+    signInWithEmailAndPassword, signOut, onAuthStateChanged, GoogleAuthProvider, GithubAuthProvider
 } from "firebase/auth";
 import { getDatabase, ref, set, child, get, update, push } from "firebase/database";
 import { clearAfterSignOut } from "../basket" //clean basket
 //Файл настройок для ФАЯБЕЙЗА з акаунту
 const firebaseConfig = {
     apiKey: "AIzaSyA1qR_n73lnbDIB96TfK_yMCuERhUDCeuA",
+    // authDomain: "goitprojects26.github.io",
     authDomain: "image-search-6ffc6.firebaseapp.com",
     databaseURL: "https://image-search-6ffc6-default-rtdb.europe-west1.firebasedatabase.app",
     projectId: "image-search-6ffc6",
@@ -23,6 +24,7 @@ const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 // створння сутності для реєстрації через гугл
 const provider = new GoogleAuthProvider();
+const provider2 = new GithubAuthProvider();
 //створння сутності для доступ до БД
 const database = getDatabase(app);
 //шлях до БД
@@ -58,6 +60,7 @@ function createForm() {
     refAuth.signUp.addEventListener("click", signUpUser);
     refAuth.signIn.addEventListener("click", logInUser);
     refAuth.googleSignBtn.addEventListener("click", googleSignIn);
+    // refAuth.googleSignBtn.addEventListener("click", githubAuth);
 }
 
 //==================створюємо 
@@ -75,7 +78,7 @@ function logInUser() {
             // Signed in 
             const user = userCredential.user;
             let uid = user.uid;
-            console.log(user);
+            // console.log(user);
             // ...
             notiflix.Notify.success(`User #${uid} logged`);
             //показуємо кнопку виходу і додаємо слухач
@@ -86,7 +89,7 @@ function logInUser() {
             logBtn.classList.add('js-hidden');
             //закриваємо форму реєстрації
             document.querySelector('.js-auth-backdrop').remove();
-            console.log(user);
+            // console.log(user);
         })
         .catch((error) => {
             notiflix.Notify.failure(`User not found`);
@@ -197,7 +200,7 @@ export function writeNewPost(postData = {}) {
             concertHall: postData._embedded.venues[0].name,
         }
 
-        console.log(mini);
+        // console.log(mini);
         // A post entry.
         // const postData = {
         //     aaaauthor: 'username',
@@ -209,7 +212,7 @@ export function writeNewPost(postData = {}) {
 
         // Get a key for a new Post.
         const newPostKey = push(child(ref(db), `users/`)).key;
-        console.log(newPostKey);
+        // console.log(newPostKey);
         // Write the new post's data simultaneously in the posts list and the user's post list.
         const updates = {};
         // updates['/posts/' + newPostKey] = postData;
@@ -290,6 +293,7 @@ function googleSignIn() {
             const token = credential.accessToken;
             // The signed-in user info.
             const user = result.user;
+            document.querySelector('.js-auth-backdrop').remove();
             // ...
         }).catch((error) => {
             // Handle Errors here.
