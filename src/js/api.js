@@ -73,4 +73,9 @@ export class EventApi {
     const data = await responce.json();
     return data;
   }
+  static async getById(id) {
+    const url = `${BASE_URL}${source}/${id}.json?apikey=${API_KEY}`;
+    const response = await axios.get(url);
+    return response.data;
+  }
 }

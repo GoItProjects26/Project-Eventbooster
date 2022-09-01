@@ -127,15 +127,19 @@ header {
 }
 
 fieldset {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+
   border: none;
   outline: none;
   padding: 0;
   margin: 0;
 
   @media screen and (min-width: 768px) {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-wrap: no-wrap;
     gap: 32px;
   }
 }
@@ -160,12 +164,6 @@ fieldset {
 
   @media screen and (min-width: 1280px) {
     width: 288px;
-  }
-}
-
-.search-form {
-  @media screen and (max-width: 767px) {
-    margin-bottom: 24px;
   }
 }
 

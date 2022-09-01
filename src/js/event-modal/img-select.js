@@ -8,6 +8,5 @@ export function selectPicturesForModal(data) {
       if (b.width > a.width) return 1;
       return -1;
     });
-  //   console.log(arr);
   return arr;
 }

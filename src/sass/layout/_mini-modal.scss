@@ -31,18 +31,15 @@ scale: 0.8;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-scale: 1;
+    scale: 1;
     width: 240px;
     min-height: 200px;
     border-radius: 100px 0px;
-
     background-color: var(--primary-text-color);
 
     @media screen and (min-width: 768px) {
         min-width: 336px;
         min-height: 100px;
-
-      
     }
 
     box-shadow: 0 0 5px var(--accent-text-color), 0 0 10px var(--accent-text-color), 0 0 15px var(--accent-text-color), 0 0 20px var(--accent-text-color),
@@ -67,7 +64,6 @@ scale: 1;
 
     border-color: var(--primary-text-color);
     border-width: 2;
-
 }
 
 .mini-modal__close{
@@ -81,7 +77,6 @@ scale: 1;
     background-color: var(--modal-bg-color);
     font-weight: 700;
     box-shadow: none;
-    
 }
 
 .mini-modal__text{
@@ -90,8 +85,5 @@ scale: 1;
     text-align: center;
     color: var(--accent-bg-color);
     font-size: 16px;
-    // border-left-width: 2px;
-    // border-left-color: blue;
-    // border-left-style: solid;
 }
         
