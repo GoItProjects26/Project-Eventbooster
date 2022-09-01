@@ -11,11 +11,6 @@ function onEventSearch(event) {
   getLatLong();
   const keyword = refs.searchForm.elements.searchQuery.value;
 
-  if (keyword.trim() === '') {
-    alert('Please enter an event name');
-    return;
-  }
-
   EventApi.setKeyword(keyword);
   renderMarckup();
 }
