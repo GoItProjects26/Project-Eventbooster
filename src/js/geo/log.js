@@ -231,7 +231,7 @@ export function writeNewPost(postData = {}) {
 export function getAuthForm() {
     return `<div class="backdrop js-auth-backdrop">
   <!-- is-hidden -->
-  <div class="reg-modal ">
+  <div class="reg-modal animate__animated animate__zoomInDown">
     <button type="button" class="modal__close-btn js-auth-close">
     x
     </button>
