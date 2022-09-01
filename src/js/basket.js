@@ -48,12 +48,12 @@ function updateBasket() {
     setTimeout(() => {
 
         if (userBasket.totalQuantity === 0) {
-      
+
             userBasket.isBasketEmpty = true;
             deleteTimer(timerId);
             onBasketEmpty();
-         
-           
+
+
             if (!refs.basketContainerHead.classList.contains("hidden")) refs.basketContainerHead.classList.add("hidden")
             disabledElement(refs.basketBuyBtn);
             disabledElement(refs.basketClearBtn);
@@ -87,7 +87,7 @@ function onBasketEmpty() {
     }
 }
 
-function deleteLocalStorage () {
+function deleteLocalStorage() {
     localStorage.removeItem("userBasket");
 }
 
@@ -98,7 +98,7 @@ function onBasketFull() {
     anabledElement(refs.basketClearBtn);
     refs.basketTextFull.classList.remove("hidden");
     refs.basketTextEmpty.classList.add("hidden");
-    
+
     userBasket.totalQuantity != 1 ? refs.basketTextTicket.textContent = "tickets" : refs.basketTextTicket.textContent = "ticket";
     setTimer(userBasket)
 
@@ -135,11 +135,11 @@ function onEscKeyPressBasket(event) {
 
 let userBasket = {};
 loadPage()
-function localStorageCheck () {
+function localStorageCheck() {
     if (!localStorage.getItem("userBasket")) return userBasket = new Basket; //должно создаваться при загрузке Фетча
     const oldUserBasket = (JSON.parse(localStorage.getItem("userBasket")))
     userBasket = new Basket;
-    
+
     if (oldUserBasket.contentShoppingCart[oldUserBasket.contentShoppingCart.length - 1]?.timer < Date.now() - userBasket.duration) return userBasket = new Basket
     return Object.assign(userBasket, oldUserBasket)
 
@@ -152,13 +152,13 @@ function loadPage() {
     if (!userBasket.isBasketEmpty && refs.basketContainerHead.classList.contains("hidden")) {
         refs.basketContainerHead.classList.remove("hidden")
         refs.basketNumHead.textContent = userBasket.totalQuantity;
-    
+
     }
 
     if (userBasket.isBasketEmpty && !refs.basketContainerHead.classList.contains("hidden")) {
         refs.basketContainerHead.classList.add("hidden")
         refs.basketNumHead.textContent = userBasket.totalQuantity;
-    
+
     }
 
     refs.basketQuantity.textContent = userBasket.totalQuantity
@@ -183,7 +183,7 @@ function onClickBasketContinueShoppingBtn(event) {
     onBasketClose()
 }
 
-function addToLocalStorage (obj) {
+function addToLocalStorage(obj) {
     localStorage.setItem("userBasket", JSON.stringify(obj));
 }
 
@@ -221,32 +221,32 @@ function onClickClearBtn(event) {
 }
 
 
-export function clearAfterSignOut () {
+export function clearAfterSignOut() {
     userBasket.clearList()
     refs.basketQuantity.innerHTML = userBasket.totalQuantity
     refs.basketNumHead.innerHTML = userBasket.totalQuantity
     refs.basketMarkupContainer.innerHTML = "";
     deleteLocalStorage();
     userBasket.isBasketEmpty = true;
-    if(!refs.basketContainerHead.classList.contains("hidden")) refs.basketContainerHead.classList.add("hidden")
-    if(!refs.basketContainer.classList.contains("hidden")) refs.basketContainer.classList.add("hidden")
+    if (!refs.basketContainerHead.classList.contains("hidden")) refs.basketContainerHead.classList.add("hidden")
+    if (!refs.basketContainer.classList.contains("hidden")) refs.basketContainer.classList.add("hidden")
     onBasketEmpty();
-    deleteTimer(timerId)
+    // deleteTimer(timerId)
 }
 
 
 refs.basketMarkupContainer.addEventListener("click", onClickDeleteButton);
 function onClickDeleteButton(event) {
-  if(event.target.closest(".close__box") === null) return;
+    if (event.target.closest(".close__box") === null) return;
 
-  event.target.closest("LI").dataset.id
- 
-  for (let i = 0; i <= userBasket.contentShoppingCart.length - 1; i +=1) {
-    if (userBasket.contentShoppingCart[i].id === event.target.closest("LI").dataset.id){
-        userBasket.contentShoppingCart.splice(i, 1)
-        userBasket.decreaseStandardQuantity()
-        break;
+    event.target.closest("LI").dataset.id
+
+    for (let i = 0; i <= userBasket.contentShoppingCart.length - 1; i += 1) {
+        if (userBasket.contentShoppingCart[i].id === event.target.closest("LI").dataset.id) {
+            userBasket.contentShoppingCart.splice(i, 1)
+            userBasket.decreaseStandardQuantity()
+            break;
+        }
     }
-  }
-  updateBasket()
+    updateBasket()
 }

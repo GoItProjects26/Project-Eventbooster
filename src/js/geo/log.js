@@ -6,7 +6,7 @@ import {
     signInWithEmailAndPassword, signOut, onAuthStateChanged, GoogleAuthProvider
 } from "firebase/auth";
 import { getDatabase, ref, set, child, get, update, push } from "firebase/database";
-import {clearAfterSignOut} from "../basket" //clean basket
+import { clearAfterSignOut } from "../basket" //clean basket
 //Файл настройок для ФАЯБЕЙЗА з акаунту
 const firebaseConfig = {
     apiKey: "AIzaSyA1qR_n73lnbDIB96TfK_yMCuERhUDCeuA",
@@ -74,7 +74,8 @@ function logInUser() {
         .then((userCredential) => {
             // Signed in 
             const user = userCredential.user;
-            uid = user.uid;
+            let uid = user.uid;
+            console.log(user);
             // ...
             notiflix.Notify.success(`User #${uid} logged`);
             //показуємо кнопку виходу і додаємо слухач
@@ -89,6 +90,7 @@ function logInUser() {
         })
         .catch((error) => {
             notiflix.Notify.failure(`User not found`);
+            console.log(error);
             const errorCode = error.code;
             const errorMessage = error.message;
         });
