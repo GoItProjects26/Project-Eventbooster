@@ -45,6 +45,58 @@ body.light {
   .footer-text {
     color: var(--modal-primary-text-color);
   }
+
+  .event_img,
+  .event_title,
+  .event_date,
+  .location_name {
+    color: var(--modal-primary-text-color);
+    font-weight: 500;
+    text-shadow: 0 0 5px var(--primary-text-color),
+      0 0 10px var(--primary-text-color), 0 0 15px var(--primary-text-color),
+      0 0 20px var(--accent-text-color), 0 0 15px var(--accent-text-color),
+      0 0 25px var(--accent-text-color), 0 0 20px var(--accent-text-color),
+      0 0 5px var(--accent-text-color);
+  }
+
+  .paginated__item:hover,
+  .paginated__item:focus {
+    box-shadow: 0 0 5px var(--primary-text-color),
+      0 0 10px var(--primary-text-color), 0 0 15px var(--primary-text-color),
+      0 0 20px var(--primary-text-color), 0 0 15px var(--accent-text-color),
+      0 0 30px var(--accent-text-color), 0 0 20px var(--accent-text-color),
+      0 0 5px var(--accent-text-color);
+
+    transform: scale(1.05, 1.05);
+    border-radius: 10px 0px;
+  }
+
+  .item-active {
+    color: var(--primary-text-color);
+    background-color: var(--accent-text-color);
+    border: 1px solid var(--accent-text-color);
+    border-radius: 10px 0px;
+  }
+
+  .paginated__item {
+    font-weight: 500;
+    box-shadow: 0 0 5px var(--accent-text-color),
+      0 0 10px var(--accent-text-color), 0 0 15px var(--accent-text-color),
+      0 0 20px var(--accent-text-color), 0 0 15px var(--primary-text-color),
+      0 0 30px var(--primary-text-color), 0 0 20px var(--primary-text-color),
+      0 0 5px var(--primary-text-color);
+
+    transform: scale(1.05, 1.05);
+    border-radius: 10px 0px;
+  }
+
+  .paginated__item.back__item {
+    border-radius: 0px 70px 70px 0px;
+  }
+
+  .paginated__item.forward__item {
+    border-radius: 100px 0px 0px 100px;
+  }
 }
 
 .theme__container {
