@@ -5,11 +5,10 @@ export default class Basket {
         this.vipQuantity = 0;
         this.standardQuantity = 0;
         this.totalQuantity = 0;
-        this.duration = 810000;
+        this.duration = 120000;
         this.step = 1000;
         this.isBasketEmpty = true;
     }
-
 
   increaseVipQuantity() {
     this.vipQuantity += 1;
@@ -28,8 +27,6 @@ export default class Basket {
 
   addEvent(dataId) {
     dataId.timer = Date.now();
-    console.log(dataId.timer)
-    console.log("add")
     this.contentShoppingCart.push(dataId);
   }
 
@@ -38,31 +35,6 @@ export default class Basket {
     this.contentShoppingCart.shift();
     if (this.standardQuantity > 0) this.decreaseStandardQuantity();
   }
-
-
-  //     const event = setTimeout(() => {
-  //         this.contentShoppingCart.shift()
-  //     }, this.duration)
-  // this.setTimeout(dataId);
-
-  // return function setTimeout () {
-  //     const event = setTimeout(() => {
-  //         this.contentShoppingCart.shift()
-  //     }, this.duration)
-
-  //     let end = this.duration;
-
-  //     const timer = setInterval(() => {
-  //         end -= this.step;
-  //         if (end <= 900) clearInterval(timer);
-  //         console.log(end)
-  //     }, this.step)
-
-  // }
-
-  // continueShopping () {
-
-  // }
 
   clearList() {
     this.vipQuantity = 0;
