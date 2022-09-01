@@ -37,8 +37,6 @@ function timeIsOver (obj) {
     refs.basketTimerHeader.textContent = "";
 }
 
-
-
 function timerDisplay (timeObj) {
     let {minutes, seconds} = calculateTime(timeObj)
     if(!isNaN(minutes) || !isNaN(seconds)) {

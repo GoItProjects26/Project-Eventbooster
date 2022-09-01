@@ -1,30 +1,18 @@
-
-
-
 import {refs} from "./refs";
 import {userBasket, ESC_KEY_CODE, onBasketShow, addToLocalStorage} from "./basket";
-
 import {closeModal} from "./modal"
 export {onClickModalBuyBtn}
 
-
-
-
-// refs.modalBuyBtn.addEventListener("click", onClickModalBuyBtn);
     function onClickModalBuyBtn(data) {
         refs.miniModal.classList.toggle("hidden");
-        // const basketId = data.id;
         userBasket.addEvent(data);
         userBasket.increaseStandardQuantity()
         addToLocalStorage(userBasket);
-  
         refs.miniModalBackdrop.addEventListener("click", onClickMiniModalBackdrop);
         window.addEventListener("keydown", onEscKeyPressMiniModal);
         refs.basketContainerHead.classList.remove("hidden")
         refs.basketNumHead.textContent = userBasket.totalQuantity;
         userBasket.isBasketEmpty = false;
-    
-    
 }
 
 function onEscKeyPressMiniModal (event) {
@@ -49,8 +37,6 @@ function onClickMiniModalBtnClose (event) {
     window.removeEventListener("keydown", onEscKeyPressMiniModal);
     refs.miniModalBackdrop.removeEventListener("click", onClickMiniModalBackdrop)
 }
-
-
 
 refs.miniModalBtnCart.addEventListener("click", onClickMiniModalBtnOpenBasket);
 function onClickMiniModalBtnOpenBasket (event) {
