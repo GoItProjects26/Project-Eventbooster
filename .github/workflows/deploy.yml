@@ -18,9 +18,9 @@ jobs:
       - name: 'Create env file'
         run: |
           touch .env
-          echo keyMaks = ${{ secrets.keyMaks }} >> .env
-          echo keyDenys = ${{ secrets.keyDenys}} >> .env
-          echo fireBaseConfig = ${{ secrets.fireBaseConfig }} >> .env
+          echo keyMaks = ${{ secrets.KEYMAKS }} >> .env
+          echo keyDenys = ${{ secrets.KEYDENYS}} >> .env
+          echo fireBaseConfig = ${{ secrets.FIREBASECONFIG }} >> .env
           cat .env
 
       - name: Build 🔧

@@ -22,7 +22,8 @@ import {
   push,
 } from 'firebase/database';
 //
-// import { config } from '../const';
+import { config } from '../const';
+console.log(config);
 import { clearAfterSignOut } from '../basket'; //clean basket
 //Файл настройок для ФАЯБЕЙЗА з акаунту
 const firebaseConfig = {
