@@ -13,7 +13,7 @@ jobs:
 
       - name: Install 🔧
         run: |
-          npm ci
+          npm i
 
       - name: 'Create env file'
         run: |
