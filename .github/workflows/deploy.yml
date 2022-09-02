@@ -1,27 +1,32 @@
 name: Build and deploy to GitHub Pages
-
+​
 on:
   push:
     branches: [main]
-
+​
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v2.3.1
-
-      - name: Env
-        run: |
-          touch .env
-          echo api =${{secrets.API}} >> .env
-          cat .env
-
-      - name: Install and Build 🔧
+​
+      - name: Install 🔧
         run: |
           npm ci
+​
+      - name: 'Create env file'
+        run: |
+          touch .env
+          echo keyMaks = ${{ secrets.keyMaks }} >> .env
+          echo keyDenys = ${{ secrets.keyDenys}} >> .env
+          echo fireBaseConfig = ${{ secrets.fireBaseConfig }} >> .env
+          cat .env
+​
+      - name: Build 🔧
+        run: |
           npm run build
-
+​
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.0
         with:
