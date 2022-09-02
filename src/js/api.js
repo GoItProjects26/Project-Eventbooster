@@ -1,9 +1,10 @@
 import axios from 'axios';
+import { keyMaks, keyDenys } from './const';
 
 const BASE_URL = 'https://app.ticketmaster.com/discovery/v2/';
 const source = 'events';
-const API_KEY = '5HiPtCjBuAY9gthoMA0oQuJCLkmuGiMG';
-// const API_KEY = '6iAtgNGAR43W6F7x79CI9WmegarTMZK1';
+const API_KEY = keyMaks;
+// const API_KEY = keyDenys;
 
 export class EventApi {
   static config = {
